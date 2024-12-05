@@ -1,0 +1,62 @@
+<section>
+  <header>
+    <div class="flex-justify">
+      <h2>{{ title | translate }}</h2>
+      <div class="btn-icon" (click)="closeDialog()">
+        <mat-icon class="material-icons-outlined" svgIcon="cancel-lt" />
+      </div>
+    </div>
+    <span *ngIf="!disabled">{{ "clients-dialog.subtitle" | translate }}</span>
+  </header>
+
+  <div class="content">
+    <div class="flex-justify">
+      <span>{{ "dialogs.form" | translate }}</span>
+      <div class="divider"></div>
+    </div>
+
+    <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+      <div>
+        <app-form-field
+          fieldType="input"
+          borderStyle="secondary"
+          width="100%"
+          label="{{ 'clients-dialog.client-label' | translate }}"
+          placeholder="{{ 'clients-dialog.client-placeholder' | translate }}"
+          control="name"
+          [disabled]="disabled"
+        />
+        <app-form-field
+        fieldType="input"
+        borderStyle="secondary"
+        width="100%"
+        label="{{ 'clients-dialog.ip-label' | translate }}"
+        placeholder="{{ 'clients-dialog.ip-placeholder' | translate }}"
+        control="ipRange"
+        [disabled]="disabled"
+      />
+      </div>
+    </form>
+  </div>
+
+  <div class="buttons">
+    <app-button
+      *ngIf="!disabled"
+      width="100%"
+      btnStyle="raised"
+      variant="success"
+      (click)="onSubmit()"
+      [disabled]="isLoading"
+    >
+      {{ "dialogs.btn-register" | translate }}
+    </app-button>
+    <app-button
+      width="100%"
+      btnStyle="stroked"
+      variant="light"
+      (click)="closeDialog()"
+    >
+      {{ "common.cancel" | translate }}
+    </app-button>
+  </div>
+</section>

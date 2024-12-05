@@ -1,0 +1,66 @@
+@import "_maps.scss";
+@import "_themes.scss";
+
+@mixin btn {
+  font-family: "Assistant-medium";
+  font-size: 16px;
+  height: 44px;
+  cursor: pointer;
+}
+
+@each $name, $color in $theme-colors {
+
+  .btn-#{$name}.mat-mdc-button:not(:disabled).mat-mdc-button-base,
+  .btn-#{$name}.mat-mdc-raised-button.mat-mdc-button-base,
+  .btn-#{$name}.mat-mdc-outlined-button.mat-mdc-button-base {
+    @include btn;
+    background-color: $color;
+    @if($name == "light"){
+        color: $colorsystem1-900 !important;
+    } @else {
+        color: $colorsystem1-50 !important;
+    }
+  }
+  .btn-#{$name}:hover.mat-mdc-button:not(:disabled).mat-mdc-button-base,
+  .btn-#{$name}:hover.mat-mdc-raised-button.mat-mdc-button-base,
+  .btn-#{$name}:hover.mat-mdc-outlined-button.mat-mdc-button-base {
+    opacity: .8;
+  }
+
+  .mat-mdc-button .mdc-button__ripple {
+    border-color: $colorsystem3-red;
+  }
+
+  .btn-#{$name}.btn-outline.mat-mdc-button:not(:disabled).mat-mdc-button-base,
+  .btn-#{$name}.btn-outline.mat-mdc-raised-button.mat-mdc-button-base,
+  .btn-#{$name}.btn-outline.mat-mdc-outlined-button.mat-mdc-button-base {
+    @include btn;
+    background-color: transparent;
+    border: 1px solid;
+    @if($name == "light"){
+      border-color: $theme-muted !important;
+      color: var(--default-font-color) !important;
+  } @else {
+      border-color: $color !important;
+      color: $color  !important;
+  }
+
+
+  }
+  .btn-#{$name}.btn-outline:hover.mat-mdc-button:not(:disabled).mat-mdc-button-base,
+  .btn-#{$name}.btn-outline:hover.mat-mdc-raised-button.mat-mdc-button-base,
+  .btn-#{$name}.btn-outline:hover.mat-mdc-outlined-button.mat-mdc-button-base {
+    background-color: $color;
+    color: $colorsystem1-900 !important;
+    opacity: 1.0;
+  }
+
+  .mat-mdc-button:disabled {
+    @include btn;
+    background-color: rgba(230, 224, 233, 0.12);
+  }
+
+  .mat-mdc-button[disabled][disabled] {
+    --mdc-text-button-disabled-label-text-color: rgba(230, 224, 233, 0.38);
+  }
+}

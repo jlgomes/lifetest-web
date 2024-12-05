@@ -1,0 +1,98 @@
+<app-progress-spinner *ngIf="isLoading" padding="100px" />
+<table *ngIf="!isLoading" mat-table [dataSource]="dataSources">
+  <ng-container matColumnDef="product">
+    <th mat-header-cell *matHeaderCellDef>
+      {{ "common.product" | translate }}
+    </th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [style.background]="element.test.product.color + '!important'"
+    >
+      {{ element.test.product.model }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="led2G">
+    <th mat-header-cell *matHeaderCellDef width="150px">LED 2G</th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [style.background-color]="statusColor(element.led2G)"
+      [style.color]="'#ffffff !important'"
+    >
+      {{ element.led2G ? "Ok" : "ERROR" }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="led5G">
+    <th mat-header-cell *matHeaderCellDef width="150px">LED 5G</th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [style.background-color]="statusColor(element.led5G)"
+      [style.color]="'#ffffff !important'"
+    >
+      {{ element.led5G ? "Ok" : "ERROR" }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="ledPower">
+    <th mat-header-cell *matHeaderCellDef width="150px">LED Power</th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [style.background-color]="statusColor(element.ledPower)"
+      [style.color]="'#ffffff !important'"
+    >
+      {{ element.ledPower ? "Ok" : "ERROR" }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rack">
+    <th mat-header-cell *matHeaderCellDef width="100px">
+      {{ "common.rack" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.test.slot.rack.name }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="slot">
+    <th mat-header-cell *matHeaderCellDef width="100px">
+      {{ "common.slot" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.test.slot.name }}</td>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef width="200px">
+      {{ "common.date" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{ formateDateUtil(element.createdAt) }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef width="100px">
+      {{ "common.actions" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        class="btn"
+        (click)="view(element)"
+        matTooltip="{{ 'common.view' | translate }}"
+      >
+        <mat-icon>visibility</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<mat-paginator
+  *ngIf="page"
+  [pageSizeOptions]="[5, 10]"
+  [pageIndex]="page.pageable.pageNumber"
+  [length]="page.totalElements"
+  [pageSize]="page.pageable.pageSize"
+  [showFirstLastButtons]="true"
+  (page)="pageUpdate($event)"
+  aria-label="Select page"
+/>

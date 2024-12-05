@@ -1,0 +1,61 @@
+stages:
+  - docker-build
+  - deploy
+
+variables:
+  AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION       # Group variable
+  AWS_ACCOUNT_ID: $AWS_ACCOUNT_ID               # Group variable
+  AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID         # Group variable
+  AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY # Group variable
+  CI_REGISTRY: $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+  IMAGE_NAME: lifetest-web
+  TAG_LATEST: $CI_REGISTRY/$IMAGE_NAME:latest
+  TAG_COMMIT: $CI_REGISTRY/$IMAGE_NAME:$CI_COMMIT_SHORT_SHA
+
+docker-build:
+  stage: docker-build
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  script:
+    - |
+      if [[ "$CI_COMMIT_BRANCH" == "$CI_DEFAULT_BRANCH" || "$CI_COMMIT_BRANCH" == "qa" ]]; then
+        aws ecr get-login-password | docker login --username AWS --password-stdin $CI_REGISTRY
+        echo "Running on default branch '$CI_COMMIT_BRANCH': tag = '$CI_COMMIT_SHORT_SHA'"
+        docker build -t $TAG_COMMIT .
+        docker push $TAG_COMMIT
+      elif [[ "$CI_COMMIT_BRANCH" == "main" ]]; then
+        aws ecr get-login-password | docker login --username AWS --password-stdin $CI_REGISTRY
+        echo "Running on commit branch '$CI_COMMIT_BRANCH': tag = '$CI_COMMIT_SHORT_SHA'"
+        docker pull $TAG_LATEST || true
+        docker build --cache-from $TAG_LATEST -t $TAG_COMMIT -t $TAG_LATEST .
+        docker push $TAG_LATEST
+        docker push $TAG_COMMIT
+      else
+        echo "Running build validation '$CI_COMMIT_BRANCH': tag = '$CI_COMMIT_SHORT_SHA'"
+        docker build -t $IMAGE_NAME:$CI_COMMIT_SHORT_SHA .
+        docker rmi $IMAGE_NAME:$CI_COMMIT_SHORT_SHA
+      fi
+
+deploy-dev:
+  stage: deploy
+  variables:
+    STACK_NAME: lifetest-frontend-dev
+    API_URL: http://192.168.0.51:30001/api/v1
+    BASE_URL: /api
+    WEBSOCKET: http://192.168.0.51:30001/v1
+    HOST_PORT: 30000
+  script:
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $CI_REGISTRY
+    - docker pull $TAG_COMMIT
+    - |
+      cat > env.conf << EOF
+      DOCKER_IMAGE=${TAG_COMMIT}
+      HOST_PORT=${HOST_PORT}
+      API_URL=${API_URL}
+      BASE_URL=${BASE_URL}
+      WEBSOCKET=${WEBSOCKET}
+      EOF
+    - env -i $(cat ./env.conf | xargs) envsubst < ./docker-compose-stack.yml | docker stack deploy --with-registry-auth --prune --compose-file - $STACK_NAME
+  tags:
+    - lifetest
+  only:
+    - develop

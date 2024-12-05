@@ -1,0 +1,17 @@
+services:
+  web:
+    image: ${DOCKER_IMAGE}
+    build:
+      context: .
+    environment:
+      API_URL: example
+      BASE_URL: example
+      WEBSOCKET: example
+    container_name: lifetest-web
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "10"
+        max-size: "50m"
+    ports:
+      - "${HOST_PORT}:80"

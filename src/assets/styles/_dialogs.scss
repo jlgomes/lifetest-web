@@ -1,0 +1,140 @@
+@import "_colors.scss";
+
+.btn-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.btn-icon:hover {
+  background-color: rgba($colorsystem1-1000, .80);
+}
+
+section {
+  margin: 0 auto;
+  display: inline-flex;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+  min-width: 500px;
+  border-radius: 4px;
+  background-color: var(--dialog-card-bg-color);
+  box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.50), 0px 9px 9px 0px rgba(27, 24, 24, 0.25);
+
+  header {
+    width: 100%;
+    display: flex;
+    padding: 16px 16px 32px 16px;
+    border-radius: 4px 4px 0px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--dialog-card-header-bg-color);
+
+    h2 {
+      color: var(--default-font-color);
+      font-family: Assistant;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 32px;
+    }
+
+    span {
+      color: $colorsystem1-300;
+      font-family: Assistant;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+  }
+
+  .box-section {
+    margin-top: 2px;
+    margin-bottom: 0px;
+    padding: 16px 16px 32px 16px;
+    background-color: var(--dialog-card-bg-color);
+  }
+
+  form {
+    width: 100%;
+  }
+
+  span {
+    color: $colorsystem1-300;
+  }
+
+  .content {
+    margin: 16px 16px 32px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    align-self: stretch;
+  }
+
+  .content-2 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    align-self: stretch;
+  }
+
+  .flex-justify {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+
+    .divider {
+      width: 100%;
+      height: 0;
+      border-top: 1px solid $colorsystem1-600;
+    }
+  }
+
+  .flex-title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+
+    span {
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+
+    .divider {
+      width: 100%;
+      height: 0;
+      border-top: 1px solid $colorsystem1-600;
+    }
+  }
+
+  .buttons {
+    background: var(--dialog-card-footer-bg-color);
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+
+    app-button {
+      width: 100%;
+    }
+  }
+
+}

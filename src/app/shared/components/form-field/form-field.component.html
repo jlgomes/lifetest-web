@@ -1,0 +1,40 @@
+<div [formGroup]="form">
+    <mat-form-field [floatLabel]="floatLabel" [appearance]="formStyle" [class]="class" [style.width]="width" [ngClass]="{
+    'border-success': borderStyle === 'success',
+    'border-danger': borderStyle === 'danger',
+    'border-warning': borderStyle === 'warning',
+    'border-primary': borderStyle === 'primary',
+    'border-secondary': borderStyle === 'secondary',
+    'border-dark': borderStyle === 'dark',
+    'border-light': borderStyle === 'light',
+    'border-muted': borderStyle === 'muted',
+    'disabled': disabled
+}">
+        <mat-label>{{ label }}</mat-label><ng-content></ng-content>
+        <input #campoRef matInput *ngIf="fieldType === 'date'" [type]="fieldType" [placeholder]="placeholder" [formControlName]="control" [readonly]="disabled" mask="d0/M0/0000"/>
+        <input #campoRef matInput *ngIf="fieldType === 'input'" [placeholder]="placeholder" [formControlName]="control" [readonly]="disabled" (ngModelChange)="onChange($event)" [mask]="mask" (focus)="onFieldFocus.emit()"/>
+        <input #campoRef matInput *ngIf="fieldType === 'password'" [type]="fieldType" [placeholder]="placeholder" [formControlName]="control" [readonly]="disabled"/>
+        <input #campoRef matInput *ngIf="fieldType === 'color'" [type]="fieldType" [placeholder]="placeholder" [formControlName]="control" [readonly]="disabled" [disabled] ="disabled"/>
+        <mat-select *ngIf="fieldType === 'select'" [placeholder]="placeholder" [formControlName]="control" [disabled]="disabled" >
+            <mat-option *ngFor="let option of selectOptions; let i=index;" [value]="i" [disabled]="disabled">{{ option }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get(control)?.hasError('required')">
+          {{ 'validations.required-field' | translate }}
+        </mat-error>
+        <mat-error *ngIf="form.get(control)?.hasError('email')">
+          {{ 'validations.invalid-email' | translate }}
+        </mat-error>
+        <mat-error *ngIf="form.get(control)?.hasError('max')">
+          {{ 'validations.max-value' | translate }}
+        </mat-error>
+        <mat-error *ngIf="form.get(control)?.hasError('min')">
+          {{ 'validations.min-value' | translate }}
+        </mat-error>
+        <mat-error *ngIf="form.get(control)?.hasError('pattern')">
+          {{ 'validations.invalid-pattern' | translate }}
+        </mat-error>
+        <mat-error *ngIf="form.get(control)?.hasError('customError')">
+          {{ form.get(control)?.getError('customError') }}
+        </mat-error>
+    </mat-form-field>
+</div>

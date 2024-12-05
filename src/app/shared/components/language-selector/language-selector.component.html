@@ -1,0 +1,19 @@
+<div ngbDropdown class="d-inline-block" container="body">
+  <span
+    [class]="language"
+    class="dropdown-btn"
+    id="selectLanguage"
+    ngbDropdownToggle
+    [style]="style"></span>
+  <div
+    class="format-dropdown-login"
+    ngbDropdownMenu
+    aria-labelledby="selectLanguage">
+    <btn ngbDropdownItem (click)="changeLanguage('pt')">
+      <span class="flag-icon flag-icon-br" [style]="style"></span>
+    </btn>
+    <btn ngbDropdownItem (click)="changeLanguage('en')">
+      <span class="flag-icon flag-icon-gb" [style]="style"></span>
+    </btn>
+  </div>
+</div>

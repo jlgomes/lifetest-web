@@ -1,0 +1,174 @@
+<section class="private-main-container">
+  <header>
+    <app-breadcrumb
+      breadcrumbTitle="breadcrumbs.reports"
+      route="{{ appRoutes.CONTROL_PANEL }}"
+    />
+    <!-- <app-button
+      width="256px"
+      btnStyle="raised"
+      variant="secondary"
+      (click)="create()"
+    >
+      {{ "reports.generate-report" | translate }}
+    </app-button> -->
+  </header>
+  <div class="reports-table">
+    <div class="card-table">
+      <div class="report-filter">
+        <form [formGroup]="recoveryForm">
+          <div class="filter-row">
+            <app-form-select-field
+              borderStyle="secondary"
+              width="150px"
+              label="{{ 'common.type' | translate }}"
+              placeholder="{{ 'common.type' | translate }}"
+              control="type"
+              [options]="testReportTypes"
+              valueField="key"
+              textField="text"
+              (selectionChangeEmitter)="onReportTypeChange($event)"
+            />
+
+            <!-- <app-form-select-field
+            borderStyle="secondary"
+            width="200px"
+            label="{{ 'Dados do relatório' | translate }}"
+            placeholder="{{ 'Dados do relatório' | translate }}"
+            control="product"
+            [options]="
+              typeSelection === 'TESTS' ? testReportData : maintenanceReportData
+            "
+            valueField="key"
+            textField="text"
+            [disabled]="typeSelection === ''"
+          /> -->
+
+            <!-- <app-form-select-field
+              *ngIf="typeSelection === 'TESTS'"
+              borderStyle="secondary"
+              label="{{ 'Produto' | translate }}"
+              placeholder="{{ 'Produto' | translate }}"
+              control="product"
+              [options]="products"
+              valueField="id"
+              textField="model"
+            /> -->
+
+            <app-checkbox-tree
+              [tree]="typeSelection === 'TESTS' ? treeTests : treeMaintenance"
+              (onSelectionChange)="changeTestsSelection($event)"
+            />
+
+            <app-checkbox-tree
+              *ngIf="typeSelection === 'TESTS'"
+              [tree]="treeProducts"
+            />
+          </div>
+
+          <div class="filter-row">
+            <app-date-picker (onSelectionChange)="onDateChange($event)" />
+            <app-form-field
+              fieldType="input"
+              borderStyle="secondary"
+              width="150px"
+              label="{{ 'Horário inicial' | translate }}"
+              placeholder="{{ 'Hora' | translate }}"
+              control="initialDate"
+              mask="Hh:m0"
+              (valueChange)="setStartTime($event)"
+            />
+
+            <app-form-field
+              fieldType="input"
+              borderStyle="secondary"
+              width="150px"
+              label="{{ 'Horário final' | translate }}"
+              placeholder="{{ 'Hora' | translate }}"
+              control="endDate"
+              mask="Hh:m0"
+              (valueChange)="setEndTime($event)"
+            />
+          </div>
+
+          <!-- <app-datetime-picker label="Data inicial" />
+          <app-datetime-picker label="Data final" /> -->
+        </form>
+
+        <app-button
+          width="256px"
+          btnStyle="raised"
+          variant="secondary"
+          (click)="generateReport()"
+        >
+          {{ "reports.generate-report" | translate }}
+        </app-button>
+      </div>
+
+      <div class="report">
+        <!-- Test reports -->
+        <app-bar-graph-chart
+          canvasId="total-products-tested"
+          [data]="reportData.totalProductsTested ?? []"
+          title="{{ 'reports.tests.total-products-tested' | translate }}"
+          description="{{ 'reports.tests.total-products-tested' | translate }}"
+        />
+
+        <app-bar-graph-chart
+          canvasId="total-failures-per-product"
+          [data]="reportData.totalFailuresPerProduct ?? []"
+          title="{{ 'reports.tests.total-failures-per-product' | translate }}"
+          description="{{
+            'reports.tests.total-failures-per-product' | translate
+          }}"
+        />
+
+        <app-bar-graph-chart
+          canvasId="total-failures-per-type"
+          [data]="reportData.totalFailuresPerType ?? []"
+          title="{{ 'reports.tests.total-failures-per-type' | translate }}"
+          description="{{
+            'reports.tests.total-failures-per-type' | translate
+          }}"
+        />
+
+        <app-bar-graph-chart
+          canvasId="total-failures-detailed"
+          [data]="reportData.totalFailuresDetailed ?? []"
+          title="{{ 'reports.tests.total-failures-detailed' | translate }}"
+          description="{{
+            'reports.tests.total-failures-detailed' | translate
+          }}"
+        />
+
+        <app-bar-graph-chart
+          canvasId="hours-executed-per-product"
+          [data]="reportData.hoursExecutedPerProduct ?? []"
+          title="{{ 'reports.tests.hours-executed-per-product' | translate }}"
+          description="{{
+            'reports.tests.hours-executed-per-product' | translate
+          }}"
+        />
+
+        <!-- Maintenance reports -->
+        <app-bar-graph-chart
+          canvasId="maintenances-per-type"
+          [data]="reportData.maintenancesPerType ?? []"
+          title="{{ 'reports.maintenance.maintenances-per-type' | translate }}"
+          description="{{
+            'reports.maintenance.maintenances-per-type' | translate
+          }}"
+        />
+
+        <app-bar-graph-chart
+          canvasId="maintenances-per-slot"
+          [data]="reportData.maintenancesPerSlot ?? []"
+          title="{{ 'reports.maintenance.maintenances-per-slot' | translate }}"
+          description="{{
+            'reports.maintenance.maintenances-per-slot' | translate
+          }}"
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,117 @@
+<div class="dashboard-container">
+  <header class="top-navbar-container">
+    <section class="top-navbar-title">
+      <div class="toogle-rack">
+        <div
+          class="rack-button"
+          [ngClass]="{ selected: rackActive === 'Rack1' }"
+          (click)="changeRack('Rack1')"
+        >
+          <mat-icon class="icon-check" *ngIf="rackActive === 'Rack1'">check</mat-icon
+          >&nbsp;Rack&nbsp;1
+        </div>
+        <div
+          class="rack-button"
+          [ngClass]="{ selected: rackActive === 'Rack2' }"
+          (click)="changeRack('Rack2')"
+        >
+          <mat-icon class="icon-check" *ngIf="rackActive === 'Rack2'">check</mat-icon
+          >&nbsp;Rack&nbsp;2
+        </div>
+      </div>
+    </section>
+    <section class="top-navbar-cards" *ngIf="rackActive === 'Rack1'">
+      <app-model-card
+        *ngFor="let card of modelsRack1"
+        [modelName]="card.product?.model"
+        [modelColor]="card.product?.color"
+        [modelCount]="card.count"
+      ></app-model-card>
+    </section>
+
+    <section class="top-navbar-cards" *ngIf="rackActive === 'Rack2'">
+      <app-model-card
+        *ngFor="let card of modelsRack2"
+        [modelName]="card.product?.model"
+        [modelColor]="card.product?.color"
+        [modelCount]="card.count"
+      />
+    </section>
+  </header>
+
+  <main class="dashboard-main"  *ngIf="rackActive === 'Rack1'">
+    <div class="dashboard-card" *ngFor="let section of box[0]; let i = index">
+      <app-modem
+        *ngFor="let item of section"
+        [modelColor]="item.test?.product?.color ?? ''"
+        [enabled]="item.status"
+        [errors]="hasHadErrors(item)"
+        [initialized]="item.test?.startDate !== null ? true : false"
+        [initializing]="initializing || startedsByModal.has(item.test?.id + '')"
+        [ledStatus]="hasErrorLastLedTelemetry(item)"
+        [pingStatus]="hasErrorLastPingTelemetry(item)"
+        [inMaintenance]="item.inMaintenance"
+        [cardNumber]="item.name"
+        (click)="viewSlot(item)"
+      />
+      <div class="tower-label">
+        <span>{{ mockTemperature[i] }}°</span>
+      </div>
+      <div class="tower-label tower-label-letter">
+        <span>{{ 'control-panel.tower' | translate }} {{ towers[i] }}</span>
+      </div>
+    </div>
+  </main>
+
+  <main class="dashboard-main" *ngIf="rackActive === 'Rack2'">
+    <div class="dashboard-card" *ngFor="let section of box[1]; let i = index">
+      <app-modem
+        *ngFor="let item of section"
+        [modelColor]="item.test?.product?.color ?? ''"
+        [enabled]="item.status"
+        [errors]="hasHadErrors(item)"
+        [initialized]="item.test?.startDate !== null ? true : false"
+        [initializing]="initializing || startedsByModal.has(item.test?.id + '')"
+        [ledStatus]="hasErrorLastLedTelemetry(item)"
+        [pingStatus]="hasErrorLastPingTelemetry(item)"
+        [inMaintenance]="item.inMaintenance"
+        [cardNumber]="item.name"
+        (click)="viewSlot(item)"
+      />
+      <div class="tower-label">
+        <span>{{ mockTemperature[i] }}°</span>
+      </div>
+      <div class="tower-label tower-label-letter">
+        <span>{{ 'control-panel.tower' | translate }} {{ towers[i] }}</span>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bottom-navbar-container">
+    <nav class="buttons-container">
+      <app-button
+        *ngIf="checkAccessCode('create-tests')"
+        width="200px"
+        btnStyle="raised"
+        variant="success"
+        [disabled]="disabledStart"
+        type="submit"
+        class="bottom-button"
+        (onClick)="startTests()"
+      >
+        {{ "control-panel.begin-test" | translate }}
+      </app-button>
+      <app-button
+        *ngIf="checkAccessCode('create-tests')"
+        width="200px"
+        btnStyle="raised"
+        variant="secondary"
+        type="submit"
+        class="bottom-button"
+        (click)="navigateToTestRegistration()"
+      >
+        {{ "control-panel.register-test" | translate }}
+      </app-button>
+    </nav>
+  </footer>
+</div>

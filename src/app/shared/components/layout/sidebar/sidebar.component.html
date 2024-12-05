@@ -1,0 +1,67 @@
+<nav class="navbar-format" [ngClass]="{'expanded' : isExpanded === true}">
+  <section class="logo-mini" *ngIf="!isExpanded">
+    <figure class="logo mb-3">
+      <img src="assets/images/logo-small.svg" alt="LifeTest" />
+    </figure>
+  </section>
+
+  <section class="logo-expanded" *ngIf="isExpanded">
+    <figure class="logo mb-3">
+      <img src="assets/images/logo-white.svg" alt="LifeTest" />
+    </figure>
+  </section>
+
+  <section class="expand-button">
+    <mat-icon class="material-icons-outlined" (click)="isExpanded = true" *ngIf="!isExpanded">menu</mat-icon>
+    <mat-icon class="material-icons-outlined" (click)="isExpanded = false" *ngIf="isExpanded">menu_open</mat-icon>
+  </section>
+
+  <main>
+    <ul class="menu-format">
+      <li *ngFor="let item of menus; let i = index" class="item-menu-format">
+        <div *ngIf="item.routerLink !== null; then isShowIn; else isShowOut"></div>
+        <ng-template #isShowIn>
+          <a [routerLink]="item.routerLink" [ngbTooltip]="item.label | translate" tooltipClass="tooltip-format-sidebar"
+            placement="right" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+              true}">
+            <mat-icon *ngIf="item.svg == false" class="material-icons-outlined">{{ item.icon }}</mat-icon>
+            <mat-icon *ngIf="item.svg == true" class="material-icons-outlined" [svgIcon]="item.icon"></mat-icon>
+            <span *ngIf="isExpanded">{{ item.label | translate }}</span>
+          </a>
+        </ng-template>
+
+        <ng-template #isShowOut>
+          <div ngbDropdown container="body">
+            <a [routerLink]="item.routerLink" [id]="item.label" ngbDropdownToggle [ngbTooltip]="item.label"
+              tooltipClass="tooltip-format-sidebar">
+              <mat-icon *ngIf="item.svg == false" class="material-icons-outlined">{{ item.icon }}</mat-icon>
+              <mat-icon *ngIf="item.svg == true" class="material-icons-outlined" [svgIcon]="item.icon"></mat-icon>
+              <span *ngIf="isExpanded">{{ item.label | translate }}</span>
+            </a>
+            <div ngbDropdownMenu class="mx-3 format-dropdown" [attr.aria-labelledby]="item.label">
+              <button ngbDropdownItem class="title-dropdown">
+                {{ item.label }}
+              </button>
+              <button ngbDropdownItem *ngFor="let subitem of item.items" [routerLink]="subitem.routerLink"
+                routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                true}">
+                {{ subitem.label }}
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+    </ul>
+    <ul class="menu-format last">
+      <li class="item-menu-format">
+        <a (click)="toggleThemeMode()" class="theme-button">
+          <mat-icon *ngIf="isLightMode()">dark_mode</mat-icon>
+          <mat-icon *ngIf="!isLightMode()">light_mode</mat-icon>
+          <span *ngIf="isExpanded && isLightMode()">Dark Mode</span>
+          <span *ngIf="isExpanded && !isLightMode()">Light Mode</span>
+        </a>
+      </li>
+    </ul>
+
+  </main>
+</nav>

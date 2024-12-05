@@ -1,0 +1,12 @@
+@import "_colors.scss";
+
+$theme-colors: (
+    "success": $brandcolor-5,
+    "danger": $colorsystem3-red,
+    "warning": $colorsystem3-orange1,
+    "primary": $colorsystem3-purpleblue,
+    "secondary": $colorsystem1-600,
+    "dark": $colorsystem1-900,
+    "light": $colorsystem1-50,
+    "muted": $theme-muted,
+);

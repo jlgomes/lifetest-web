@@ -1,0 +1,92 @@
+<section class="private-main-container">
+  <header>
+    <app-breadcrumb
+      breadcrumbTitle="breadcrumbs.registers.tests.registration"
+      subtitle="breadcrumbs.registers.tests.reading"
+      route={{appRoutes.CONTROL_PANEL}}
+    />
+  </header>
+  <main>
+    <h5 id="first-label">{{ 'reading.test-data' | translate }}</h5>
+    <h5 id="second-label">{{ 'reading.data-read' | translate }}</h5>
+    <div class="side-options">
+      <div class="card slot">
+        <app-modem [cardNumber]="formData.slots[count].name" [modelColor]="formData.product.color" [enabled]="true"></app-modem>
+      </div>
+      <div class="card">
+        <table>
+          <thead>
+            <th [style.background-color]="formData.product.color">{{ 'reading.model' | translate }}: <span>{{ formData.product.model }}</span></th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Slots: <span>{{ (count + 1) + '/' + formData.slots.length + ' und' }}</span></td>
+            </tr>
+            <tr>
+              <td>{{ 'reading.time' | translate }}: <span>{{ formData.duration }} {{ 'reading.day' | translate }}{{formData.duration > 1 ? "s" : ""}} </span></td>
+            </tr>
+            <tr>
+              <td>{{ 'reading.entry' | translate }}: <span>{{ formData.start }}</span></td>
+            </tr>
+            <tr>
+              <td>{{ 'reading.exit' | translate }}: <span>{{ formData.end }}</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="rack-options">
+      <div class="card form">
+        <h4 class="form-title">RACK - {{ formData.slots[count].rack.name }} | SLOT - {{ formData.slots[count].name }}</h4>
+        <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+          <span [ngClass]="{ 'focused': canActive('product') }"><mat-icon svgIcon="barcode-lt"></mat-icon> {{ 'reading.product' | translate }}</span>
+          <app-form-field floatLabel="auto" fieldType="input" control="product" width="100%" class="input-field" required (onFieldFocus)="setActive('product')" [autoFocus]="true" >
+            <mat-icon *ngIf="checkFied('product')">check</mat-icon>
+          </app-form-field>
+          <span [ngClass]="{ 'focused': canActive('rack') }"><mat-icon>qr_code</mat-icon> Rack </span>
+          <app-form-field floatLabel="auto" control="rack" width="100%" class="input-field" required (onFieldFocus)="setActive('rack')">
+            <mat-icon *ngIf="checkFied('rack')">check</mat-icon>
+          </app-form-field>
+          <span [ngClass]="{ 'focused': canActive('box') }"><mat-icon svgIcon="barcode-lt"></mat-icon> {{ 'reading.box' | translate }}</span>
+          <app-form-field floatLabel="auto" control="box" width="100%" class="input-field" required (onFieldFocus)="setActive('box')">
+            <mat-icon *ngIf="checkFied('box')">check</mat-icon>
+          </app-form-field>
+          <span [ngClass]="{ 'focused': canActive('rackbox') }"><mat-icon>qr_code</mat-icon> {{ 'reading.rack-box-slot' | translate }}</span>
+          <app-form-field floatLabel="auto" control="rackbox" width="100%" class="input-field" required (onFieldFocus)="setActive('rackbox')">
+            <mat-icon *ngIf="checkFied('rackbox')">check</mat-icon>
+          </app-form-field>
+          <span [ngClass]="{ 'focused': canActive('font') }"><mat-icon svgIcon="barcode-lt"></mat-icon> {{ 'reading.product-power-source' | translate }}</span>
+          <app-form-field floatLabel="auto" control="font" width="100%" class="input-field" required (onFieldFocus)="setActive('font')">
+            <mat-icon *ngIf="checkFied('font')">check</mat-icon>
+          </app-form-field>
+          <div class="buttons">
+            <app-button width="100%" variant="primary" [disabled]="!isFullFilled" (click)="onSubmit()">{{ 'reading.register-reading' | translate }}</app-button>
+            <app-button width="100%" btnStyle="stroked" variant="light" (click)="onCancel()">{{ 'common.cancel' | translate }}</app-button>
+          </div>
+        </form>
+      </div>
+      <div class="card-alert">
+        <div class="card alert" *ngIf="canActive('product')">
+          {{ 'reading.read-product' | translate }}
+          <mat-icon class="icon-absolute" (click)="setActive('')">close</mat-icon>
+        </div>
+        <div class="card alert" *ngIf="canActive('rack')">
+          {{ 'reading.read-rack' | translate }}
+          <mat-icon class="icon-absolute" (click)="setActive('')">close</mat-icon>
+        </div>
+        <div class="card alert" *ngIf="canActive('box')">
+          {{ 'reading.read-box' | translate }}
+          <mat-icon class="icon-absolute" (click)="setActive('')">close</mat-icon>
+        </div>
+        <div class="card alert" *ngIf="canActive('rackbox')">
+          {{ 'reading.read-rack-box' | translate }}
+          <mat-icon class="icon-absolute" (click)="setActive('')">close</mat-icon>
+        </div>
+        <div class="card alert" *ngIf="canActive('font')">
+          {{ 'reading.read-power-source' | translate }}
+          <mat-icon class="icon-absolute" (click)="setActive('')">close</mat-icon>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>

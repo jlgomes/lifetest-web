@@ -1,0 +1,58 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon [matBadge]="notifications?.totalUnread == 0 ? null : notifications?.totalUnread"
+    matBadgePosition="after"
+    matBadgeSize="medium"
+    class="size-icons-toolbar"
+    aria-hidden="false"
+  >
+    notifications_none
+  </mat-icon>
+</button>
+<mat-menu class="teste" #menu="matMenu">
+  <ng-container *ngFor="let notification of notifications?.notifications">
+    <button mat-menu-item (click)="navigateToNotifications()">
+      <div class="notification-date">
+        <span>{{ notification.createdAt | notificationDate : 'date-header' | translate }}</span>
+        <div class="divider"></div>
+      </div>
+      <div class="grid-status">
+        <header class="title">
+          <span><b>{{ 'common.rack' | translate }} {{ notification.slot.rack.name }}</b> | {{ 'common.slot' | translate }} - {{ notification.slot.name }}</span>
+        </header>
+
+        <div class="status-type">
+          <div *ngIf="notification.slot.test?.lastLedError" class="grid-3 error-grid">
+            <div class="grid-header bg-red border-radius-top-left {{ !notification.slot.test?.lastPingError && 'border-radius-bottom-left' }}">
+              <mat-icon class="icon-white">circle</mat-icon>
+              <b>{{ 'slot-modal.error' | translate }}: {{ ledErrorList(notification) }}</b>
+            </div>
+            <div class="grid-header bg-theme">
+              <b>{{ notification.slot.test?.lastLedError?.createdAt | notificationDate : 'time' }}</b>
+            </div>
+            <div class="grid-header bg-theme border-radius-top-right {{ !notification.slot.test?.lastPingError && 'border-radius-bottom-right' }}">
+              <b>{{ notification.slot.test?.lastLedError?.createdAt | notificationDate : 'date' }}</b>
+            </div>
+          </div>
+
+          <div *ngIf="notification.slot.test?.lastPingError" class="grid-3 error-grid">
+            <div class="grid-header bg-red border-radius-bottom-left {{ !notification.slot.test?.lastLedError && 'border-radius-top-left' }}">
+              <mat-icon class="icon-white">language</mat-icon>
+              <b>{{ 'slot-modal.error' | translate }}: {{ pingErrorList(notification) }}</b>
+            </div>
+            <div class="grid-header bg-theme">
+              <b>{{ notification.slot.test?.lastPingError?.createdAt | notificationDate : 'time' }}</b>
+            </div>
+            <div class="grid-header bg-theme border-radius-bottom-right {{ !notification.slot.test?.lastLedError && 'border-radius-top-right' }}">
+              <b>{{ notification.slot.test?.lastPingError?.createdAt | notificationDate : 'date' }}</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </button>
+  </ng-container>
+  <button class="more-notifications" mat-menu-item (click)="navigateToNotifications()">
+    <mat-icon>add_circle</mat-icon>
+    <span>{{ 'notifications.more-notifications' | translate }}</span>
+  </button>
+</mat-menu>

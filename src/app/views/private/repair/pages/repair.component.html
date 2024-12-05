@@ -1,0 +1,144 @@
+<section class="private-main-container">
+  <header>
+    <app-breadcrumb
+      breadcrumbTitle="breadcrumbs.repairs.title"
+      route="{{ appRoutes.CONTROL_PANEL }}"
+    />
+  </header>
+  <main>
+    <div class="card-table">
+      <div class="table-filter">
+        <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+          <div class="flex-row">
+            <div>
+              <input type="text" (input)="handleFilterChange($event)" />
+              <mat-icon>search</mat-icon>
+            </div>
+            <app-date-picker />
+
+            <mat-checkbox [checked]="customTime" (change)="onChangeCheckbox()">
+              {{ "Definir horário" | translate }}
+            </mat-checkbox>
+
+            <app-form-field
+              *ngIf="customTime"
+              fieldType="input"
+              borderStyle="secondary"
+              width="150px"
+              label="{{ 'Horário inicial' | translate }}"
+              placeholder="{{ 'Hora' | translate }}"
+              control="test"
+            />
+
+            <app-form-field
+              *ngIf="customTime"
+              fieldType="input"
+              borderStyle="secondary"
+              width="150px"
+              label="{{ 'Horário final' | translate }}"
+              placeholder="{{ 'Hora' | translate }}"
+              control="test"
+            />
+
+            <!-- <app-datetime-picker label="Data inicial"/>
+            <app-datetime-picker control="date" label="Data final" [initializeWithCurrentDate]="true"/>
+           -->
+          </div>
+        </form>
+      </div>
+      <table mat-table [dataSource]="dataSources">
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "repair.status" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element" width="180px">
+            <span
+              [ngStyle]="{ display: 'flex', alignItems: 'center', gap: '16px' }"
+              ><mat-icon
+                svgIcon="led-lt"
+                [style.color]="
+                  element.status == 'PENDING'
+                    ? 'orange !important'
+                    : 'green !important'
+                "
+              />
+              {{ element.status }}</span
+            >
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="model">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "repair.model" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.test.product.model }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rack">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "repair.position" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.test.slot.rack.name }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="slot">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "repair.slot" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.test.slot.name }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef width="250px">
+            {{ "common.actions" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              class="btn"
+              [disabled]="!checkAccessCode('update-repairs')"
+              (click)="edit(element)"
+              matTooltip="{{ 'common.edit' | translate }}"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              class="btn"
+              [disabled]="!checkAccessCode('delete-repairs')"
+              (click)="delete(element)"
+              matTooltip="{{ 'common.delete' | translate }}"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button
+              *ngIf="element.mediaID"
+              class="btn"
+              [disabled]="!checkAccessCode('update-repairs')"
+              (click)="getMedia(element)"
+              matTooltip="{{ 'repair.download-file' | translate }}"
+            >
+              <mat-icon svgIcon="file-download" />
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        *ngIf="page"
+        [pageSizeOptions]="[5, 10]"
+        [pageIndex]="page.pageable.pageNumber"
+        [length]="page.totalElements"
+        [pageSize]="page.pageable.pageSize"
+        [showFirstLastButtons]="true"
+        (page)="pageUpdate($event)"
+        aria-label="Select page"
+      />
+    </div>
+  </main>
+</section>

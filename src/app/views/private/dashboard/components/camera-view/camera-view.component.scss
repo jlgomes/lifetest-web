@@ -1,0 +1,23 @@
+@import "_dialogs.scss";
+@import "_mixins.scss";
+@import "_themes.scss";
+
+section,
+header {
+  padding: 0 !important;
+}
+
+app-progress-spinner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  z-index: 100;
+  background-color: rgba($colorsystem1-1000, .10);
+  cursor: pointer;
+}

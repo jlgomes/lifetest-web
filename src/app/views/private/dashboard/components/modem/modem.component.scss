@@ -1,0 +1,197 @@
+@import "_colors.scss";
+
+@keyframes BLINK-STATUS {
+
+  0%,
+  15% {
+    background: radial-gradient(circle, $colorsystem3-red2 0%, $colorsystem3-red 100%);
+  }
+
+  50%,
+  100% {
+    background-color: $colorsystem3-red3;
+  }
+}
+
+@keyframes LOADING-ICON {
+
+  0%,
+  14% {
+    transform: rotate(60deg);
+  }
+  15%,
+  29% {
+    transform: rotate(120deg);
+  }
+  30%,
+  44% {
+    transform: rotate(180deg);
+  }
+  45%,
+  59% {
+    transform: rotate(240deg);
+  }
+  60%,
+  74% {
+    transform: rotate(300deg);
+  }
+  75%,
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes LOADING-BAR {
+
+  0%,
+  14% {
+    background: linear-gradient(90deg, $colorsystem3-yellow 15%, $colorsystem1-600 15%);
+  }
+  15%,
+  29% {
+    background: linear-gradient(90deg, $colorsystem3-yellow 30%, $colorsystem1-600 30%);
+  }
+  30%,
+  44% {
+    background: linear-gradient(90deg, $colorsystem3-yellow 45%, $colorsystem1-600 45%);
+  }
+  45%,
+  59% {
+    background: linear-gradient(90deg, $colorsystem3-yellow 60%, $colorsystem1-600 60%);
+  }
+  60%,
+  74% {
+    background: linear-gradient(90deg, $colorsystem3-yellow 75%, $colorsystem1-600 75%);
+  }
+  75%,
+  100% {
+    background: linear-gradient(90deg, $colorsystem3-yellow 100%, $colorsystem1-600 100%);
+  }
+}
+
+@keyframes BLINK-SUCCESS-BAR {
+
+  0%,
+  49% {
+    background: radial-gradient(circle, $colorsystem3-green 0%, $brandcolor-5 85%);
+  }
+  50%,
+  100% {
+    background: radial-gradient(circle, $colorsystem3-green 0%, $brandcolor-5 100%);
+  }
+}
+
+.modem-card {
+  background-color: $colorsystem1-1000;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 40% 60%;
+  overflow: hidden;
+  height: 100%;
+  min-height: 100px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 10px 5px rgba($colorsystem2-500, 0.6);
+  }
+
+  .title-modem {
+    background-color: $colorsystem1-400;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1;
+    grid-template-rows: 75% 25%;
+
+    .title-text {
+      display: grid;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        color: $colorsystem1-50;
+        font-family: "Orbitron";
+        font-style: normal;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 2.4px;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      @media screen and (min-width: 960px) and (max-width: 1550px) {
+        span {
+          font-size: 18px;
+          letter-spacing: 1.5px;
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+        span {
+          font-size: 18px;
+          letter-spacing: 1.5px;
+        }
+      }
+    }
+
+    .status-bar {
+      width: 100%;
+      background-color: $colorsystem1-600;
+
+      &.danger {
+        animation: BLINK-STATUS 1s infinite;
+        /* IE 10+, Fx 29+ */
+      }
+
+      &.success {
+        animation: BLINK-SUCCESS-BAR 0.15s infinite;
+      }
+
+      &.waiting {
+        background-color: $colorsystem3-yellow;
+        &.initializing{
+          animation: LOADING-BAR 1s infinite;
+        }
+      }
+    }
+  }
+
+  .body-modem {
+    padding: 8px;
+    display: grid;
+    grid-template-columns: 1;
+    align-items: center;
+    justify-content: space-around;
+    color: $colorsystem1-300;
+
+    .icon-modem {
+      &.success {
+        color: $brandcolor-5;
+      }
+
+      &.danger {
+        color: $colorsystem3-red;
+      }
+
+      &.waiting {
+        color: $colorsystem3-yellow;
+        &.initializing{
+          animation: LOADING-ICON 1s infinite;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width:500px) {
+    height: 110px;
+  }
+}
+
+.in-maintenance {
+  filter: opacity(0.45);
+  cursor: unset;
+  &:hover {
+    box-shadow: unset;
+  }
+}

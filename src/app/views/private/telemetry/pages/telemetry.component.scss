@@ -1,0 +1,53 @@
+@import "_mixins.scss";
+@import "_colors.scss";
+
+@include priv-main-container;
+
+@include private-header;
+
+@include table_style;
+
+
+.tabs {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.tab-button {
+  display: flex;
+  min-width: 144px;
+  height: 44px;
+  padding: 8px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 4px 4px 0px 0px;
+  background: $colorsystem1-800;
+  cursor: pointer;
+
+  span {
+    color: $colorsystem2-50;
+    font-family: Assistant;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.32px;
+    text-align: center;
+  }
+}
+
+.selected {
+  background-color: $colorsystem1-500;
+}
+
+header {
+  display: flex;
+  width: 100%;
+}

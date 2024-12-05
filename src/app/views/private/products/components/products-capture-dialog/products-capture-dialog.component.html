@@ -1,0 +1,44 @@
+<section>
+  <header>
+    <div class="flex-justify">
+      <h2>{{ "products-dialog.capture-image-btn" | translate }}</h2>
+      <div class="btn-icon" (click)="closeDialog()">
+        <mat-icon class="material-icons-outlined" svgIcon="cancel-lt" />
+      </div>
+    </div>
+    <span>{{ "products-dialog.capture-image-subtitle" | translate }}</span>
+  </header>
+
+  <div class="content">
+    <form [formGroup]="recoveryForm">
+      <div class="input-group">
+        <app-form-select-field
+          borderStyle="secondary"
+          label="{{ 'common.rack' | translate }}"
+          placeholder="{{ 'maintenance.dialog.rack-placeholder' | translate }}"
+          control="rack"
+          [options]="rackOptions"
+          valueField="id"
+          textField="name"
+          (selectionChangeEmitter)="changeRackEvent($event)"
+        />
+
+        <app-form-select-field
+          borderStyle="secondary"
+          label="{{ 'common.slot' | translate }}"
+          placeholder="{{ 'maintenance.dialog.slot-placeholder' | translate }}"
+          control="slot"
+          [options]="slotOptions"
+          valueField="id"
+          textField="name"
+          [disabled]="slotOptions.length === 0"
+        />
+      </div>
+    </form>
+
+    <div class="flex-justify">
+      <span>{{ "products-dialog.camera" | translate }}</span>
+      <div class="divider"></div>
+    </div>
+  </div>
+</section>

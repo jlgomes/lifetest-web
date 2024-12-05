@@ -1,0 +1,312 @@
+@import "_mixins.scss";
+@import "_colors.scss";
+
+@include priv-main-container;
+
+@include private-header;
+
+@include table_style;
+
+header{
+  display: flex;
+  justify-content: left;
+  width: 100%;
+}
+
+
+
+main {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: min-content 1fr;
+  padding: 16px;
+  height: 100%;
+}
+
+.side-options{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content min-content;
+  border-right: 1px solid var(--default-border-color);
+  padding: 16px;
+  padding-right: 32px;
+  gap: 8px;
+}
+
+@media screen and (min-width: 501px) and (max-width: 1300px) {
+  main {
+    grid-template-columns: 100% ;
+    padding: 0px;
+  }
+
+  main > h5 {
+    font-size: medium;
+    margin-bottom: 5px;
+  }
+
+  .side-options{
+    border-right: none;
+  }
+
+  h5#first-label {
+    grid-row: 1;
+  }
+
+  h5#second-label {
+    grid-row: 3;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    grid-template-columns: 100%;
+    padding: 0px;
+  }
+
+  main > h5 {
+    font-size: medium;
+    margin-bottom: 5px;
+  }
+
+  .side-options{
+    border-right: none;
+  }
+
+  h5#first-label {
+    grid-row: 1;
+  }
+
+  h5#second-label {
+    grid-row: 3;
+  }
+}
+
+@media screen and (max-height: 755px) {
+  .private-main-container {
+    gap: 0px;
+  }
+
+  main{
+    padding-bottom: 0px;
+  }
+}
+
+.rack-options{
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 16px;
+  gap: 16px;
+  grid-template-rows: min-content 1fr min-content;
+
+  @media screen and (max-width: 500px) {
+    padding-bottom: 30px;
+  }
+}
+
+h5 {
+  border-left: 1px solid $brandcolor-6;
+  padding-left: 16px;
+  margin-left: 16px;
+  margin-bottom: 16px;
+  height: 25px;
+}
+
+.card{
+  background: var(--default-card-color);
+  border: none;
+  padding: 24px;
+}
+
+
+::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+  border-color: $brandcolor-6 !important;
+  background-color: $brandcolor-6 !important;
+}
+
+::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+  border-color: var(--default-font-color) !important;
+  background-color: transparent !important;
+}
+
+::ng-deep span.mat-expansion-indicator::after {
+  color: var(--default-font-color) !important;
+}
+
+
+::ng-deep .mat-mdc-checkbox .mdc-form-field {
+  color: var(--default-font-color);
+}
+
+.check-option{
+  display: flex;
+  align-items: flex-end;
+  justify-content: left;
+}
+
+::ng-deep .mdc-label{
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  .mat-icon {
+    width: 16px !important;
+    height: 16px !important;
+  }
+}
+
+.datepicks{
+  display: flex;
+  grid-template-columns: 50% 50%;
+  justify-content: space-between;
+}
+
+.input-field{
+  width: 48.5%;
+}
+
+.days-input{
+  width: 100%;
+}
+
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled){
+  background-color: var(--input-disabled-date-bg-color) !important;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-floating-label.mdc-floating-label {
+  color: var(--default-font-color);
+}
+
+.top-navbar-title {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  align-items: center;
+  gap: 10px;
+
+  .checkall{
+    margin-left: auto;
+    background: var(--default-card-color);
+    padding: 0 10px 0 0;
+    border-radius: 3px;
+
+    @media screen and (max-width: 500px) {
+      padding: 0px;
+    }
+  }
+  .toogle-rack {
+      border: 1px solid $brandcolor-5;
+      border-radius: 4px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: min-content min-content;
+
+      .rack-button{
+          padding: 16px;
+          cursor: pointer;
+
+          @media screen and (max-width: 500px) {
+            font-size: 14px;
+            padding: 10px;
+          }
+
+          @media screen and (max-height: 755px) {
+            font-size: 14px;
+            padding: 10px;
+          }
+      }
+      .rack-button:hover{
+          background-color: rgba($colorsystem1-50, .1);
+      }
+      .rack-button.selected{
+          background-color: $brandcolor-5;
+          font-weight: bold;
+          padding-right: 60px;
+          padding-left: 60px;
+          display: flex;
+
+          @media screen and (max-width: 500px) {
+            font-size: 14px;
+            padding: 8px;
+            align-items: center;
+    
+            .icon-check{
+              font-size: 20px;
+            }
+          }
+      }
+  }
+}
+
+.rack-boxes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  ::ng-deep span.mat-expansion-indicator::after {
+    color: var(--default-font-color) !important;
+    font-family: Orbitron;
+    font-weight: 700;
+  }
+
+    .card{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+  ::ng-deep .mat-mdc-checkbox .mdc-form-field {
+    color: var(--default-font-color);
+    font-family: Orbitron;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    .mdc-label{
+      width: 100%;
+    justify-content: center;
+    }
+  }
+
+  @media screen and (min-width: 651px) and (max-width: 960px) {
+    grid-template-columns: repeat(2, 1fr);
+
+    .card{
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 501px) and (max-width: 650px) {
+    grid-template-columns: repeat(1, 1fr);
+
+    .card{
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(1, 1fr);
+
+    .card{
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+.bottom-buttons {
+  display: grid;
+  grid-template-columns: min-content min-content;
+  gap: 8px;
+  align-items: center;
+  justify-content: end;
+
+  @media screen and (max-width: 500px) {
+    background-color: #0A1521;
+    position: fixed;
+    bottom: 0%;
+    right: 0%;
+    padding: 16px;
+    width: 100%;
+    grid-template-columns: 50% 50%;
+
+    ::ng-deep.mat-button {
+      width: 100% !important; 
+    } 
+  }
+}

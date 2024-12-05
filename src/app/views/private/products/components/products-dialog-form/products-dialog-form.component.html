@@ -1,0 +1,196 @@
+<section>
+  <header>
+    <div class="flex-justify">
+      <h2>{{ title | translate }}</h2>
+      <div class="btn-icon" (click)="closeDialog()">
+        <mat-icon class="material-icons-outlined" svgIcon="cancel-lt" />
+      </div>
+    </div>
+    <span *ngIf="!disabled">{{ "products-dialog.subtitle" | translate }}</span>
+  </header>
+
+  <div class="content">
+    <div class="flex-justify">
+      <span>{{ "dialogs.form" | translate }}</span>
+      <div class="divider"></div>
+    </div>
+
+    <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+      <div class="input-fields">
+        <mat-checkbox
+          [checked]="checkboxes.hasEthernetPorts"
+          [disabled]="disabled"
+          (change)="onChangeCheckbox($event, 'hasEthernetPorts')"
+        >
+          {{ "products-dialog.has-ethernet-ports" | translate }}
+        </mat-checkbox>
+        <app-form-field
+          *ngIf="checkboxes.hasEthernetPorts"
+          fieldType="input"
+          borderStyle="secondary"
+          width="60%"
+          label="{{ 'products-dialog.quantity-label' | translate }}"
+          placeholder="{{ 'products-dialog.quantity-placeholder' | translate }}"
+          control="numberPorts"
+          [disabled]="disabled"
+        />
+
+        <mat-checkbox
+          [checked]="checkboxes.hasLeds"
+          [disabled]="disabled"
+          (change)="onChangeCheckbox($event, 'hasLeds')"
+        >
+          {{ "products-dialog.has-leds" | translate }}
+        </mat-checkbox>
+        <div class="checkboxes" *ngIf="checkboxes.hasLeds">
+          <mat-checkbox
+            [checked]="checkboxes.hasLed2G"
+            [disabled]="disabled"
+            (change)="onChangeCheckbox($event, 'hasLed2G')"
+          >
+            {{ "common.2g" | translate }}
+          </mat-checkbox>
+          <mat-checkbox
+            [checked]="checkboxes.hasLed5G"
+            [disabled]="disabled"
+            (change)="onChangeCheckbox($event, 'hasLed5G')"
+          >
+            {{ "common.5g" | translate }}
+          </mat-checkbox>
+          <mat-checkbox
+            [checked]="checkboxes.hasLedPower"
+            [disabled]="disabled"
+            (change)="onChangeCheckbox($event, 'hasLedPower')"
+          >
+            {{ "common.power" | translate }}
+          </mat-checkbox>
+        </div>
+
+        <app-form-select-field
+          borderStyle="secondary"
+          width="100%"
+          label="{{ 'common.client' | translate }}"
+          placeholder="{{ 'products-dialog.client-placeholder' | translate }}"
+          control="clientId"
+          [options]="selectOptionsClient"
+          valueField="id"
+          textField="name"
+          [disabled]="disabled"
+        />
+        <app-form-field
+          fieldType="input"
+          borderStyle="secondary"
+          width="100%"
+          label="{{ 'products-dialog.model-label' | translate }}"
+          placeholder="{{ 'products-dialog.model-placeholder' | translate }}"
+          control="model"
+          [disabled]="disabled"
+        />
+
+        <app-form-select-field
+          borderStyle="secondary"
+          width="100%"
+          label="{{ 'common.type' | translate }}"
+          placeholder="{{ 'products-dialog.type-placeholder' | translate }}"
+          control="type"
+          [options]="selectOptionsType"
+          textField="text"
+          valueField="value"
+          [disabled]="disabled"
+        />
+
+        <app-form-field
+          label="{{ 'products-dialog.color-label' | translate }}"
+          fieldType="color"
+          borderStyle="secondary"
+          width="100%"
+          control="color"
+          [disabled]="disabled"
+        />
+      </div>
+
+      <div class="input-image">
+        <span class="input-header">{{
+          "products-dialog.product-image" | translate
+        }}</span>
+
+        <div
+          class="file-preview"
+          [style.backgroundImage]="
+            imagePreviewURL ? 'url(' + imagePreviewURL + ')' : undefined
+          "
+        >
+          <div class="icon-row" *ngIf="!imagePreviewURL">
+            <img src="assets/images/input-file.svg" />
+            <span *ngIf="!disabled">{{
+              "products-dialog.select-image" | translate
+            }}</span>
+          </div>
+        </div>
+
+        <input
+          #fileInputRef
+          *ngIf="!disabled"
+          (change)="onFileSelected($event)"
+          id="fileInput"
+          name="fileInput"
+          type="file"
+          class="hidden"
+          accept="image/*"
+        />
+        <div class="buttons image-buttons">
+          <app-button
+            *ngIf="imagePreviewURL"
+            width="200px"
+            btnStyle="raised"
+            variant="secondary"
+            (onClick)="openDelimitationDialog()"
+          >
+            {{ "products-dialog.led-delimitation-btn" | translate }}
+          </app-button>
+          <app-button
+            *ngIf="!disabled"
+            width="200px"
+            btnStyle="raised"
+            variant="secondary"
+            (onClick)="openCaptureDialog()"
+          >
+            {{ "products-dialog.capture-image-btn" | translate }}
+          </app-button>
+        </div>
+
+        <app-button
+          *ngIf="!disabled"
+          width="200px"
+          btnStyle="raised"
+          variant="secondary"
+          (onClick)="openFileInput()"
+          style="margin-top: 10px"
+        >
+          {{ "products-dialog.btn-file" | translate }}
+        </app-button>
+      </div>
+    </form>
+  </div>
+
+  <div class="buttons">
+    <app-button
+      *ngIf="!disabled"
+      [disabled]="isLoading"
+      width="100%"
+      btnStyle="raised"
+      variant="success"
+      (click)="onSubmit()"
+    >
+      {{ "dialogs.btn-register" | translate }}
+    </app-button>
+    <app-button
+      width="100%"
+      btnStyle="stroked"
+      variant="light"
+      (click)="closeDialog()"
+    >
+      {{ "common.cancel" | translate }}
+    </app-button>
+  </div>
+</section>

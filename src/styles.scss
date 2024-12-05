@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+@import "_themes.scss";
+@import "_fonts.scss";
+@import "_mixins.scss";
+@import "_material.scss";
+
+// icones de bandeira do tradutor
+@import "flag-icon-css/sass/flag-icons.scss";
+
+//resetando elementos
+*{
+  margin: 0;
+  padding: 0;
+}
+
+//definindo padrão de fonte
+html,
+body {
+  font-family: "Assistant", "Helvetica Neue", sans-serif;
+  background-color: var(--color-background);
+  color: var(--default-font-color);
+}
+
+// adicionando headings
+@for $i from 1 through 6 {
+    @include headigns($i);
+}
+
+svg {
+  vertical-align: unset;
+}
+
+/* Scrollbar */
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $colorsystem1-100 $colorsystem1-900;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: $colorsystem1-800;
+  border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $colorsystem1-900;
+  border-radius: 20px;
+  border: 1px solid $colorsystem1-500;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: $colorsystem1-400;
+  border: 2px solid $colorsystem1-400;
+}

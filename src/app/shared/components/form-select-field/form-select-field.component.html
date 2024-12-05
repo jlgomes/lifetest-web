@@ -1,0 +1,28 @@
+<div [formGroup]="form">
+    <mat-form-field floatLabel="always" [appearance]="formStyle" [class]="class" [style.width]="width" [ngClass]="{
+    'border-success': borderStyle=== 'success',
+    'border-danger': borderStyle=== 'danger',
+    'border-warning': borderStyle=== 'warning',
+    'border-primary': borderStyle=== 'primary',
+    'border-secondary': borderStyle=== 'secondary',
+    'border-dark': borderStyle=== 'dark',
+    'border-light': borderStyle=== 'light',
+    'border-muted': borderStyle=== 'muted',
+    'disabled': disabled
+}
+
+">
+        <mat-label>{{ label }}</mat-label>
+        <mat-select [placeholder]="placeholder" [formControlName]="control" [disabled]="disabled" (selectionChange)="onSelectionChange($event)">
+          <mat-option *ngFor="let option of options" [value]="option[valueField]" [disabled]="disabled">
+            {{ option[textField] }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get(control)?.hasError('required')">
+          {{ 'validations.required-field' | translate }}
+        </mat-error>
+        <mat-error *ngIf="form.get(control)?.hasError('customError')">
+          {{ form.get(control)?.getError('customError') }}
+        </mat-error>
+    </mat-form-field>
+</div>

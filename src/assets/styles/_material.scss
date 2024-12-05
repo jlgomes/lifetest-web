@@ -1,0 +1,10 @@
+/* Define Angular Material UI styles here */
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: unset !important;
+}
+
+.cdk-global-overlay-wrapper {
+  overflow: auto;
+  padding: 10px;
+}

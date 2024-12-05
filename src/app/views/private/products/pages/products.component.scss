@@ -1,0 +1,13 @@
+@import "_mixins.scss";
+@import "_colors.scss";
+
+@include priv-main-container;
+
+@include private-header;
+
+header {
+  display: flex;
+  width: 100%;
+}
+
+@include table_style;

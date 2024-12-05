@@ -1,0 +1,229 @@
+<section class="private-main-container">
+  <header>
+    <app-breadcrumb
+      breadcrumbTitle="breadcrumbs.registers.tests.main"
+      subtitle="breadcrumbs.registers.tests.finish"
+      route={{appRoutes.CONTROL_PANEL}}
+    />
+  </header>
+  <main>
+    <h5 id="first-label">{{ 'reading.test-data' | translate }}</h5>
+    <h5 id="second-label">{{ 'reading.test-finish' | translate }}</h5>
+    <div class="side-options">
+      <div class="card slot">
+        <app-modem
+          [cardNumber]="formData.name"
+          [modelColor]="formData.test?.product?.color"
+          [enabled]="true"
+        ></app-modem>
+      </div>
+      <div class="card">
+        <table>
+          <thead>
+            <th [style.background-color]="formData.test?.product?.color">
+              {{ 'common.model' | translate }}: <span>{{ formData.test?.product?.model }}</span>
+            </th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {{ 'common.period' | translate }}: <span>{{ formData.test?.duration }} horas</span>
+              </td>
+            </tr>
+            <tr>
+              <td>{{ 'common.cycles' | translate }}: <span></span></td>
+            </tr>
+            <tr>
+              <td>
+                {{ 'common.entry' | translate }}: <span>{{ formData.test?.startDate }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {{ 'common.exit' | translate }}: <span>{{ formData.test?.finishDate }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="rack-options">
+      <div class="card form">
+        <h4 class="form-title">
+          RACK - {{ formData.rack.name }} | SLOT - {{ formData.name }}
+        </h4>
+        <form [formGroup]="recoveryForm">
+          <span [ngClass]="{ focused: canActive('product') }">
+            <mat-icon svgIcon="barcode-lt"></mat-icon>
+            {{ 'common.product' | translate }}
+          </span>
+          <section class="form-field">
+            <div
+              class="reference-value"
+              [ngClass]="{
+                success:
+                  checkFied('product') &&
+                  recoveryForm.value['product'] ===
+                    formData.test?.serialProduct,
+                error:
+                  checkFied('product') &&
+                  recoveryForm.value['product'] !== formData.test?.serialProduct
+              }"
+            >
+              {{ formData.test?.serialProduct }}
+            </div>
+            <app-form-field
+              floatLabel="auto"
+              fieldType="input"
+              control="product"
+              width="100%"
+              class="input-field"
+              required
+              (onFieldFocus)="setActive('product')"
+              [autoFocus]="true"
+            >
+              <mat-icon
+                *ngIf="
+                  checkFied('product') &&
+                  recoveryForm.value['product'] === formData.test?.serialProduct
+                "
+                >check</mat-icon
+              >
+              <mat-icon
+                *ngIf="
+                  checkFied('product') &&
+                  recoveryForm.value['product'] !== formData.test?.serialProduct
+                "
+                [style.color]="'#D32020'"
+                >warning</mat-icon
+              >
+            </app-form-field>
+          </section>
+          <span [ngClass]="{ focused: canActive('box') }">
+            <mat-icon svgIcon="barcode-lt"></mat-icon>
+            {{ 'common.box' | translate }}
+          </span>
+          <section class="form-field">
+            <div
+              class="reference-value"
+              [ngClass]="{
+                success:
+                  checkFied('box') &&
+                  recoveryForm.value['box'] === formData.test?.serialBox,
+                error:
+                  checkFied('box') &&
+                  recoveryForm.value['box'] !== formData.test?.serialBox
+              }"
+            >
+              {{ formData.test?.serialBox }}
+            </div>
+            <app-form-field
+              floatLabel="auto"
+              control="box"
+              width="100%"
+              class="input-field"
+              required
+              (onFieldFocus)="setActive('box')"
+            >
+              <mat-icon
+                *ngIf="
+                  checkFied('box') &&
+                  recoveryForm.value['box'] === formData.test?.serialBox
+                "
+                >check</mat-icon
+              >
+              <mat-icon
+                *ngIf="
+                  checkFied('box') &&
+                  recoveryForm.value['box'] !== formData.test?.serialBox
+                "
+                [style.color]="'#D32020'"
+                >warning</mat-icon
+              >
+            </app-form-field>
+          </section>
+          <span [ngClass]="{ focused: canActive('font') }">
+            <mat-icon svgIcon="barcode-lt"></mat-icon>
+            {{ 'common.product-font' | translate }}
+          </span>
+          <section class="form-field">
+            <div
+              class="reference-value"
+              [ngClass]="{
+                success:
+                  checkFied('font') &&
+                  recoveryForm.value['font'] ===
+                    formData.test?.serialPowerSource,
+                error:
+                  checkFied('font') &&
+                  recoveryForm.value['font'] !==
+                    formData.test?.serialPowerSource
+              }"
+            >
+              {{ formData.test?.serialPowerSource }}
+            </div>
+            <app-form-field
+              floatLabel="auto"
+              control="font"
+              width="100%"
+              class="input-field"
+              required
+              (onFieldFocus)="setActive('font')"
+            >
+              <mat-icon
+                *ngIf="
+                  checkFied('font') &&
+                  recoveryForm.value['font'] ===
+                    formData.test?.serialPowerSource
+                "
+                >check</mat-icon
+              >
+              <mat-icon
+                *ngIf="
+                  checkFied('font') &&
+                  recoveryForm.value['font'] !==
+                    formData.test?.serialPowerSource
+                "
+                [style.color]="'#D32020'"
+                >warning</mat-icon
+              >
+            </app-form-field>
+          </section>
+          <div class="buttons">
+            <app-button
+              width="100%"
+              variant="danger"
+              (click)="onSubmit()"
+              [disabled]="canSubmit()"
+              >
+              {{ 'common.removal-register' | translate }}
+            </app-button>
+            <app-button
+              width="100%"
+              btnStyle="stroked"
+              variant="light"
+              (click)="onCancel()"
+              >
+              {{ 'common.cancel' | translate }}
+            </app-button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card-alert">
+        <div class="card alert" *ngIf="canActive('product')">
+          {{ 'reading.read-product' | translate }}
+          <mat-icon class="icon-absolute" (click)="setActive('')">close</mat-icon>
+        </div>
+        <div class="card alert" *ngIf="canActive('box')">
+          {{ 'reading.read-box' | translate }}
+          <mat-icon class="icon-absolute" (click)="setActive('')">close</mat-icon>
+        </div>
+        <div class="card alert" *ngIf="canActive('font')">
+          {{ 'reading.read-power-source' | translate }}
+          <mat-icon class="icon-absolute" (click)="setActive('')">close</mat-icon>
+        </div>
+      </div>
+    </div>
+  </main>
+</section>

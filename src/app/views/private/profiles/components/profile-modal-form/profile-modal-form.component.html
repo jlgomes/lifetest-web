@@ -1,0 +1,59 @@
+<section>
+  <header>
+    <div class="flex-justify">
+      <h2>{{ title | translate }}</h2>
+      <div class="btn-icon" (click)="closeDialog()">
+        <mat-icon class="material-icons-outlined" svgIcon="cancel-lt" />
+      </div>
+    </div>
+    <span *ngIf="!disabled">{{ "profiles-dialog.subtitle" | translate }}</span>
+  </header>
+
+  <div class="content-2">
+    <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+      <div class="box-section">
+        <div class="flex-title">
+          <span>{{ "profiles-dialog.name" | translate }}</span>
+          <div class="divider"></div>
+        </div>
+        <app-form-field fieldType="input" borderStyle="secondary" width="100%"
+          label="{{ 'profiles-dialog.profile-label' | translate }}"
+          placeholder="{{ 'profiles-dialog.profile-placeholder' | translate }}" control="name" [disabled]="disabled" />
+      </div>
+    </form>
+    <div class="box-section">
+      <div class="flex-title">
+        <span>{{ "profiles-dialog.permissions" | translate }}</span>
+        <div class="divider"></div>
+      </div>
+
+      <div class="checkbox-list">
+        <div *ngIf="menus.length > 0">
+          <app-profile-modal-tree
+          *ngFor="let menu of menus; let i = index;"
+          [data]="menu"
+          [activeMenus]="menuIds"
+          [activeRoutes]="routesIds"
+          (onAddMenu)="onAddMenu($event)"
+          (onAddRoute)="onAddRoute($event)"
+          (onRemoveMenu)="onRemoveMenu($event)"
+          (onRemoveRoute)="onRemoveRoute($event)"
+          >
+        </app-profile-modal-tree>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-btn">
+    <div class="buttons">
+      <app-button *ngIf="!disabled" width="100%" btnStyle="raised" variant="success" (click)="onSubmit()"
+        [disabled]="isLoading">
+        {{ "dialogs.btn-register" | translate }}
+      </app-button>
+      <app-button width="100%" btnStyle="stroked" variant="light" (click)="closeDialog()">
+        {{ "common.cancel" | translate }}
+      </app-button>
+    </div>
+  </div>
+</section>

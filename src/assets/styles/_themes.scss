@@ -1,0 +1,132 @@
+@import './colors';
+@import "_maps.scss";
+
+:root {
+  //Default style variables
+  --color-background: #{$colorsystem1-1000};
+  --success-color: #{$brandcolor-5};
+  --default-font-color: #{$colorsystem1-50};
+  --default-model-card-color: #{$colorsystem1-800};
+
+  //Public views global style variables
+
+
+  //select-form-field
+  --select-label-color: #{$colorsystem1-50};
+  --select-input-color: #{$colorsystem1-50};
+  --select-placeholder-color: #{$colorsystem1-500};
+  --select-panel-bg-color: #{$colorsystem1-800};
+  --select-panel-font-color: #{$white};
+
+  //Private views global style variables
+  --private-background-color: #{$colorsystem1-1000};
+  --default-card-color: #{$colorsystem1-800};
+  --default-border-color: #{$colorsystem1-800};
+
+  //Sidebar styles
+  --sidebar-background: #{$colorsystem1-900};
+  --sidebar-color: #{$colorsystem1-300};
+  --sidebar-item-active-bg: #{$colorsystem1-800};
+  --sidebar-item-active-color: #{$colorsystem1-300};
+
+  //toolbar styles
+  --toolbar-bg-color: #{$colorsystem1-900};
+  --toolbar-icons-color: #{$colorsystem1-300};
+  --toolbar-drop-bg-color: #{$colorsystem1-800};
+  --toolbar-drop-shadow: rgba($colorsystem1-1000, 0.15);
+
+  //Cards styles
+  --card-list-bg-color: #{$colorsystem1-900};
+  --card-list-img-bg-color: #{$colorsystem1-800};
+  --card-list-desc-bg-color: #{$colorsystem1-700};
+  --card-list-font-title-color: #{$colorsystem1-50};
+  --card-list-font-subtitle-color: #{$colorsystem1-100};
+
+ //stats styles
+  --stats-card-bg-color: #{$brandcolor-0};
+  --stats-progress-bg-color: #{$colorsystem1-1000};
+  --stats-temperature-card: 191, 36, 94, 0.2;
+  --stats-temperature-font-color: rgba(239, 143, 143, 1);
+
+  //table styles
+  --table-header-bg-color: #{$colorsystem1-800};
+  --table-footer-bg-color: #{$colorsystem1-800};
+  --table-cell-bg-color: #{$colorsystem1-700};
+  --table-cell-border-color: #{$colorsystem1-600};
+  --table-card-bg-color: #{$colorsystem1-900};
+
+  --card-bg-color: #{$colorsystem1-900};
+  --input-disabled-date-bg-color: #{$colorsystem1-1000};
+
+  --search-input-bg-color: #{$colorsystem1-700};
+  --search-input-icon-color: #{$colorsystem2-200};
+  --search-input-border-color: #{$colorsystem1-400};
+
+  --dialog-card-bg-color: #{$colorsystem1-900};
+  --dialog-card-header-bg-color: #{$colorsystem1-800};
+  --dialog-card-footer-bg-color: #{$colorsystem1-800};
+
+  --form-span-bg-color: #{$colorsystem1-800};
+  --form-input-bg-color: #{$colorsystem1-1000};
+}
+
+.light-theme {
+  --default-font-color: #{$colorsystem1-900};
+  --default-model-card-color: #{$colorsystem1-400};
+
+  //Private views global style variables
+  --private-background-color: #{$colorsystem1-50};
+  --default-card-color: #{$colorsystem1-100};
+  --default-border-color: #{$colorsystem1-300};
+
+  //select-form-field
+  --select-label-color: #{$colorsystem1-900};
+  --select-input-color: #{$colorsystem1-900};
+  --select-placeholder-color: #{$colorsystem1-300};
+  --select-panel-bg-color: #{$colorsystem1-50};
+  --select-panel-font-color: #{$colorsystem1-800};
+
+  //Sidebar styles
+  --sidebar-background: #{$colorsystem1-100};
+  --sidebar-color: #{$colorsystem1-600};
+  --sidebar-item-active-bg: #{$colorsystem1-600};
+  --sidebar-item-active-color: #{$colorsystem1-150};
+
+  //toolbar styles
+  --toolbar-bg-color: #{$colorsystem1-150};
+  --toolbar-icons-color: #{$colorsystem1-600};
+  --toolbar-drop-bg-color: #{$colorsystem1-100};
+  --toolbar-drop-shadow-opacity: 0.2;
+
+  --card-list-bg-color: #{$white};
+  --card-list-img-bg-color: #{$white};
+  --card-list-desc-bg-color: #{$colorsystem1-50};
+  --card-list-font-title-color: #{$colorsystem1-600};
+  --card-list-font-subtitle-color: #{$colorsystem1-600};
+
+  //stats styles
+  --stats-card-bg-color: #{$colorsystem1-100};
+  --stats-progress-bg-color: #{$colorsystem1-50};
+  --stats-temperature-card: 191, 36, 94, 0.5;
+  --stats-temperature-font-color: #{$colorsystem1-50};
+
+  --table-header-bg-color: #{$colorsystem1-50};
+  --table-footer-bg-color: #{$colorsystem1-50};
+  --table-cell-bg-color: #{$white};
+  --table-cell-border-color: #{$colorsystem1-150};
+  --table-card-bg-color: #{$white};
+
+  --card-bg-color: #{$colorsystem1-150};
+  --input-disabled-date-bg-color: #{$colorsystem1-200};
+
+  --search-input-bg-color: #{$colorsystem1-50};
+  --search-input-icon-color: #{$colorsystem2-400};
+  --search-input-border-color: #{$colorsystem1-200};
+
+  --dialog-card-bg-color: #{$white};
+  --dialog-card-header-bg-color: #{$colorsystem1-50};
+  --dialog-card-footer-bg-color: #{$colorsystem1-50};
+
+  --form-span-bg-color: #{$colorsystem1-100};
+  --form-input-bg-color: #{$colorsystem1-50};
+}

@@ -1,0 +1,14 @@
+<table>
+  <tr *ngFor="let attribute of data | keyvalue">
+    <td class="table-header">
+      <b>{{ attribute.key }}</b>
+    </td>
+    <td *ngIf="!isObject(attribute.value)" class="table-content">
+      {{ attribute.value }}
+    </td>
+    <app-attribute-table
+      *ngIf="isObject(attribute.value)"
+      [data]="attribute.value"
+    />
+  </tr>
+</table>

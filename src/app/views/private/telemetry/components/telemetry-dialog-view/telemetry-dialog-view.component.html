@@ -1,0 +1,94 @@
+<section>
+  <header>
+    <div class="flex-justify">
+      <h2>{{ data.test.product.model }}</h2>
+      <div class="btn-icon" (click)="closeDialog()">
+        <mat-icon class="material-icons-outlined" svgIcon="cancel-lt" />
+      </div>
+    </div>
+    <span>
+      {{ "telemetry-view.measured-at" | translate }}
+      {{ data.createdAt | datetime }}
+    </span>
+  </header>
+
+  <div class="content">
+    <table>
+      <tr>
+        <td class="table-header">
+          <b>{{ "telemetry-view.telemetry-id" | translate }}</b>
+        </td>
+        <td class="table-content">{{ data.id }}</td>
+      </tr>
+
+      <tr>
+        <td class="table-header">
+          <b>{{ "common.client" | translate }}</b>
+        </td>
+        <td class="table-content">{{ data.test.product.client.name }}</td>
+      </tr>
+
+      <tr>
+        <td class="table-header">
+          <b>{{ "common.type" | translate }}</b>
+        </td>
+        <td class="table-content">{{ data.test.product.type }}</td>
+      </tr>
+
+      <tr>
+        <td class="table-header">
+          <b>{{ "telemetry-view.created-at" | translate }}</b>
+        </td>
+        <td class="table-content">{{ data.test.createdAt | datetime }}</td>
+      </tr>
+
+      <tr>
+        <td class="table-header">
+          <b>{{ "telemetry-view.est-finish-date" | translate }}</b>
+        </td>
+        <td class="table-content">
+          {{ data.test.estimatedFinishDate | datetime }}
+        </td>
+      </tr>
+
+      <tr>
+        <td class="table-header">
+          <b>{{ "telemetry-view.product-serial" | translate }}</b>
+        </td>
+        <td class="table-content">{{ data.test.serialProduct }}</td>
+      </tr>
+
+      <tr>
+        <td class="table-header">
+          <b>{{ "telemetry-view.box-serial" | translate }}</b>
+        </td>
+        <td class="table-content">{{ data.test.serialBox }}</td>
+      </tr>
+
+      <tr>
+        <td class="table-header">
+          <b>{{ "telemetry-view.power-source-serial" | translate }}</b>
+        </td>
+        <td class="table-content">{{ data.test.serialPowerSource }}</td>
+      </tr>
+
+      <tr>
+        <td class="table-header">
+          <b>{{ "telemetry-view.registered-by" | translate }}</b>
+        </td>
+        <td class="table-content">{{ data.test.user.name }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="buttons">
+    <app-button
+      width="100%"
+      btnStyle="stroked"
+      variant="light"
+      (click)="closeDialog()"
+    >
+      {{ "common.back" | translate }}
+    </app-button>
+  </div>
+</section>

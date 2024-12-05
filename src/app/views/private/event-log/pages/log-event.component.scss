@@ -1,0 +1,21 @@
+@import "_mixins.scss";
+@import "_colors.scss";
+
+@include priv-main-container;
+
+@include private-header;
+
+@include table_style;
+
+.icon-notification.success {
+  color: $brandcolor-5;
+}
+
+.icon-notification.danger {
+  color: $colorsystem3-red;
+}
+
+header {
+  display: flex;
+  width: 100%;
+}

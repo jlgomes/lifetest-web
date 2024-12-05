@@ -1,0 +1,75 @@
+@import "_themes.scss";
+@import "_maps.scss";
+
+
+//altura do Input
+::ng-deep .mat-mdc-text-field-wrapper{
+    height: 56px !important;
+}
+//Label color
+::ng-deep .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    color: var(--default-font-color) !important;
+}
+
+//Label color on Focus
+// ::ng-deep .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label { }
+
+//Input value color
+input.mat-mdc-input-element {
+    color: var(--default-font-color) !important;
+    height: 20px;
+}
+
+//Placeholder color
+.mat-mdc-input-element::placeholder, ::ng-deep .mat-mdc-select-placeholder{
+    color: $theme-muted !important;
+    font-family: "Assistant";
+    font-size: 16px;
+}
+
+.mat-mdc-select {
+  color: $colorsystem2-50 !important;
+}
+
+@each $name, $color in $theme-colors {
+    .border-#{$name} ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__leading,
+    .border-#{$name} ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__notch,
+    .border-#{$name} ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mdc-notched-outline__trailing,
+    .border-#{$name} ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline__leading,
+    .border-#{$name} ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline__notch,
+    .border-#{$name} ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover .mdc-notched-outline__trailing {
+        border-color: $color;
+    }
+    .border-#{$name} ::ng-deep.mat-mdc-select-arrow {
+        color: $color !important;
+    }
+}
+
+::ng-deep .mat-mdc-select-panel-above .mat-mdc-select-panel {
+    background: $colorsystem1-50;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: 0px;
+    -webkit-box-shadow: 0 0 0px 1000px #0000 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.disabled {
+  pointer-events: none;
+  filter: opacity(0.5);
+}
+
+//TO-DO Fazer o estilo "invalid"
+// mat-mdc-form-field ng-tns-c1205077789-3 input-field border-muted mat-mdc-form-field-type-mat-input mat-mdc-form-field-label-always-float mat-form-field-appearance-outline mat-primary ng-star-inserted ng-dirty ng-invalid mat-form-field-invalid ng-touched
+// mat-mdc-form-field ng-tns-c1205077789-3 input-field border-muted mat-mdc-form-field-type-mat-input mat-mdc-form-field-label-always-float mat-form-field-appearance-outline mat-primary ng-star-inserted ng-invalid ng-untouched ng-pristine

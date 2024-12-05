@@ -1,0 +1,12 @@
+<div  class="model-card" [ngStyle]="{'background-color': modelColor}">
+    <div class="model-info" matTooltip="{{modelName}}">
+        <span *ngIf="modelName" class="title">MODEL</span>
+        <span *ngIf="!modelName" class="title"></span>
+        <span *ngIf="modelName" class="name">{{ modelName }}</span>
+        <span *ngIf="!modelName" class="name" class="name">Livres</span>
+    </div>
+    <div class="model-info">
+        <span class="title">QUANT.</span>
+        <span class="name" [style.text-align]="'center'">{{ modelCount }}</span>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<section>
+  <header>
+    <div class="flex-justify">
+      <h2>{{ "products-dialog.led-delimitation-title" | translate }}</h2>
+      <div class="btn-icon" (click)="closeDialog()">
+        <mat-icon class="material-icons-outlined" svgIcon="cancel-lt" />
+      </div>
+    </div>
+    <span>{{ "products-dialog.led-delimitation-subtitle" | translate }}</span>
+  </header>
+
+  <div class="content">
+    <angular-cropper
+      #angularCropper
+      [cropperOptions]="config"
+      [imageUrl]="imagePreviewURL"
+    />
+
+    <div class="led-selection">
+      <div class="flex-justify">
+        <span>{{ "LED" }}</span>
+        <div class="divider"></div>
+      </div>
+
+      <nav class="tabs">
+        <div
+          *ngIf="checkboxes?.hasLed2G"
+          class="tab-button"
+          [ngClass]="{ selected: activeTab === 1 }"
+          (click)="setTab(1)"
+          matRipple
+          [matRippleColor]="rippleColor"
+        >
+          <span>LED 2G</span>
+        </div>
+
+        <div
+          *ngIf="checkboxes?.hasLed5G"
+          class="tab-button"
+          [ngClass]="{ selected: activeTab === 2 }"
+          (click)="setTab(2)"
+          matRipple
+          [matRippleColor]="rippleColor"
+        >
+          <span>LED 5G</span>
+        </div>
+
+        <div
+          *ngIf="checkboxes?.hasLedPower"
+          class="tab-button"
+          [ngClass]="{ selected: activeTab === 3 }"
+          (click)="setTab(3)"
+          matRipple
+          [matRippleColor]="rippleColor"
+        >
+          <span>LED Power</span>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="buttons">
+    <app-button
+      *ngIf="!disabled"
+      [disabled]="isLoading"
+      width="100%"
+      btnStyle="raised"
+      variant="success"
+      (click)="onSubmit()"
+    >
+      {{ "dialogs.btn-register" | translate }}
+    </app-button>
+    <app-button
+      width="100%"
+      btnStyle="stroked"
+      variant="light"
+      (click)="closeDialog()"
+    >
+      {{ "common.cancel" | translate }}
+    </app-button>
+  </div>
+</section>

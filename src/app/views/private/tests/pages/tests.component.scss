@@ -1,0 +1,59 @@
+@import "_mixins.scss";
+@import "_themes.scss";
+
+@include priv-main-container;
+
+@include private-header;
+
+header {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+
+  .mat-icon {
+    cursor: pointer;
+    width: 32px !important;
+    height: 32px !important;
+    color: $colorsystem1-600;
+  }
+
+  h4.title {
+    cursor: pointer;
+    color: $white;
+    font-size: 1.5rem;
+    text-wrap: nowrap;
+
+    span {
+      color: $colorsystem1-600;
+    }
+  }
+}
+
+@include table_style;
+
+tr {
+  td.status {
+    span {
+      display: flex;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 3px;
+      text-transform: uppercase;
+    }
+    &.active {
+      .mat-icon {
+        color: $brandcolor-5;
+      }
+    }
+    &.inactive {
+      .mat-icon {
+        color: $colorsystem3-yellow;
+      }
+    }
+    &.finished {
+      .mat-icon {
+        color: $colorsystem3-red;
+      }
+    }
+  }
+}

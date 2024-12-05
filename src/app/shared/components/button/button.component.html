@@ -1,0 +1,27 @@
+<button
+  mat-button  [attr.type]="type" [ngClass]="{
+    'mat-button': btnStyle ==='basic',
+    'mat-raised-button': btnStyle === 'raised',
+    'mat-stroked-button': btnStyle === 'stroked',
+    'mat-flat-button': btnStyle === 'flat',
+    'mat-icon-button': btnStyle === 'icon',
+    'mat-fab': btnStyle === 'fab',
+    'mat-mini-fab': btnStyle === 'mini',
+    'btn-outline': btnStyle === 'stroked',
+    'btn-success': variant === 'success',
+    'btn-danger': variant === 'danger',
+    'btn-warning': variant === 'warning',
+    'btn-primary': variant === 'primary',
+    'btn-secondary': variant === 'secondary',
+    'btn-dark': variant === 'dark',
+    'btn-light': variant === 'light',
+    'btn-muted': variant === 'muted'
+  }"
+  [style.width]="width"
+  [style.height]="height"
+  [class]="class"
+  [disabled]="disabled"
+  (click)="onClick.emit($event)"
+>
+  <ng-content></ng-content>
+</button>

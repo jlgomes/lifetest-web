@@ -1,0 +1,24 @@
+@import "_mixins.scss";
+@import "_colors.scss";
+
+@include priv-main-container;
+
+.top-navbar-container {
+  width: 100%;
+  height: 80px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 35% 65%;
+}
+
+.registers-main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 75%;
+  justify-content: center;
+  gap: 16px;
+
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: 85%;
+  }
+}

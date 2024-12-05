@@ -1,0 +1,293 @@
+@mixin g-pos ($direction, $start, $end) {
+  grid-#{$direction}-start: $start;
+  grid-#{$direction}-end: $end;
+}
+
+@mixin grid ($columns, $rows, $gap) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  grid-template-rows: repeat($rows, 1fr);
+  gap: $gap+px;
+}
+
+@mixin headigns ($size) {
+  h#{$size} {
+    $valor: (
+      3.1-(0.45*($size - 1))
+    );
+  font-size: $valor+rem;
+
+  @if ($size ==1 or $size ==2) {
+    font-family: "Assistant-bold";
+  }
+
+  @else if ($size ==3) {
+    font-family: "Assistant";
+  }
+
+  @else {
+    font-family: "Assistant-light";
+  }
+}
+}
+
+@mixin btn-style ($type, $color, $text-color, $text-color-hover) {
+  @if $type =="outline" {
+    background-color: transparent;
+    border: 1px solid;
+    border-color: $color;
+    color: $color;
+
+    &:hover {
+      background-color: $color;
+      color: $text-color-hover
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  @else {
+    border: none;
+    background-color: $color;
+    color: $text-color;
+
+    &:hover {
+      opacity: .80;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+}
+
+@mixin priv-main-container {
+  .private-main-container {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: min-content 1fr min-content;
+    gap: 16px;
+    position: relative;
+  }
+}
+
+@mixin private-header {
+  header {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: min-content min-content;
+  }
+}
+
+@mixin table_style {
+  button {
+    color: $colorsystem1-300;
+
+    &:hover {
+      filter: brightness(0.95);
+    }
+  }
+
+  ::ng-deep .mat-mdc-icon-button[disabled] .mat-mdc-paginator-icon {
+    fill: $theme-muted !important;
+  }
+
+  ::ng-deep .mat-mdc-paginator-icon {
+    fill: $colorsystem2-50 !important;
+  }
+
+  .card-table {
+    padding: 16px;
+    background-color: var(--table-card-bg-color);
+    border-radius: 6px;
+
+    .table-filter {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+
+      input {
+        background-color: var(--search-input-bg-color) !important;
+        border-bottom: 2px solid var(--search-input-border-color);
+      }
+
+      .mat-icon {
+        color: var(--search-input-icon-color) !important;
+      }
+    }
+
+  }
+
+  ::ng-deep .mat-mdc-table {
+    background-color: rgba($colorsystem1-800, 0);
+    border-radius: 4px;
+
+    thead {
+      background-color: var(--table-header-bg-color) !important;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      margin-bottom: 16px;
+    }
+
+    tbody:before {
+      content: "@";
+      background-color: var(--table-card-bg-color);
+      line-height: 16px;
+      content: "\200C";
+      display: block;
+    }
+
+    .mdc-data-table__header-cell,
+    .mdc-data-table__cell {
+      color: var(--default-font-color) !important;
+      text-align: center;
+    }
+
+    .mdc-data-table__cell {
+      border: 1px solid var(--table-cell-border-color);
+      color: var(--default-font-color) !important;
+      background-color: var(--table-cell-bg-color) !important;
+    }
+  }
+
+  ::ng-deep .mat-mdc-paginator {
+    background-color: var(--table-footer-bg-color) !important;
+
+    .mat-mdc-paginator-page-size-label,
+    .mat-mdc-paginator-range-label,
+    .mat-mdc-select-value-text,
+    .mat-mdc-select-arrow {
+      color: var(--default-font-color) !important;
+    }
+  }
+
+  ::ng-deep .mat-mdc-paginator:before {
+    content: "@";
+    background-color: var(--table-card-bg-color);
+    line-height: 16px;
+    content: "\200C";
+    display: block;
+  }
+
+  ::ng-deep .mat-mdc-paginator-page-size-select {
+    border-color: $colorsystem1-50;
+  }
+
+  .table-filter {
+    position: relative;
+    $input-width: 250px;
+    $icon-width: 25px;
+
+    input {
+      width: $input-width;
+      height: 50px;
+      padding: 8px;
+      padding-right: 35px;
+      color: $colorsystem2-50;
+      background-color: $colorsystem1-700;
+      border: none;
+      border-bottom: 2px solid $colorsystem1-400;
+    }
+
+    mat-icon {
+      position: absolute;
+      width: $icon-width;
+      top: 20px;
+      left: calc($input-width - $icon-width - 5px);
+      color: $colorsystem2-200;
+    }
+  }
+
+}
+
+@mixin bold {
+  font-family: Assistant;
+  font-size: 16px;
+  letter-spacing: 0.32px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+@mixin font-span {
+  font-family: Assistant;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+@mixin grid($color, $span-color1, $span-color2) {
+  display: grid;
+  width: 100%;
+
+  .grid-header {
+    display: flex;
+    padding: 4px 20px;
+    width: 100%;
+    border: 0.5px solid ($color);
+    gap: 8px;
+
+    b {
+      @include bold;
+    }
+
+    span {
+      @include bold;
+      color: $span-color1;
+    }
+  }
+
+  .grid-span {
+    span {
+      @include font-span;
+      color: $span-color2;
+    }
+  }
+}
+
+@mixin checkboxes {
+  .mat-mdc-checkbox {
+
+    //Cor da borda padrão do checkbox
+    ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+      border-color: $colorsystem1-300 !important;
+      background-color: transparent !important;
+    }
+
+    //Cor do checkbox parcialmente selecionado
+    ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked)~.mdc-checkbox__background {
+      border-color: var(--checkbox-color) !important;
+      background-color: var(--checkbox-color) !important;
+    }
+
+    //Cor do checkbox selecionado
+    ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,
+    .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background,
+    .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+      border-color: var(--checkbox-color) !important;
+      background-color: var(--checkbox-color) !important;
+    }
+
+    //cor do ripple do checkbox no :focus
+    ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:focus:checked~.mdc-checkbox__ripple {
+      background-color: var(--checkbox-color) !important;
+    }
+
+    //Cor do texto "label" do checkbox
+    ::ng-deep .mdc-form-field {
+      font-family: Assistant;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      color: var(--default-font-color) !important;
+      display: flex;
+      align-items: center;
+    }
+  }
+}

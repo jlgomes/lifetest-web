@@ -1,0 +1,16 @@
+<section class="private-main-container">
+  <header>
+    <app-breadcrumb
+      breadcrumbTitle="breadcrumbs.rack-configuration"
+      route={{appRoutes.REGISTERS}}
+    />
+  </header>
+  <main>
+    <app-rack
+      *ngFor="let rack of racks"
+      [rack]="rack"
+      [voltages]="voltages"
+      (updateRack)="getRacks()"
+    />
+  </main>
+</section>

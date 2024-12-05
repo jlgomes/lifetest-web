@@ -1,0 +1,611 @@
+{
+  "login": {
+    "title": "Welcome to Life Test",
+    "subtitle": "Fill in your login and password to access the system",
+    "login-label": "Login",
+    "login-placeholder": "E-mail",
+    "password-label": "Password",
+    "password-placeholder": "Enter your password",
+    "forgot-password": "Forgot my password",
+    "login-button": "Log in"
+  },
+  "forgot-password": {
+    "title": "Reset password",
+    "reset-password": "Reset password",
+    "insert-email-1": "Enter your corporate email and click",
+    "insert-email-2": "reset password",
+    "insert-email-3": "to receive the link",
+    "input-placeholder": "Enter your email here",
+    "btn-reset-password": "Reset password"
+  },
+  "change-password": {
+    "title": "Change password",
+    "change-password": "Change password",
+    "insert-password-1": "Enter your new password",
+    "input-label-1": "New password",
+    "input-placeholder-1": "Enter your new password here",
+    "input-label-2": "Repeat new password",
+    "input-placeholder-2": "Repeat your new password",
+    "btn-change-password": "Change password"
+  },
+  "activate-user": {
+    "title": "Add password",
+    "activate-user": "Add password",
+    "insert-password-1": "Enter your new password",
+    "input-label-1": "New password",
+    "input-placeholder-1": "Enter your new password here",
+    "input-label-2": "Repeat new password",
+    "input-placeholder-2": "Repeat your new password",
+    "btn-activate-user": "Add password"
+  },
+  "not-found": {
+    "page-not-found": "Page not found!"
+  },
+  "common": {
+    "actions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "mark": "Mark",
+    "view": "View",
+    "cancel": "Cancel",
+    "removal-register": "Removal Register",
+    "back": "Back",
+    "save": "Save",
+    "entry": "Entry",
+    "exit": "Exit",
+    "cycles": "Cycles",
+    "box": "Box",
+    "product-font": "Product Font",
+    "register": "Register",
+    "power-cycle": "Power Cycle",
+    "high-voltage": "High Voltage",
+    "low-voltage": "Low Voltage",
+    "model": "Model",
+    "rack": "Rack",
+    "slot": "Slot",
+    "total": "Total",
+    "period": "Period",
+    "product": "Product",
+    "client": "Client",
+    "date": "Date",
+    "type": "Type",
+    "observations": "Observations",
+    "select-all-enabled": "Select all available",
+    "2g": "2G",
+    "5g": "5G",
+    "power": "Power"
+  },
+  "toolbar": {
+    "logout": "Logout"
+  },
+  "sidebar": {
+    "control-panel": "Control Panel",
+    "dashboard": "Dashboard",
+    "registers": "Registers",
+    "reports": "Reports",
+    "control": "Control",
+    "repair": "Repairs",
+    "maintenance": "Maintenance"
+  },
+  "dialogs": {
+    "form": "Form",
+    "btn-register": "Register",
+    "cannot-be-undone": "This operation cannot be undone"
+  },
+  "control-panel": {
+    "model": "MODEL",
+    "quantity": "QUANT.",
+    "available": "AVAILABLE",
+    "register-test": "Register test",
+    "begin-test": "Begin test(s)",
+    "tower": "TOWER"
+  },
+  "statistics": {
+    "days": "days",
+    "day": "day",
+    "least-erros-model": "Least errors model",
+    "most-errors-model": "Most errors model",
+    "most-tested-model": "Most tested model",
+    "thermometer": "Thermometer",
+    "weekly-executed-tests": "Weekly executed tests",
+    "tests-in-month": "Tests this month",
+    "total": "total",
+    "tests": "tests",
+    "test-days-with-failures": "Test days with failures",
+    "approved": "Approved",
+    "failure": "Failure"
+  },
+  "dashboard": {
+    "most-tested-models": "MOST TESTED MODELS",
+    "most-tested-models-description": "Most tested models within a 7-day interval.",
+    "led-ping-errors": "Type of failures",
+    "led-ping-errors-description": "Total LED and Ping failures within a 7-day interval"
+  },
+  "products": {
+    "btn-register": "Register product",
+    "color": "Color",
+    "type": "Type"
+  },
+  "products-dialog": {
+    "title-edit": "Edit product",
+    "title-register": "Register product",
+    "title-delete": "Delete product",
+    "subtitle": "Fill in the product data and save",
+    "client-placeholder": "Select a client",
+    "model-label": "Product model",
+    "model-placeholder": "Enter the model",
+    "serial-placeholder": "Enter the serial",
+    "type-placeholder": "Select a type",
+    "color-label": "Product color",
+    "title-view": "View product",
+    "product-image": "Product image",
+    "select-image": "Select an image by clicking the button below",
+    "btn-file": "Select the file",
+    "has-ethernet-ports": "Has Ethernet ports",
+    "has-leds": "Has LEDs",
+    "quantity-label": "Quantity",
+    "quantity-placeholder": "Enter the quantity",
+    "led-delimitation-btn": "Delimit image",
+    "led-delimitation-title": "LED delimitation",
+    "led-delimitation-subtitle": "Select the area in the image relating to the product's LEDs",
+    "capture-image-btn": "Capture image",
+    "capture-image-subtitle": "Select a camera to get the image",
+    "camera": "Camera"
+  },
+  "clients": {
+    "btn-register": "Register client",
+    "name": "Name"
+  },
+  "clients-dialog": {
+    "title-register": "Register client",
+    "title-edit": "Edit client",
+    "title-delete": "Delete client",
+    "subtitle": "Fill in the client data and save",
+    "client-label": "Client name",
+    "client-placeholder": "Enter the name",
+    "title-view": "View client",
+    "ip-label": "Product IP",
+    "ip-placeholder": "0.0.0.0"
+  },
+  "profiles": {
+    "btn-register": "Register profile",
+    "profile": "Profile"
+  },
+  "profiles-dialog": {
+    "title-register": "Profile Registration",
+    "title-edit": "Edit Profile",
+    "title-delete": "Delete profile",
+    "subtitle": "Fill in your profile details and save",
+    "name": "Profile Name",
+    "profile-label": "Profile",
+    "profile-placeholder": "Profile name",
+    "permissions": "Permissions"
+  },
+  "users": {
+    "btn-register": "Register User",
+    "forgot-password": "Forgot password?",
+    "user": "User",
+    "email": "E-mail",
+    "profile": "Profile",
+    "email-toast": "An e-mail with instructions for changing the password has been sent!"
+  },
+  "users-dialog": {
+    "title-edit": "Edit user",
+    "title-register": "Register user",
+    "title-delete": "Delete user",
+    "subtitle": "Fill in the user data and save",
+    "user-label": "Username",
+    "user-placeholder": "Enter the username",
+    "email-label": "User e-mail",
+    "email-placeholder": "Enter the e-mail",
+    "profile-label": "Profile",
+    "profile-placeholder": "Select the profile",
+    "title-view": "View user"
+  },
+  "user-profiles": {
+    "administrador": "Administrator"
+  },
+  "slot-modal": {
+    "tested": "Tested",
+    "entry": "Entry",
+    "exit": "Exit",
+    "error": "ERROR",
+    "ok": "OK",
+    "btn-repair": "REPAIR",
+    "btn-exit": "EXIT",
+    "btn-start": "START TEST",
+    "btn-camera": "CAMERA",
+    "test-cycle": "TEST CYCLES",
+    "performed": "Performed",
+    "last": "Last",
+    "next": "Next",
+    "localization": "Localization",
+    "box": "Box",
+    "power-supply": "Power supply",
+    "no-test": "No test registered for Slot",
+    "no-telemetry": "No Telemetry"
+  },
+  "validations": {
+    "required-field": "This field is required",
+    "invalid-email": "This email format is invalid",
+    "error-fields": "Some fields contain errors. Check and try again",
+    "max-value": "The number is above the max value",
+    "min-value": "The number is below the min value",
+    "invalid-pattern": "Invalid pattern"
+  },
+  "tests": {
+    "active": "Active",
+    "created-at": "Register date",
+    "status": "Status",
+    "inactive": "Inactive",
+    "finished": "Finished",
+    "model-placeholder": "Select a model",
+    "test-cycle": "Test cycles",
+    "cycle-placeholder": "Select the test cycle",
+    "days-to-be-tested": "Days to be tested",
+    "days-to-be-tested-placeholder": "Number of days",
+    "startdate": "Entry",
+    "enddate": "Exit",
+    "select-the-options": "Select the options to register a test",
+    "choose-the-rack": "Choose the rack and select the available slots"
+  },
+  "reading": {
+    "test-data": "Test data",
+    "data-read": "Product data reading for positioning in the rack",
+    "test-finish": "Check product data for removal from the rack",
+    "model": "Model",
+    "time": "Tempo",
+    "day": "day",
+    "entry": "Entry",
+    "exit": "Exit",
+    "product": "Product",
+    "box": "Box",
+    "rack-box-slot": "Rack Box / Slot",
+    "product-power-source": "Product power source",
+    "register-reading": "Register Reading",
+    "read-product": "Scan the product barcode",
+    "read-rack": "Scan the rack barcode",
+    "read-box": "Scan the box barcode",
+    "read-rack-box": "Scan the rack's box barcode",
+    "read-power-source": "Scan the power source barcode"
+  },
+  "notifications": {
+    "error": "Error",
+    "finished": "Finished",
+    "read": "Read",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "test-started": "TEST STARTED",
+    "more-notifications": "More notifications",
+    "mark-as-read": "Mark as read"
+  },
+  "submenu": {
+    "tests": {
+      "title": "Tests",
+      "description": "Test Registration"
+    },
+    "products": {
+      "title": "Products",
+      "description": "Product Registration for Tests"
+    },
+    "customers": {
+      "title": "Customers",
+      "description": "Customer Registration for Tests"
+    },
+    "telemetries": {
+      "title": "Telemetries",
+      "description": "View Telemetries"
+    },
+    "profiles": {
+      "title": "Profiles",
+      "description": "Manage Profiles"
+    },
+    "users": {
+      "title": "Users",
+      "description": "Manage Users"
+    },
+    "accesses": {
+      "title": "Accesses",
+      "description": "Grant Access"
+    },
+    "event": {
+      "title": "Events",
+      "description": "Event Logs"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "description": "System Notifications"
+    },
+    "repairs": {
+      "title": "Repairs",
+      "description": "Records of Maintenance and Repairs Performed"
+    },
+    "defects": {
+      "title": "Defects",
+      "description": "Records of Problems or Failures Identified"
+    },
+    "solutions": {
+      "title": "Solutions",
+      "description": "Records of Applied Solutions to Resolve Issues"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Maintenance Dashboard"
+    },
+    "registers": {
+      "title": "Registers",
+      "description": "Maintenance Registers"
+    },
+    "rack-configuration": {
+      "title": "Rack configuration",
+      "description": "Configure test cycles"
+    }
+  },
+  "reports": {
+    "all": "All reports",
+    "all-products": "All products",
+    "types": {
+      "tests": "Tests",
+      "maintenance": "Maintenance"
+    },
+    "tests": {
+      "total-products-tested": "Total products tested",
+      "total-failures-per-product": "Total failures per product",
+      "total-failures-per-type": "Total failures per type",
+      "total-failures-detailed": "Total failures detailed",
+      "hours-executed-per-product": "Hours executed per product"
+    },
+    "maintenance": {
+      "average-rack-temperature": "Average rack temperature",
+      "power-cycle-quantity": "Power Cycle quantity",
+      "maintenances-per-type": "Maintenances per type",
+      "maintenances-per-slot": "Maintenances quantity per slot"
+    },
+    "generate-report": "Generate Report",
+    "total-errors": "Total Errors",
+    "recurrents": "Recurrents",
+    "total-tests": "Total Tests",
+    "telemetry": "Telemetry",
+    "actions": "Actions",
+    "download": "Download Report",
+    "btn-download": "Download",
+    "dialog": {
+      "total-errors": "Total errors report",
+      "recurrents": "Recurring errors report",
+      "total-tests": "Total tests report",
+      "telemetry": "Telemetry report",
+      "subtitle": "Fill in the data and save to generate a report",
+      "select-period": "Select the period",
+      "placeholder-select-period": "Select a period",
+      "btn-save": "SAVE"
+    }
+  },
+  "total-errors": {
+    "title": "Total errors report",
+    "graph-title": "Total errors"
+  },
+  "recurring-errors": {
+    "title": "Recurring errors report",
+    "graph-title": "Total of recurring errors",
+    "leds": "LEDs",
+    "ping": "Ping"
+  },
+  "total-tests": {
+    "title": "Total tests report",
+    "graph-title": "Total tests",
+    "weekly": "Weekly",
+    "fortnightly": "Fortnightly",
+    "monthly": "Monthly",
+    "quarterly": "Quarterly"
+  },
+  "telemetry": {
+    "title": "Telemetry report",
+    "graph-title": "Telemetry",
+    "total-errors": "Total errors"
+  },
+  "telemetry-view": {
+    "telemetry-id": "Telemetry id",
+    "measured-at": "Measured in",
+    "created-at": "Created at",
+    "temperature": "Temperature",
+    "est-finish-date": "Estimated finish date",
+    "product-serial": "Product serial",
+    "box-serial": "Box serial",
+    "power-source-serial": "Power source serial",
+    "registered-by": "Registered by"
+  },
+  "reports-pdf": {
+    "generated-when": "Report generated at"
+  },
+  "event": {
+    "module": "Module",
+    "date": "Date",
+    "message": "Message",
+    "updatedBy": "User",
+    "modules": {
+      "profile": "Profile",
+      "user": "User",
+      "client": "Client",
+      "notification": "Notifications",
+      "product": "Product",
+      "slot": "Slot",
+      "test": "Test"
+    },
+    "messages": {
+      "create": "New item created",
+      "update": "Item updated",
+      "delete": "Item deleted",
+      "enable": "Item enabled",
+      "disable": "Item disabled",
+      "finish": "Item finished"
+    }
+  },
+  "event-log-view": {
+    "executed-at": "Executed at",
+    "saved-data": "Saved data",
+    "new-values": "New values",
+    "old-values": "Old values"
+  },
+  "page-title": {
+    "control-panel": "Control Panel",
+    "dashboard": "Dashboard",
+    "reports": "Reports",
+    "users": "Users",
+    "clients": "Clients",
+    "profiles": "Profiles",
+    "register": "Register",
+    "register-costumers": "Register/Clients",
+    "register-products": "Register/Products",
+    "register-tests": "Register/Tests",
+    "register-tests-new": "Resgister/Tests/New",
+    "register-tests-new-reading": "Resgister/Tests/New/Reading",
+    "register-racks": "Register/Racks",
+    "control": "Control",
+    "notifications": "Notifications",
+    "repairs": "Repair",
+    "event-log": "Event Log",
+    "maintenance": "Maintenance"
+  },
+  "breadcrumbs": {
+    "dashboard": "Dashboard",
+    "registers": {
+      "main": "Registers",
+      "tests": {
+        "main": "Registered tests",
+        "registration": "Tests register",
+        "reading": "Reading and Location",
+        "finish": "Finish test"
+      },
+      "products": "Registered Products",
+      "clients": "Registered Customers",
+      "telemetries": "Registered Telemetries"
+    },
+    "repairs": {
+      "title": "Repairs",
+      "register": "Register Repair"
+    },
+    "maintenance": {
+      "main": "Maintenance",
+      "dashboard": "Maintenance Dashboard",
+      "registers": "Maintenance Register"
+    },
+    "reports": "Reports",
+    "control": {
+      "main": "Control",
+      "profiles": "Profiles Control",
+      "users": "Users Control",
+      "accesses": "Release Access",
+      "events": "Event Log",
+      "notifications": "Notifications"
+    },
+    "rack-configuration": "Rack configuration"
+  },
+  "toasts": {
+    "server-error": "Failed to comunicate with the server",
+    "created-test-success": "Test created successfully!",
+    "select-slot": "Select at least one slot for the test",
+    "register-product": "Product registered successfully!",
+    "register-client": "Client registered successfully!",
+    "register-user": "User registered successfully!",
+    "register-profile": "Profile registered successfully!",
+    "register-repair": "Repair registered successfully!",
+    "edit-product": "Product edited successfully!",
+    "edit-client": "Customer edited successfully!",
+    "edit-user": "User edited successfully!",
+    "edit-profile": "Profile edited successfully!",
+    "edit-repair": "Repair edited successfully!",
+    "edit-rack": "Rack edited successfully!",
+    "delete-product": "Product deleted successfully!",
+    "delete-client": "Client deleted successfully!",
+    "delete-user": "User deleted successfully!",
+    "delete-profile": "Profile deleted successfully!",
+    "delete-test": "Test deleted successfully!",
+    "delete-repair": "Repair deleted successfully!",
+    "marked-notification": "Notification marked as read!",
+    "created-repair-success": "A repair was generated to this test",
+    "starting-test": "starting test",
+    "invalid-image": "Invalid image file. Supported types: .png, .jpeg",
+    "invalid-repair": "Invalid repair file. Supported types: .pdf, .xls, .xlsx, .rar, .zip"
+  },
+  "maintenance": {
+    "btn-register": "Register Maintenance",
+    "maintenance-id": "Maintenance ID",
+    "Status": "Status",
+    "observation": "Observation",
+    "date": "Date",
+    "type": "Type",
+    "registered-in": "Registered in",
+    "maintenance-period": "Maintenance period",
+    "maintenance-date": "Maintenance date",
+    "mark-as-done": "Mark as done",
+    "download-pdf": "Download .pdf",
+    "report-title": "Maintenance report",
+    "report-description": "Data relating to maintenance recorded in the system",
+    "dialog": {
+      "title-edit": "Edit Maintenance",
+      "title-register": "Register Maintenance",
+      "subtitle": "Maintenance informations",
+      "rack-placeholder": "Rack number",
+      "slot-placeholder": "Slot number",
+      "type-placeholder": "Maintenance type",
+      "component": "Component",
+      "component-placeholder": "Component name",
+      "observations-placeholder": "Type the observations",
+      "title-delete": "Delete maintenance",
+      "mark-as-done": "Mark as done"
+    },
+    "status": {
+      "open": "Open",
+      "closed": "Closed",
+      "expired": "Expired"
+    },
+    "types": {
+      "mechanical": "Mechanical",
+      "electrical": "Electrical",
+      "cables": "Cables",
+      "cameras": "Cameras",
+      "heaters": "Heaters"
+    }
+  },
+  "errors": {
+    "session-expired": "Session expired",
+    "login-again": "Please log in again",
+    "camera-connection": "Camera connection error. Please try again"
+  },
+  "repair": {
+    "status": "Status",
+    "model": "Model",
+    "slot": "Slot",
+    "position": "Rack",
+    "download-file": "Download file"
+  },
+  "repairs": {
+    "register": {
+      "title": "Finish repair",
+      "subtitle": "Insertion of 8D file"
+    },
+    "title-delete": "Delete repair"
+  },
+  "repair-dialog": {
+    "file-header": "8D file",
+    "select-file": "Select the 8D file",
+    "btn-file": "Select file"
+  },
+  "rack-configuration": {
+    "rack-voltage": "Rack voltage",
+    "power-cycles-per-day": "Power cycles per day",
+    "voltage-changes-per-day": "Voltage changes per day",
+    "temperature": "Temperature",
+    "voltage": "Voltage",
+    "voltage-placeholder": "Choose a voltage",
+    "cycle-data": "Cycle data",
+    "configure-cycle": "CONFIGURE CYCLE",
+    "title": "Test cycle configuration",
+    "subtitle": "Select the options to configure the cycle"
+  },
+  "MECHANICAL": "Mechanical",
+  "ELECTRICAL": "Electrical",
+  "CABLES": "Cables",
+  "CAMERAS": "Cameras",
+  "HEATERS": "Heaters"
+}

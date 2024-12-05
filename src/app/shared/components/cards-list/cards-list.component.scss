@@ -1,0 +1,63 @@
+@import "_colors.scss";
+
+.cards-list-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+
+    @media screen and (max-width: 1400px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width: 800px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.card-list-item {
+    background-color: var(--card-list-bg-color);
+    height: 232px;
+    border-radius: 6px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60% 40%;
+    cursor: pointer;
+
+    &:hover {
+        box-shadow: 0 0 10px 5px rgba($colorsystem2-500, 0.6);
+        transition: 0.15s;
+    }
+}
+
+.card-img-container {
+    width: 100%;
+    background-color: var(--card-list-img-bg-color);
+    padding: 16px;
+}
+
+.card-title-container {
+    width: 100%;
+    background-color: var(--card-list-desc-bg-color);
+    padding: 16px;
+}
+
+.card-title-container {
+    overflow: hidden;
+
+    h5 {
+        font-family: "Assistant-bold";
+        color: var(--card-list-title-color);
+    }
+
+    span {
+        font-family: "Assistant";
+        color: var(--card-list-subtitle-color);
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}

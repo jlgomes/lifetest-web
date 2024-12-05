@@ -1,0 +1,40 @@
+@import "_themes.scss";
+
+.grid-app {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  background-color: var(--private-background-color);
+  grid-template-columns: min-content 1fr;
+  grid-template-areas: "navigation-app main-app";
+  gap: 0px;
+}
+
+.navigation-app {
+  grid-area: navigation-app;
+}
+
+.main-app {
+  grid-area: main-app;
+  height: inherit;
+
+  @media screen and (max-width: 500px) {
+    width: 100%
+  }
+}
+
+section.view {
+  width: 100%;
+  /* All height minus the appbar's */
+  height: calc(100% - 60px);
+  padding: 16px;
+  overflow: auto;
+
+  @media screen and (max-width: 900px) {
+    padding: 16px 8px;
+  }
+
+  @media screen and (max-width: 500px) {
+    padding: 16px 12px;
+  }
+}

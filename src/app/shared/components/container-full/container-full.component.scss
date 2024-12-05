@@ -1,0 +1,28 @@
+@import "_mixins.scss";
+
+.container-full {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+  height: 100vh;
+  padding: 10px;
+  overflow: auto;
+
+  background: url("/assets/images/background-lifetest.png");
+  background-size: 100% 100% !important;
+
+  @media screen and (max-width: 1200px) {
+    gap: 5%;
+  }
+
+  @media screen and (max-width: 950px) {
+    padding: 5%;
+  }
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    gap: 30px;
+  }
+}

@@ -1,0 +1,318 @@
+<section *ngIf="data.test">
+  <header class="title">
+    <span>
+      <b>RACK {{ data.rack.name }}</b> | SLOT - {{ data.name }}
+    </span>
+    <span *ngIf="hasTelemetry()">
+      <b>{{ data.rack.temperature }}°C</b>
+    </span>
+    <span *ngIf="!hasTelemetry()">
+      <b>{{ "slot-modal.no-telemetry" | translate }}</b>
+    </span>
+  </header>
+
+  <div class="slot-details">
+    <div
+      class="slot-model section-title"
+      [style.backgroundColor]="product?.color"
+    >
+      <b [style.color]="'#fff'">{{ "common.model" | translate }}:</b>
+      <span [style.color]="'#fff'">{{ product?.model }}</span>
+    </div>
+
+    <div *ngIf="hasTelemetry()" class="slot-details-row">
+      <div class="slot-details-item">
+        <b>{{ "slot-modal.tested" | translate }}:</b>
+        <span>{{ data.test.startDate | testedDate }}</span>
+      </div>
+
+      <div class="slot-details-item">
+        <b>{{ "common.total" | translate }}:</b>
+        <span>
+          {{ data.test.createdAt | totalDate : data.test.duration }}
+        </span>
+      </div>
+    </div>
+
+    <div class="slot-details-row">
+      <div class="slot-details-item border-radius-bottom-left">
+        <b>{{ "slot-modal.entry" | translate }}:</b>
+        <span>{{ data.test.createdAt | entryDate }}</span>
+      </div>
+
+      <div class="slot-details-item border-radius-bottom-right">
+        <b>{{ "slot-modal.exit" | translate }}:</b>
+        <span>{{ data.test.createdAt | exitDate }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="hasError()" class="grid-status">
+    <div class="status-type">
+      <div *ngIf="hasLedError()" class="grid-3 error-grid">
+        <div
+          class="grid-header bg-red border-radius-top-left {{
+            hasLedError() && 'border-radius-bottom-left'
+          }}"
+        >
+          <mat-icon class="icon-white">circle</mat-icon>
+          <b>{{ "slot-modal.error" | translate }}: {{ ledErrorList() }}</b>
+        </div>
+        <div class="grid-header bg-theme">
+          <b>{{ lastLedError?.createdAt | errorDate : "time" }}</b>
+        </div>
+        <div
+          class="grid-header bg-theme border-radius-top-right {{
+            hasLedError() && 'border-radius-bottom-right'
+          }}"
+        >
+          <b>{{ lastLedError?.createdAt | errorDate : "date" }}</b>
+        </div>
+      </div>
+
+      <div *ngIf="hasPingError()" class="grid-3 error-grid">
+        <div
+          class="grid-header bg-red border-radius-bottom-left {{
+            hasPingError() && 'border-radius-top-left'
+          }}"
+        >
+          <mat-icon class="icon-white">language</mat-icon>
+          <b>{{ "slot-modal.error" | translate }}: {{ pingErrorList() }}</b>
+        </div>
+        <div class="grid-header bg-theme">
+          <b>{{ lastPingError?.createdAt | errorDate : "time" }}</b>
+        </div>
+        <div
+          class="grid-header bg-theme border-radius-bottom-right {{
+            hasPingError() && 'border-radius-top-right'
+          }}"
+        >
+          <b>{{ lastPingError?.createdAt | errorDate : "date" }}</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="hasTelemetry()" class="grid-status">
+    <div *ngIf="numberOfPorts > 0" class="status-type">
+      <div class="section-title">
+        <b>PING</b>
+      </div>
+
+      <div class="grid-{{ product?.numberPorts }}">
+        <div
+          *ngFor="let _ of ports; let i = index"
+          class="grid-header bg-theme"
+        >
+          <mat-icon
+            [ngClass]="{
+            'icon-green': statusPing(i) === 'sucess',
+            'icon-red': statusPing(i) === 'error',
+            'icon-gray': statusPing(i) === 'empty',
+          }"
+            >language</mat-icon
+          >
+          <b>P{{ i + 1 }}</b>
+        </div>
+
+        <div
+          *ngFor="let _ of ports; let i = index"
+          class="grid-header"
+          [ngClass]="{
+            'bg-green': statusPing(i) === 'sucess',
+            'bg-red': statusPing(i) === 'error',
+            'bg-gray': statusPing(i) === 'empty',
+          }"
+        >
+          <span>{{
+            getStatusMessage(ports[i]) | translate
+          }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="numberOfLeds > 0" class="status-type">
+      <div class="section-title">
+        <b>LED</b>
+      </div>
+      <div class="grid-{{ numberOfLeds }}">
+        <div *ngIf="product?.hasLedPower" class="grid-header bg-theme">
+          <mat-icon
+            [ngClass]="{
+            'icon-green': statusLed('Power') === 'sucess',
+            'icon-red': statusLed('Power') === 'error',
+            'icon-gray': statusLed('Power') === 'empty',
+          }"
+            >circle</mat-icon
+          >
+          <b>Power</b>
+        </div>
+        <div *ngIf="product?.hasLed2G" class="grid-header bg-theme">
+          <mat-icon
+            [ngClass]="{
+              'icon-green': statusLed('2G') === 'sucess',
+              'icon-red': statusLed('2G') === 'error',
+              'icon-gray': statusLed('2G') === 'empty',
+            }"
+            >circle</mat-icon
+          >
+          <b>2G</b>
+        </div>
+        <div *ngIf="product?.hasLed5G" class="grid-header bg-theme">
+          <mat-icon
+            [ngClass]="{
+            'icon-green': statusLed('5G') === 'sucess',
+            'icon-red': statusLed('5G') === 'error',
+            'icon-gray': statusLed('5G') === 'empty',
+          }"
+            >circle</mat-icon
+          >
+          <b>5G</b>
+        </div>
+        <!-- Status for 2G and 5G -->
+        <div
+          *ngIf="product?.hasLedPower"
+          class="grid-header"
+          [ngClass]="{
+            'bg-green': statusLed('Power') === 'sucess',
+            'bg-red': statusLed('Power') === 'error',
+            'bg-gray': statusLed('Power') === 'empty',
+          }"
+        >
+          <span>{{
+            getStatusMessage(lastLedTelemetry?.ledPower) | translate
+          }}</span>
+        </div>
+        <div
+          *ngIf="product?.hasLed2G"
+          class="grid-header"
+          [ngClass]="{
+            'bg-green': statusLed('2G') === 'sucess',
+            'bg-red': statusLed('2G') === 'error',
+            'bg-gray': statusLed('2G') === 'empty',
+          }"
+        >
+          <span>{{
+            getStatusMessage(lastLedTelemetry?.led2G) | translate
+          }}</span>
+        </div>
+        <div
+          *ngIf="product?.hasLed5G"
+          class="grid-header"
+          [ngClass]="{
+            'bg-green': statusLed('5G') === 'sucess',
+            'bg-red': statusLed('5G') === 'error',
+            'bg-gray': statusLed('5G') === 'empty',
+          }"
+        >
+          <span>{{
+            getStatusMessage(lastLedTelemetry?.led5G) | translate
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <app-button variant="secondary" width="100%" (click)="openCameraView()">
+      {{ "slot-modal.btn-camera" | translate }}
+    </app-button>
+    <app-button
+      *ngIf="data.test.startDate"
+      variant="danger"
+      width="100%"
+      (click)="finishTest()"
+    >
+      {{ "slot-modal.btn-exit" | translate }}
+    </app-button>
+    <app-button
+      *ngIf="!data.test.startDate"
+      variant="success"
+      width="100%"
+      (click)="startTest(data.test.id)"
+    >
+      {{ "slot-modal.btn-start" | translate }}
+    </app-button>
+  </div>
+
+  <div class="grid-status">
+    <div class="status-type">
+      <div class="section-title">
+        <b>{{ "slot-modal.test-cycle" | translate }}</b>
+      </div>
+      <div class="grid-2">
+        <div class="grid-header bg-theme">
+          <b>{{ "common.total" | translate }}</b>
+        </div>
+        <div class="grid-header grid-span bg-theme">
+          <span>------------------------</span>
+        </div>
+        <!-- -->
+        <div class="grid-header bg-theme">
+          <b>{{ "slot-modal.performed" | translate }}</b>
+        </div>
+        <div class="grid-header grid-span bg-theme">
+          <span>------------------------</span>
+        </div>
+        <!-- -->
+        <div class="grid-header bg-theme">
+          <b>{{ "slot-modal.last" | translate }}</b>
+        </div>
+        <div class="grid-header grid-span bg-theme">
+          <span>------------------------</span>
+        </div>
+        <!-- -->
+        <div class="grid-header bg-theme border-radius-bottom-left">
+          <b>{{ "slot-modal.next" | translate }}</b>
+        </div>
+        <div class="grid-header grid-span bg-theme border-radius-bottom-right">
+          <span>------------------------</span>
+        </div>
+      </div>
+
+      <div class="section-title">
+        <b>{{ "slot-modal.localization" | translate }}</b>
+      </div>
+      <div class="grid-2">
+        <div class="grid-header bg-theme">
+          <b>{{ "common.product" | translate }}</b>
+        </div>
+        <div class="grid-header grid-span bg-theme">
+          <span>{{ data.test.serialProduct }}</span>
+        </div>
+        <!-- -->
+        <div class="grid-header bg-theme">
+          <b>Rack {{ data.rack.name }}</b>
+        </div>
+        <div class="grid-header grid-span bg-theme">
+          <span>Slot {{ data.name }}</span>
+        </div>
+        <!-- -->
+        <div class="grid-header bg-theme">
+          <b>{{ "slot-modal.box" | translate }}</b>
+        </div>
+        <div class="grid-header grid-span bg-theme">
+          <span>{{ data.test.serialBox }}</span>
+        </div>
+        <!-- -->
+        <div class="grid-header bg-theme">
+          <b>Rack {{ "slot-modal.box" | translate }}</b>
+        </div>
+        <div class="grid-header grid-span bg-theme">
+          <span>Slot {{ data.name }}</span>
+        </div>
+        <!-- -->
+        <div class="grid-header bg-theme border-radius-bottom-left">
+          <b>{{ "slot-modal.power-supply" | translate }}</b>
+        </div>
+        <div class="grid-header grid-span bg-theme border-radius-right">
+          <span>{{ data.test.serialPowerSource }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section *ngIf="!data.test">
+  <h2>{{ "slot-modal.no-test" | translate }} {{ data.name }}</h2>
+</section>

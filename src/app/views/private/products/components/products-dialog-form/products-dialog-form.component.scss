@@ -1,0 +1,85 @@
+@import "_dialogs.scss";
+@import "_mixins.scss";
+
+@include checkboxes;
+
+.hidden {
+  display: none;
+}
+
+.input-fields {
+  width: 400px;
+}
+
+form {
+  display: flex;
+  gap: 50px;
+}
+
+mat-checkbox {
+  display: block;
+  margin-bottom: 15px;
+  user-select: none;
+}
+
+.checkboxes {
+  display: flex;
+  gap: 10px;
+}
+
+.input-image {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  padding: 25px;
+  border: 1px solid $colorsystem1-600;
+  border-radius: 5px;
+
+  span.input-header {
+    position: absolute;
+    top: -12px;
+    left: 12px;
+    width: fit-content;
+    padding: 0 5px;
+    color: $colorsystem2-50;
+    background: $colorsystem1-900;
+  }
+}
+
+.file-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-height: 400px; /* Controls maximum height */
+  max-width: 400px;  /* Controls maximum width */
+  margin-bottom: 25px;
+  background-repeat: no-repeat;
+  background-size: cover; /* Ensures the image covers the container */
+  background-position: center; /* Keeps the image centered */
+  border: 1px solid #ddd; /* Replace with the appropriate color variable if needed */
+}
+
+.icon-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 15px;
+  padding: 20px;
+  user-select: none;
+
+  img {
+    -webkit-user-drag: none;
+  }
+}
+
+.image-buttons app-button {
+  width: unset !important;
+}

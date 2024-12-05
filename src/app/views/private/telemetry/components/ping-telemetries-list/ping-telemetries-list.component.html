@@ -1,0 +1,109 @@
+<app-progress-spinner *ngIf="isLoading" padding="100px" />
+<table *ngIf="!isLoading" mat-table [dataSource]="dataSources">
+  <ng-container matColumnDef="product">
+    <th mat-header-cell *matHeaderCellDef>
+      {{ "common.product" | translate }}
+    </th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [style.background]="element.test.product.color + '!important'"
+    >
+      {{ element.test.product.model }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="pingP1">
+    <th mat-header-cell *matHeaderCellDef width="150px">P1</th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [style.background-color]="statusColor(element.pingP1)"
+      [style.color]="'#ffffff !important'"
+    >
+      {{ element.pingP1 ? "Ok" : "ERROR" }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="pingP2">
+    <th mat-header-cell *matHeaderCellDef width="150px">P2</th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [style.background-color]="statusColor(element.pingP2)"
+      [style.color]="'#ffffff !important'"
+    >
+      {{ element.pingP2 ? "Ok" : "ERROR" }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="pingP3">
+    <th mat-header-cell *matHeaderCellDef width="150px">P3</th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [style.background-color]="statusColor(element.pingP3)"
+      [style.color]="'#ffffff !important'"
+    >
+      {{ element.pingP3 ? "Ok" : "ERROR" }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="pingP4">
+    <th mat-header-cell *matHeaderCellDef width="150px">P4</th>
+    <td
+      mat-cell
+      *matCellDef="let element"
+      [style.background-color]="statusColor(element.pingP4)"
+      [style.color]="'#ffffff !important'"
+    >
+      {{ element.pingP4 ? "Ok" : "ERROR" }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="rack">
+    <th mat-header-cell *matHeaderCellDef width="100px">
+      {{ "common.rack" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.test.slot.rack.name }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="slot">
+    <th mat-header-cell *matHeaderCellDef width="100px">
+      {{ "common.slot" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">{{ element.test.slot.name }}</td>
+  </ng-container>
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef width="200px">
+      {{ "common.date" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{ formateDateUtil(element.createdAt) }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef width="100px">
+      {{ "common.actions" | translate }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      <button
+        class="btn"
+        (click)="view(element)"
+        matTooltip="{{ 'common.view' | translate }}"
+      >
+        <mat-icon>visibility</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+<mat-paginator
+  *ngIf="page"
+  [pageSizeOptions]="[5, 10]"
+  [pageIndex]="page.pageable.pageNumber"
+  [length]="page.totalElements"
+  [pageSize]="page.pageable.pageSize"
+  [showFirstLastButtons]="true"
+  (page)="pageUpdate($event)"
+  aria-label="Select page"
+/>

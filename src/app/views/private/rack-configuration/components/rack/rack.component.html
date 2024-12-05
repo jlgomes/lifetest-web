@@ -1,0 +1,34 @@
+<div class="component">
+  <div class="header">
+    <h1>Rack {{ rack.name }}</h1>
+  </div>
+
+  <div class="content">
+    <span>{{ "rack-configuration.cycle-data" | translate }}</span>
+
+    <div class="details">
+      <span class="font-bold">{{ "rack-configuration.rack-voltage" | translate }}</span>
+      <span>{{ formatVoltage(rack.voltage.voltage) }}</span>
+    </div>
+
+    <div class="details-columns">
+      <div class="details">
+        <span class="font-bold">{{ "rack-configuration.power-cycles-per-day" | translate }}</span>
+        <span>{{ rack.powerCyclePerDay }}</span>
+      </div>
+      <div class="details">
+        <span class="font-bold">{{ "rack-configuration.voltage-changes-per-day" | translate }}</span>
+        <span>{{ rack.voltageChangePerDay }}</span>
+      </div>
+    </div>
+
+
+    <div class="details">
+      <span class="font-bold">{{ "rack-configuration.temperature" | translate }}</span>
+      <span>{{ formatTemperature(rack.temperature) }}</span>
+    </div>
+  </div>
+</div>
+<app-button variant="secondary" width="100%" (onClick)="configureRack()">
+  {{ "rack-configuration.configure-cycle" | translate }}
+</app-button>

@@ -1,0 +1,44 @@
+<section>
+  <header>
+    <div class="flex-justify">
+      <h2>{{ title | translate }}</h2>
+      <div *ngIf="btnClose" class="btn-icon" (click)="closeDialog()">
+        <mat-icon class="material-icons-outlined" svgIcon="cancel-lt" />
+      </div>
+    </div>
+    <span>{{ subtitle | translate }}</span>
+  </header>
+
+  <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+    <app-form-field
+      fieldType="input"
+      borderStyle="secondary"
+      width="100%"
+      label="{{ 'common.observations' | translate }}"
+      placeholder="{{
+        'maintenance.dialog.observations-placeholder' | translate
+      }}"
+      control="observation"
+    />
+  </form>
+
+  <div class="buttons">
+    <app-button
+      width="100%"
+      btnStyle="raised"
+      variant="success"
+      (click)="onSubmit()"
+    >
+      {{ btnConfirmLabel | translate }}
+    </app-button>
+    <app-button
+      *ngIf="btnCancel"
+      width="100%"
+      btnStyle="stroked"
+      variant="light"
+      (click)="closeDialog()"
+    >
+      {{ btnCancelLabel | translate }}
+    </app-button>
+  </div>
+</section>

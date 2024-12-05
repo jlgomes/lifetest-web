@@ -1,0 +1,111 @@
+<section>
+  <header>
+    <div class="flex-justify">
+      <h2>{{ title | translate }}</h2>
+      <div class="btn-icon" (click)="closeDialog()">
+        <mat-icon class="material-icons-outlined" svgIcon="cancel-lt" />
+      </div>
+    </div>
+    <span>{{
+      "maintenance.dialog.subtitle" | translate
+    }}</span>
+  </header>
+
+  <div class="content-2">
+    <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+      <div class="box-section-variant">
+        <div class="input-group">
+          <app-form-select-field
+            borderStyle="secondary"
+
+            label="{{ 'common.rack' | translate }}"
+            placeholder="{{
+              'maintenance.dialog.rack-placeholder' | translate
+            }}"
+            control="rack"
+            [options]="rackOptions"
+            valueField="id"
+            textField="name"
+            (selectionChangeEmitter)="changeRackEvent($event)"
+          />
+
+          <app-form-select-field
+            borderStyle="secondary"
+            label="{{ 'common.slot' | translate }}"
+            placeholder="{{
+              'maintenance.dialog.slot-placeholder' | translate
+            }}"
+            control="slot"
+            [options]="slotOptions"
+            valueField="id"
+            textField="name"
+            [disabled]="slotOptions.length === 0"
+          />
+        </div>
+
+        <app-form-select-field
+          borderStyle="secondary"
+          width="100%"
+          label="{{ 'maintenance.type' | translate }}"
+          placeholder="{{ 'maintenance.dialog.type-placeholder' | translate }}"
+          control="type"
+          [options]="maintenanceTypes"
+          valueField="key"
+          textField="text"
+        />
+
+        <div class="input-group">
+          <app-form-field
+            fieldType="input"
+            borderStyle="secondary"
+            width="100%"
+            label="{{ 'maintenance.date' | translate }}"
+            control="date"
+            [disabled]="true"
+          />
+          <app-form-field
+          fieldType="input"
+          [mask]="dateMask"
+          borderStyle="secondary"
+          width="100%"
+          label="{{ 'maintenance.maintenance-period' | translate }}"
+          control="deadlineDate"
+        />
+        </div>
+
+        <app-form-field
+          fieldType="input"
+          borderStyle="secondary"
+          width="100%"
+          label="{{ 'common.observations' | translate }}"
+          placeholder="{{
+            'maintenance.dialog.observations-placeholder' | translate
+          }}"
+          control="observation"
+        />
+      </div>
+    </form>
+  </div>
+
+  <div class="menu-btn">
+    <div class="buttons">
+      <app-button
+        width="100%"
+        btnStyle="raised"
+        variant="success"
+        (click)="onSubmit()"
+        [disabled]="isLoading"
+      >
+        {{ "dialogs.btn-register" | translate }}
+      </app-button>
+      <app-button
+        width="100%"
+        btnStyle="stroked"
+        variant="light"
+        (click)="closeDialog()"
+      >
+        {{ "common.cancel" | translate }}
+      </app-button>
+    </div>
+  </div>
+</section>

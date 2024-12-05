@@ -1,0 +1,74 @@
+<section>
+  <header>
+    <div class="flex-justify">
+      <h2>{{ "rack-configuration.title" | translate }}</h2>
+      <div class="btn-icon" (click)="closeDialog()">
+        <mat-icon class="material-icons-outlined" svgIcon="cancel-lt" />
+      </div>
+    </div>
+    <span>{{ "rack-configuration.subtitle" | translate }}</span>
+  </header>
+
+  <div class="content">
+    <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+      <div>
+        <app-form-field
+          fieldType="input"
+          borderStyle="secondary"
+          width="100%"
+          label="{{ 'rack-configuration.power-cycles-per-day' | translate }}"
+          control="powerCyclePerDay"
+        />
+        <app-form-field
+          fieldType="input"
+          borderStyle="secondary"
+          width="100%"
+          label="{{ 'rack-configuration.voltage-changes-per-day' | translate }}"
+          control="voltageChangePerDay"
+        />
+      </div>
+
+      <div>
+        <app-form-select-field
+          borderStyle="secondary"
+          width="100%"
+          label="{{ 'rack-configuration.voltage' | translate }}"
+          control="voltageId"
+          [options]="voltageOptions"
+          valueField="id"
+          textField="voltage"
+        />
+        <app-form-field
+          fieldType="input"
+          borderStyle="secondary"
+          width="100%"
+          label="{{ 'rack-configuration.temperature' | translate }}"
+          placeholder="{{ 'rack-configuration.voltage-placeholder' | translate }}"
+          control="temperature"
+        />
+      </div>
+    </form>
+  </div>
+
+  <div class="menu-btn">
+    <div class="buttons">
+      <app-button
+        width="100%"
+        btnStyle="raised"
+        variant="success"
+        (click)="onSubmit()"
+        [disabled]="isLoading"
+      >
+        {{ "common.save" | translate }}
+      </app-button>
+      <app-button
+        width="100%"
+        btnStyle="stroked"
+        variant="light"
+        (click)="closeDialog()"
+      >
+        {{ "common.cancel" | translate }}
+      </app-button>
+    </div>
+  </div>
+</section>

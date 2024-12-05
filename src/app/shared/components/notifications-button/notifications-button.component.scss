@@ -1,0 +1,239 @@
+@import "_themes.scss";
+
+
+mat-menu {
+  max-width: 600px !important;
+}
+
+::ng-deep .mat-mdc-menu-panel.mat-mdc-menu-panel {
+  max-width: 600px !important;
+}
+
+::ng-deep .cdk-overlay-connected-position-bounding-box {
+  right: 0 !important;
+  width: 600px !important;
+}
+
+::ng-deep .mat-badge-medium.mat-badge-above .mat-badge-content {
+  top: 0px;
+  border: 2px solid $colorsystem1-50;
+  color: #fff;
+  background: $colorsystem3-red !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .mat-mdc-menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  background-color: var(--dialog-card-bg-color);
+  border-radius: 6px;
+  width: 100% !important;
+}
+
+::ng-deep .mat-mdc-menu-content,
+.mat-mdc-menu-content .mat-mdc-menu-item .mdc-list-item__primary-text {
+  width: 100% !important;
+}
+
+::ng-deep .mdc-list-item__primary-text {
+  width: 100% !important;
+}
+
+::ng-deep .mat-mdc-menu-panel {
+  background-color: unset !important;
+}
+
+::ng-deep .cdk-overlay-connected-position-bounding-box {
+  width: 100% !important;
+}
+
+.notification-date {
+  display: flex;
+  align-items: center;
+  height: 32px;
+
+  span {
+    color: $colorsystem1-300;
+  }
+}
+
+.more-notifications {
+  color: var(--default-font-color);
+
+  mat-icon {
+    overflow: visible;
+    color:  var(--default-font-color);
+  }
+}
+
+header {
+  display: flex;
+  padding: 8px 16px;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+
+  border-radius: 4px;
+  background: var(--dialog-card-header-bg-color);
+
+  span {
+    color: var(--default-font-color);
+    text-align: center;
+    font-family: Orbitron;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.4px;
+
+    b {
+      font-weight: 700;
+    }
+  }
+}
+
+
+.divider {
+  width: 100%;
+  height: 1px;
+  border-top: 1px solid $colorsystem1-600;
+  margin-left: 8px;
+}
+
+@mixin font-bold {
+  color: var(--default-font-color);
+  font-family: Assistant;
+  font-size: 16px;
+  letter-spacing: 0.32px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+@mixin font-span {
+  color: var(--default-font-color);
+  font-family: Assistant;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+
+@mixin grid {
+  display: grid;
+  width: 100%;
+
+  .grid-header {
+    display: flex;
+    padding: 4px 20px;
+    width: 100%;
+    border: 0.5px solid var(--table-cell-border-color);
+    gap: 8px;
+
+    b {
+      @include font-bold();
+    }
+
+    span {
+      @include font-bold();
+      color: $colorsystem1-900;
+    }
+  }
+
+  .grid-span {
+    span {
+      @include font-span();
+      color: $colorsystem2-50;
+    }
+  }
+}
+
+
+.grid-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+
+  align-self: stretch;
+
+  .status-type {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1;
+    align-self: stretch;
+
+    @for $i from 1 through 10 {
+      .grid-#{$i} {
+        grid-template-columns: repeat(#{$i}, 1fr);
+        @include grid();
+      }
+    }
+  }
+}
+
+.mat-icon {
+  color: var(--toolbar-icons-color);
+}
+
+.icon-white {
+  color: $colorsystem2-50 !important;
+}
+
+.border-radius-bottom-left {
+  border-bottom-left-radius: 4px;
+}
+
+.border-radius-bottom-right {
+  border-bottom-right-radius: 4px;
+}
+
+.border-radius-top-left {
+  border-top-left-radius: 4px;
+}
+
+.border-radius-top-right {
+  border-top-right-radius: 4px;
+}
+
+.bg-theme {
+  background-color: var(--dialog-card-header-bg-color);
+}
+
+.bg-green {
+  background-color: $colorsystem3-green;
+}
+
+.bg-red {
+  background-color: $colorsystem3-red;
+
+  span {
+    color: $colorsystem2-50 !important;
+  }
+}
+
+.bg-blue {
+  background-color: $colorsystem2-800;
+}
+
+.error-grid {
+  grid-template-columns: 2fr 1fr 1fr !important;
+
+  .grid-header {
+    gap: 0;
+    align-items: center;
+  }
+
+  .bg-theme {
+    justify-content: center;
+  }
+}
+

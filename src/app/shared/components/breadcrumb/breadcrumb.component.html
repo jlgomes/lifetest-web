@@ -1,0 +1,8 @@
+<div class="breadcrumb" (click)="navigateToRoute()">
+  <mat-icon svgIcon="return-lt"></mat-icon>
+  <h4 class="title">
+    {{ breadcrumbTitle | translate }}
+    <span *ngIf="subtitle">/</span>
+    <span>{{ subtitle | translate }}</span>
+  </h4>
+</div>

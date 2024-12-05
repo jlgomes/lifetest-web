@@ -1,0 +1,38 @@
+<header class="toolbar">
+  <div class="toolbar-container">
+    <section class="content-start">
+      <h3 class="title-sidebar">{{ titleService.getTitle() | translate }}</h3>
+    </section>
+    <nav class="content-end">
+      <app-notifications-button />
+
+      <div class="username-toolbar">
+        <span> {{ username }} </span>
+        <mat-icon svgIcon="profile-lt" class="user-icon"></mat-icon>
+      </div>
+      <div ngbDropdown>
+        <mat-icon ngbDropdownToggle class="btn-toolbar">
+          power_settings_new
+        </mat-icon>
+        <div
+          ngbDropdownMenu
+          class="format-dropdown-toolbar"
+          aria-labelledby="logout"
+        >
+          <div class="pop-up-header">
+            <h5>{{ username }}</h5>
+            <language-selector
+              [value]="lang"
+              (lang)="selectLanguage($event)"
+              style="font-size: 20px"
+            />
+          </div>
+          <h6>{{ "user-profiles." + funcao | translate }}</h6>
+          <button (click)="logout()" ngbDropdownItem class="title-dropdown">
+            {{ "toolbar.logout" | translate }}
+          </button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

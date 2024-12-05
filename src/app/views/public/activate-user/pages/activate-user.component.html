@@ -1,0 +1,24 @@
+<container-full>
+  <section class="activate-user-card">
+    <div class="activate-user-content">
+      <figure class="img-logo">
+        <img src="assets/images/logo-white.svg" />
+      </figure>
+      <div class="title-div">
+        <h4 class="title">{{"activate-user.activate-user" | translate}}</h4>
+        <p class="subtitle">
+          {{"activate-user.insert-password-1" | translate}}
+        </p>
+      </div>
+      <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+        <app-form-field fieldType="password" label='{{"activate-user.input-label-1" | translate}}' placeholder='{{"activate-user.input-placeholder-1" | translate}}' formStyle="outline" width="100%" class="" borderStyle="muted" control="password"/>
+        <app-form-field fieldType="password" label='{{"activate-user.input-label-2" | translate}}' placeholder='{{"activate-user.input-placeholder-2" | translate}}' formStyle="outline" width="100%" class="" borderStyle="muted" control="passwordConfirmation"/>
+        <section class="button-container">
+          <app-button width="100%" btnStyle="raised" variant="success" (click)="onSubmit()">{{"activate-user.btn-activate-user" | translate}}</app-button>
+        </section>
+      </form>
+    </div>
+  </section>
+</container-full>
+
+

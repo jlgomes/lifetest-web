@@ -1,0 +1,35 @@
+<section>
+  <header>
+    <div class="flex-justify">
+      <h2>{{ actionTaken | translate }}</h2>
+      <div class="btn-icon" (click)="closeDialog()">
+        <mat-icon class="material-icons-outlined" svgIcon="cancel-lt" />
+      </div>
+    </div>
+    <span>
+      {{ "event-log-view.executed-at" | translate }} {{ data.date | datetime }}
+    </span>
+  </header>
+
+  <div class="content">
+    <span *ngIf="oldData">{{ 'event-log-view.saved-data' | translate }}</span>
+    <app-attribute-table [data]="newData" />
+
+    <div *ngIf="oldData" class="cell-label">
+      <span>{{ 'event-log-view.new-values' | translate }}</span>
+      <span>{{ 'event-log-view.old-values' | translate }}</span>
+    </div>
+    <app-comparison-table *ngIf="oldData" [newData]="newData" [oldData]="oldData" />
+  </div>
+
+  <div class="buttons">
+    <app-button
+      width="100%"
+      btnStyle="stroked"
+      variant="light"
+      (click)="closeDialog()"
+    >
+      {{ "common.back" | translate }}
+    </app-button>
+  </div>
+</section>

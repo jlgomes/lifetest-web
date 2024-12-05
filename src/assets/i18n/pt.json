@@ -1,0 +1,612 @@
+{
+  "login": {
+    "title": "Bem-vindo ao Life Test",
+    "subtitle": "Preencha o login e senha para acessar o sistema",
+    "login-label": "Login",
+    "login-placeholder": "E-mail",
+    "password-label": "Senha",
+    "password-placeholder": "Digite sua senha",
+    "forgot-password": "Esqueci minha senha",
+    "login-button": "Entrar"
+  },
+  "forgot-password": {
+    "title": "Redefinir senha",
+    "reset-password": "Redefinir senha",
+    "insert-email-1": "Insira o seu e-mail corporativo e clique em",
+    "insert-email-2": "redefinir senha",
+    "insert-email-3": "para receber o link",
+    "input-placeholder": "Insira aqui o seu e-mail",
+    "btn-reset-password": "Redefinir senha"
+  },
+  "change-password": {
+    "title": "Alterar senha",
+    "change-password": "Alterar senha",
+    "insert-password-1": "Insira a sua nova senha",
+    "input-label-1": "Nova senha",
+    "input-placeholder-1": "Insira aqui a sua nova senha",
+    "input-label-2": "Repetir nova senha",
+    "input-placeholder-2": "Repita a sua nova senha",
+    "btn-change-password": "Alterar senha"
+  },
+  "activate-user": {
+    "title": "Adicionar senha",
+    "activate-user": "Adicionar senha",
+    "insert-password-1": "Insira a sua nova senha",
+    "input-label-1": "Nova senha",
+    "input-placeholder-1": "Insira aqui a sua nova senha",
+    "input-label-2": "Repetir nova senha",
+    "input-placeholder-2": "Repita a sua nova senha",
+    "btn-activate-user": "Adicionar senha"
+  },
+  "not-found": {
+    "page-not-found": "Página não encontrada!"
+  },
+  "common": {
+    "actions": "Ações",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "mark": "Marcar",
+    "view": "Visualizar",
+    "cancel": "Cancelar",
+    "removal-register": "Registrar Saída",
+    "back": "Voltar",
+    "save": "Salvar",
+    "entry": "Entrada",
+    "exit": "Saída",
+    "cycles": "Ciclos",
+    "box": "Caixa",
+    "product-font": "Fonte do Produto",
+    "register": "Cadastrar",
+    "power-cycle": "Power Cycle",
+    "high-voltage": "Alta Tensão",
+    "low-voltage": "Baixa Tensão",
+    "model": "Modelo",
+    "rack": "Rack",
+    "slot": "Slot",
+    "total": "Total",
+    "period": "Período",
+    "product": "Produto",
+    "client": "Cliente",
+    "date": "Data",
+    "type": "Tipo",
+    "components": "Componentes",
+    "observations": "Observações",
+    "select-all-enabled": "Selecionar todos os disponíveis",
+    "2g": "2G",
+    "5g": "5G",
+    "power": "Power"
+  },
+  "toolbar": {
+    "logout": "Sair"
+  },
+  "sidebar": {
+    "control-panel": "Painel de Controle",
+    "dashboard": "Dashboard",
+    "registers": "Registros",
+    "reports": "Relatórios",
+    "control": "Controle",
+    "repair": "Reparo",
+    "maintenance": "Manutenção"
+  },
+  "dialogs": {
+    "form": "Formulário",
+    "btn-register": "Cadastrar",
+    "cannot-be-undone": "Esta operação não pode ser desfeita"
+  },
+  "control-panel": {
+    "model": "MODELO",
+    "quantity": "QUANT.",
+    "available": "DISPONÍVEIS",
+    "register-test": "Cadastrar teste",
+    "begin-test": "Iniciar teste(s)",
+    "tower": "TORRE"
+  },
+  "statistics": {
+    "days": "dias",
+    "day": "dia",
+    "least-erros-model": "Modelo com menos erros",
+    "most-errors-model": "Modelo com mais erros",
+    "most-tested-model": "Modelo mais testado",
+    "thermometer": "Termômetro",
+    "weekly-executed-tests": "TESTES EXECUTADOS SEMANALMENTE",
+    "tests-in-month": "Testes no mês",
+    "total": "total",
+    "tests": "testes",
+    "test-days-with-failures": "Dias de teste com falhas",
+    "approved": "Aprovado",
+    "failure": "Falha"
+  },
+  "dashboard": {
+    "most-tested-models": "MODELOS MAIS TESTADOS",
+    "most-tested-models-description": "Modelos mais testados num intervalo de 7 dias",
+    "led-ping-errors": "Tipo de falhas",
+    "led-ping-errors-description": "Total de falhas de LED e Ping num intervalo de 7 dias"
+  },
+  "products": {
+    "btn-register": "Cadastrar produto",
+    "color": "Cor",
+    "type": "Tipo"
+  },
+  "products-dialog": {
+    "title-edit": "Editar produto",
+    "title-register": "Cadastro de produto",
+    "title-delete": "Excluir produto",
+    "subtitle": "Preencha os dados do produto e salve",
+    "client-placeholder": "Selecione o cliente",
+    "model-label": "Modelo do produto",
+    "model-placeholder": "Digite o modelo",
+    "serial-placeholder": "Digite o serial",
+    "type-placeholder": "Selecione o tipo",
+    "color-label": "Cor do produto",
+    "title-view": "Visualizar produto",
+    "product-image": "Imagem do produto",
+    "select-image": "Selecione uma imagem clicando no botão abaixo",
+    "btn-file": "Escolha o arquivo",
+    "has-ethernet-ports": "Tem portas Ethernet",
+    "has-leds": "Tem LEDs",
+    "quantity-label": "Quantidade",
+    "quantity-placeholder": "Digite a quantidade",
+    "led-delimitation-btn": "Delimitar imagem",
+    "led-delimitation-title": "Delimitação de LED",
+    "led-delimitation-subtitle": "Selecione na imagem a área relativa aos LEDs do produto",
+    "capture-image-btn": "Capturar imagem",
+    "capture-image-subtitle": "Selecione uma câmera para obter a imagem",
+    "camera": "Câmera"
+  },
+  "clients": {
+    "btn-register": "Cadastrar cliente",
+    "name": "Nome"
+  },
+  "clients-dialog": {
+    "title-register": "Cadastro de cliente",
+    "title-edit": "Editar cliente",
+    "title-delete": "Excluir cliente",
+    "subtitle": "Preencha os dados do cliente e salve",
+    "client-label": "Nome do cliente",
+    "client-placeholder": "Digite o nome",
+    "title-view": "Visualizar cliente",
+    "ip-label": "IP do produto",
+    "ip-placeholder": "0.0.0.0"
+  },
+  "profiles": {
+    "btn-register": "Cadastrar perfil",
+    "profile": "Perfil"
+  },
+  "profiles-dialog": {
+    "title-register": "Cadastro de Perfil",
+    "title-edit": "Editar Perfil",
+    "title-delete": "Excluir perfil",
+    "subtitle": "Preencha os dados do perfil e salve",
+    "name": "Nome do perfil",
+    "profile-label": "Perfil",
+    "profile-placeholder": "Nome do perfil",
+    "permissions": "Permissões"
+  },
+  "users": {
+    "btn-register": "Cadastrar Usuário",
+    "forgot-password": "Esqueceu a senha?",
+    "user": "Usuário",
+    "email": "E-mail",
+    "profile": "Perfil",
+    "email-toast": "Um e-mail com instruções para alteração de senha foi enviado!"
+  },
+  "users-dialog": {
+    "title-edit": "Editar usuário",
+    "title-register": "Cadastro de usuário",
+    "title-delete": "Excluir usuário",
+    "subtitle": "Preencha os dados do usuário e salve",
+    "user-label": "Nome do usuário",
+    "user-placeholder": "Digite o nome",
+    "email-label": "E-mail do usuário",
+    "email-placeholder": "Digite o e-mail",
+    "profile-label": "Perfil",
+    "profile-placeholder": "Selecione o perfil",
+    "title-view": "Visualizar usuário"
+  },
+  "user-profiles": {
+    "administrador": "Administrador"
+  },
+  "slot-modal": {
+    "tested": "Testado",
+    "entry": "Entrada",
+    "exit": "Saída",
+    "error": "ERRO",
+    "ok": "OK",
+    "btn-repair": "REPARO",
+    "btn-exit": "SAÍDA",
+    "btn-start": "INICIAR TESTE",
+    "btn-camera": "CÂMERA",
+    "test-cycle": "CICLOS DE TESTE",
+    "performed": "Realizados",
+    "last": "Último",
+    "next": "Próximo",
+    "localization": "Localização",
+    "box": "Caixa",
+    "power-supply": "Fonte",
+    "no-test": "Nenhum teste cadastrado para o Slot",
+    "no-telemetry": "Nenhuma Telemetria"
+  },
+  "validations": {
+    "required-field": "Este campo é obrigatório",
+    "invalid-email": "Este formato do email é inválido",
+    "error-fields": "Alguns campos contêm erros. Verifique e tente novamente",
+    "max-value": "O número está acima do máximo",
+    "min-value": "O número está abaixo do mínimo",
+    "invalid-pattern": "Padrão inválido"
+  },
+  "tests": {
+    "active": "Ativo",
+    "created-at": "Criado em",
+    "status": "Status",
+    "inactive": "Inativo",
+    "finished": "Finalizado",
+    "model-placeholder": "Selecione o modelo",
+    "test-cycle": "Ciclos de teste",
+    "cycle-placeholder": "Selecione o ciclo de testes",
+    "days-to-be-tested": "Dias a serem testados",
+    "days-to-be-tested-placeholder": "Número de dias",
+    "startdate": "Entrada",
+    "enddate": "Saída",
+    "select-the-options": "Selecione as opções para cadastrar um teste",
+    "choose-the-rack": "Escolha o rack e selecione os slots disponíveis"
+  },
+  "reading": {
+    "test-data": "Dados do teste",
+    "data-read": "Leitura dos dados do produto para posicionamento no rack",
+    "test-finish": "Confira os dados do produto para retirada no rack",
+    "model": "Modelo",
+    "time": "Tempo",
+    "day": "dia",
+    "entry": "Entrada",
+    "exit": "Saída",
+    "product": "Produto",
+    "box": "Caixa",
+    "rack-box-slot": "Rack Caixa / Slot",
+    "product-power-source": "Fonte do produto",
+    "register-reading": "Registrar Leitura",
+    "read-product": "Faça a leitura do código de barras do produto",
+    "read-rack": "Faça a leitura do código de barras do rack",
+    "read-box": "Faça a leitura do código de barras da caixa",
+    "read-rack-box": "Faça a leitura do código de barras do rack da caixa",
+    "read-power-source": "Faça a leitura do código de barras da fonte"
+  },
+  "notifications": {
+    "error": "Erro",
+    "finished": "Finalizado",
+    "read": "Lida",
+    "today": "Hoje",
+    "yesterday": "Ontem",
+    "test-started": "TESTE INICIADO",
+    "more-notifications": "Mais notificações",
+    "mark-as-read": "Marcar como lida"
+  },
+  "submenu": {
+    "tests": {
+      "title": "Testes",
+      "description": "Cadastro de Testes"
+    },
+    "products": {
+      "title": "Produtos",
+      "description": "Cadastro de Produtos para Testes"
+    },
+    "customers": {
+      "title": "Clientes",
+      "description": "Cadastro de Clientes para Testes"
+    },
+    "telemetries": {
+      "title": "Telemetrias",
+      "description": "Visualizar telemetrias"
+    },
+    "profiles": {
+      "title": "Perfis",
+      "description": "Gerir Perfis"
+    },
+    "users": {
+      "title": "Usuários",
+      "description": "Gerir Usuários"
+    },
+    "accesses": {
+      "title": "Acessos",
+      "description": "Liberar Acesso"
+    },
+    "event": {
+      "title": "Eventos",
+      "description": "Log de Eventos"
+    },
+    "notifications": {
+      "title": "Notificações",
+      "description": "Notificações do Sistema"
+    },
+    "repairs": {
+      "title": "Reparo",
+      "description": "Registros de manutenção e reparos realizados"
+    },
+    "defects": {
+      "title": "Defeito",
+      "description": "Registros de problemas ou falhas identificados"
+    },
+    "solutions": {
+      "title": "Solução",
+      "description": "Registros de soluções aplicadas para resolver problemas"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Dashboard de Manutenção"
+    },
+    "registers": {
+      "title": "Registros",
+      "description": "Registros de Manutenção"
+    },
+    "rack-configuration": {
+      "title": "Configuração de rack",
+      "description": "Configure ciclos de teste"
+    }
+  },
+  "reports": {
+    "all": "Todos os relatórios",
+    "all-products": "Todos os produtos",
+    "types": {
+      "tests": "Testes",
+      "maintenance": "Manutenção"
+    },
+    "tests": {
+      "total-products-tested": "Total de produtos testados",
+      "total-failures-per-product": "Total de falhas por produto",
+      "total-failures-per-type": "Total de falhas por tipo",
+      "total-failures-detailed": "Total de falhas detalhado",
+      "hours-executed-per-product": "Horas executadas por produto"
+    },
+    "maintenance": {
+      "average-rack-temperature": "Média de temperatura do rack",
+      "power-cycle-quantity": "Quantidade de Power Cycles",
+      "maintenances-per-type": "Manutenções por tipo",
+      "maintenances-per-slot": "Quantidade de manutenções por Slot"
+    },
+    "generate-report": "Gerar Relatório",
+    "total-errors": "Total de Erros",
+    "recurrents": "Recorrentes",
+    "total-tests": "Total de Testes",
+    "telemetry": "Telemetria",
+    "actions": "Ações",
+    "download": "Baixar Relatório",
+    "btn-download": "Download",
+    "dialog": {
+      "total-errors": "Relatório de total de erros",
+      "recurrents": "Relatório de erros recorrentes",
+      "total-tests": "Relatório de total de testes",
+      "telemetry": "Relatório de telemetria",
+      "subtitle": "Preencha os dados e salve para gerar um relatório",
+      "select-period": "Selecione o período",
+      "placeholder-select-period": "Selecione um período",
+      "btn-save": "SALVAR"
+    }
+  },
+  "total-errors": {
+    "title": "Relatório de total de erros",
+    "graph-title": "Total de erros"
+  },
+  "recurring-errors": {
+    "title": "Relatório de erros recorrentes",
+    "graph-title": "Total de erros recorrentes",
+    "leds": "LEDs",
+    "ping": "Ping"
+  },
+  "total-tests": {
+    "title": "Relatório total de testes",
+    "graph-title": "Total testes",
+    "weekly": "Semanal",
+    "fortnightly": "Quinzenal",
+    "monthly": "Mensal",
+    "quarterly": "Trimestral"
+  },
+  "telemetry": {
+    "title": "Relatório de telemetria",
+    "graph-title": "Telemetria",
+    "total-errors": "Total de erros"
+  },
+  "telemetry-view": {
+    "telemetry-id": "Telemetria (id)",
+    "measured-at": "Coletado em",
+    "created-at": "Criado em",
+    "temperature": "Temperatura",
+    "est-finish-date": "Data estimada de término",
+    "product-serial": "Serial do produto",
+    "box-serial": "Serial da caixa",
+    "power-source-serial": "Serial da fonte",
+    "registered-by": "Registrado por"
+  },
+  "reports-pdf": {
+    "generated-when": "Relatório gerado em"
+  },
+  "event": {
+    "module": "Módulo",
+    "date": "Data",
+    "message": "Mensagem",
+    "updatedBy": "Usuário",
+    "modules": {
+      "profile": "Perfil",
+      "user": "Usuário",
+      "client": "Cliente",
+      "notification": "Notificações",
+      "product": "Produto",
+      "slot": "Slot",
+      "test": "Teste"
+    },
+    "messages": {
+      "create": "Novo item criado",
+      "update": "Item atualizado",
+      "delete": "Item atualizado",
+      "enable": "Item ativado",
+      "disable": "Item desativado",
+      "finish": "Item finalizado"
+    }
+  },
+  "event-log-view": {
+    "executed-at": "Executado em",
+    "saved-data": "Dados salvos",
+    "new-values": "Valores novos",
+    "old-values": "Valores antigos"
+  },
+  "page-title": {
+    "control-panel": "Painel de Controle",
+    "dashboard": "Dashboard",
+    "reports": "Relatórios",
+    "users": "Usuários",
+    "clients": "Clientes",
+    "profiles": "Perfis",
+    "register": "Registros",
+    "register-costumers": "Registros/Clientes",
+    "register-products": "Registros/Produtos",
+    "register-tests": "Registros/Testes",
+    "register-tests-new": "Registros/Testes/Novo",
+    "register-tests-new-reading": "Registros/Testes/Novo/Leitura",
+    "register-racks": "Registros/Racks",
+    "control": "Controle",
+    "notifications": "Notificações",
+    "repairs": "Reparo",
+    "event-log": "Log de Eventos",
+    "maintenance": "Manutenção"
+  },
+  "breadcrumbs": {
+    "dashboard": "Dashboard",
+    "registers": {
+      "main": "Registros",
+      "tests": {
+        "main": "Testes cadastrados",
+        "registration": "Cadastro de teste",
+        "reading": "Leitura e Localização",
+        "finish": "Finalizar teste"
+      },
+      "products": "Produtos cadastrados",
+      "clients": "Clientes cadastrados",
+      "telemetries": "Telemetrias cadastradas"
+    },
+    "repairs": {
+      "title": "Reparos",
+      "register": "Cadastrar Reparo"
+    },
+    "maintenance": {
+      "main": "Manutenção",
+      "dashboard": "Dashboard de Manutenção",
+      "registers": "Registros de Manutenção"
+    },
+    "reports": "Relatórios",
+    "control": {
+      "main": "Controle",
+      "profiles": "Controle de Perfis",
+      "users": "Controle de Usuários",
+      "accesses": "Liberar acesso",
+      "events": "Log de eventos",
+      "notifications": "Notificações"
+    },
+    "rack-configuration": "Configuração de rack"
+  },
+  "toasts": {
+    "server-error": "Falha ao comunicar com o servidor",
+    "created-test-success": "Teste criado com sucesso!",
+    "select-slot": "Selecione pelo menos um slot para realizar o teste",
+    "register-product": "Produto cadastrado com sucesso!",
+    "register-client": "Cliente cadastrado com sucesso!",
+    "register-user": "Usuário cadastrado com sucesso!",
+    "register-profile": "Perfil cadastrado com sucesso!",
+    "register-repair": "Reparo cadastrado com sucesso!",
+    "edit-product": "Produto editado com sucesso!",
+    "edit-client": "Cliente editado com sucesso!",
+    "edit-user": "Usuário editado com sucesso!",
+    "edit-profile": "Perfil editado com sucesso!",
+    "edit-repair": "Reparo editado com sucesso!",
+    "edit-rack": "Rack editado com sucesso!",
+    "delete-product": "Produto excluído com sucesso!",
+    "delete-client": "Cliente excluído com sucesso!",
+    "delete-user": "Usuário excluído com sucesso!",
+    "delete-profile": "Perfil excluído com sucesso!",
+    "delete-test": "Teste excluído com sucesso!",
+    "delete-repair": "Reparo excluído com sucesso!",
+    "marked-notification": "Notificação marcada como lida!",
+    "created-repair-success": "Um reparo foi criado para este teste",
+    "starting-test": "Inicializando testes",
+    "invalid-image": "Arquivo de imagem inválido. Tipos suportados: .png, .jpeg",
+    "invalid-repair": "Arquivo de reparo inválido. Tipos suportados: .pdf, .xls, .xlsx, .rar, .zip"
+  },
+  "maintenance": {
+    "btn-register": "Cadastrar Manutenção",
+    "maintenance-id": "ID da manutenção",
+    "Status": "Status",
+    "observation": "Observação",
+    "date": "Data de registro",
+    "type": "Tipo",
+    "registered-in": "Registrada em",
+    "maintenance-period": "Prazo de manutenção",
+    "maintenance-date": "Data de manutenção",
+    "mark-as-done": "Marcar como concluída",
+    "download-pdf": "Baixar .pdf",
+    "report-title": "Relatório de manutenção",
+    "report-description": "Dados referentes à manutenção registrada no sistema",
+    "dialog": {
+      "title-edit": "Editar Manutenção",
+      "title-register": "Registrar Manutenção",
+      "subtitle": "Dados de manutenção",
+      "rack-placeholder": "Número do rack",
+      "slot-placeholder": "Número do slot",
+      "type-placeholder": "Tipo de manutenção",
+      "component": "Componente",
+      "component-placeholder": "Digite o componente",
+      "observations-placeholder": "Digite as observações",
+      "title-delete": "Excluir manutenção",
+      "mark-as-done": "Marcar como concluído"
+    },
+    "status": {
+      "open": "Em aberto",
+      "closed": "Fechada",
+      "expired": "Expirada"
+    },
+    "types": {
+      "mechanical": "Mecânica",
+      "electrical": "Elétrica",
+      "cables": "Cabos",
+      "cameras": "Cameras",
+      "heaters": "Aquecedores"
+    }
+  },
+  "errors": {
+    "session-expired": "Sessão expirada",
+    "login-again": "Por favor realize login novamente",
+    "camera-connection": "Erro de conexão com a câmera. Por favor, tente novamente"
+  },
+  "repair": {
+    "status": "Status",
+    "model": "Modelo",
+    "slot": "Slot",
+    "position": "Rack",
+    "download-file": "Baixar arquivo"
+  },
+  "repairs": {
+    "register": {
+      "title": "Concluir Reparo",
+      "subtitle": "Inserção do arquivo 8D"
+    },
+    "title-delete": "Excluir reparo"
+  },
+  "repair-dialog": {
+    "file-header": "Arquivo 8D",
+    "select-file": "Selecione o arquivo 8D",
+    "btn-file": "Selecionar arquivo"
+  },
+  "rack-configuration": {
+    "rack-voltage": "Tensão do rack",
+    "power-cycles-per-day": "Power cycles por dia",
+    "voltage-changes-per-day": "Mudanças de tensão",
+    "temperature": "Temperatura",
+    "voltage": "Tensão",
+    "voltage-placeholder": "Escolha uma tensão",
+    "cycle-data": "Dados do ciclo",
+    "configure-cycle": "CONFIGURAR CICLO",
+    "title": "Configuração de ciclo de teste",
+    "subtitle": "Selecione as opções para configurar o ciclo"
+  },
+  "MECHANICAL": "Mecânica",
+  "ELECTRICAL": "Elétrica",
+  "CABLES": "Cabos",
+  "CAMERAS": "Câmeras",
+  "HEATERS": "Aquecedores"
+}

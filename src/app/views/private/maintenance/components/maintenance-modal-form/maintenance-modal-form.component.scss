@@ -1,0 +1,21 @@
+@import "_dialogs.scss";
+@import "_colors.scss";
+
+
+.menu-btn {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-content: end;
+  background-color: $colorsystem1-800;
+}
+
+.box-section-variant {
+  margin-top: 2px;
+  padding: 16px 16px 32px 16px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+}

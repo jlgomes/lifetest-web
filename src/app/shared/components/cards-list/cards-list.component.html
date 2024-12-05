@@ -1,0 +1,16 @@
+<section class="cards-list-container">
+  <div
+    matRipple
+    [matRippleColor]="rippleColor"
+    *ngFor="let item of itens"
+    class="card-list-item"
+    [routerLink]="item.routerLink"
+    matTooltip="{{ item.description | translate }}"
+  >
+    <div class="card-img-container"></div>
+    <div class="card-title-container">
+      <h5>{{ item.label | translate }}</h5>
+      <span>{{ item.description | translate }}</span>
+    </div>
+  </div>
+</section>

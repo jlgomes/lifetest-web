@@ -1,0 +1,22 @@
+<mat-form-field>
+  <mat-label>{{ "common.date" | translate }}</mat-label>
+  <mat-date-range-input [formGroup]="timeframe" [rangePicker]="timeframePicker">
+    <input
+      (dateChange)="onChange($event)"
+      matStartDate
+      placeholder="Start date"
+      formControlName="start"
+    />
+    <input
+      (dateChange)="onChange($event)"
+      matEndDate
+      placeholder="End date"
+      formControlName="end"
+    />
+  </mat-date-range-input>
+  <mat-datepicker-toggle
+    matIconSuffix
+    [for]="timeframePicker"
+  ></mat-datepicker-toggle>
+  <mat-date-range-picker #timeframePicker></mat-date-range-picker>
+</mat-form-field>

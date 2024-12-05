@@ -1,0 +1,69 @@
+<section class="private-main-container">
+  <header>
+    <app-breadcrumb
+      breadcrumbTitle="breadcrumbs.registers.products"
+      route={{appRoutes.REGISTERS}}
+    />
+    <app-button
+      width="256px"
+      btnStyle="raised"
+      variant="secondary"
+      [disabled]="!checkAccessCode('create-products')"
+      (onClick)="create()"
+    >
+      {{ 'products.btn-register' | translate}}
+    </app-button>
+  </header>
+  <main>
+    <div class="card-table">
+      <div class="table-filter">
+        <input type="text" (input)="handleFilterChange($event)" />
+        <mat-icon>search</mat-icon>
+      </div>
+    <table mat-table [dataSource]="dataSources">
+      <ng-container matColumnDef="model">
+        <th mat-header-cell *matHeaderCellDef>{{ 'common.model' | translate}}</th>
+        <td mat-cell [style.background-color]="element.color + '!important'" [style.color]="'#ffffff !important'" *matCellDef="let element">{{ element.model }}</td>
+      </ng-container>
+      <ng-container matColumnDef="client">
+        <th mat-header-cell *matHeaderCellDef>{{ 'common.client' | translate}}</th>
+        <td mat-cell *matCellDef="let element">{{ element.client.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef width="300px">{{ 'common.type' | translate}}</th>
+        <td mat-cell *matCellDef="let element">
+          {{element.type}}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef width ="300px">{{ 'common.actions' | translate}}</th>
+        <td mat-cell *matCellDef="let element">
+          <button class="btn" [disabled]="!checkAccessCode('read-products')" (click)="view(element)" matTooltip="{{ 'common.view' | translate}}">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button class="btn" [disabled]="!checkAccessCode('update-products')" (click)="edit(element)" matTooltip="{{ 'common.edit' | translate}}">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button class="btn" [disabled]="!checkAccessCode('delete-products')" (click)="delete(element)" matTooltip="{{ 'common.delete' | translate}}">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+      <mat-paginator
+        *ngIf="page"
+        [pageSizeOptions]="[5, 10]"
+        [pageIndex]="page.pageable.pageNumber"
+        [length]="page.totalElements"
+        [pageSize]="page.pageable.pageSize"
+        [showFirstLastButtons]="true"
+        (page)="pageUpdate($event)"
+        aria-label="Select page"
+      />
+  </div>
+  </main>
+</section>

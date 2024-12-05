@@ -1,0 +1,33 @@
+@import "_dialogs.scss";
+@import "_colors.scss";
+
+.content-2 {
+  gap: 0px !important;
+}
+
+.box-section {
+  width: 100%;
+  .checkbox-list {
+    width: 100%;
+    .ng-star-inserted{
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 25px;}
+  }
+}
+
+.boxes-options {
+  display: flex;
+  flex-direction: column;
+  margin-left: 32px;
+}
+
+.menu-btn {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 50%;
+  justify-content: end;
+  background-color: var(--dialog-card-footer-bg-color);
+}

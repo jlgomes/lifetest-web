@@ -1,0 +1,22 @@
+@import "_dialogs.scss";
+
+.content {
+  gap: 0 !important;
+}
+
+app-attribute-table,
+app-comparison-table {
+  width: 100%;
+}
+
+.cell-label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+span {
+  width: 100%;
+  font-weight: bold;
+}

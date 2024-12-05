@@ -1,0 +1,50 @@
+<container-full>
+    <div class="left-image">
+        <img src="assets/images/logo-white.svg" alt="Logo">
+    </div>
+    <div class="right-panel">
+        <form [formGroup]="loginForm" class="login-form" (submit)="onSubmit() ">
+            <div class="form-content">
+                <div class="title-container">
+                  <h1 class="title">{{ "login.title" | translate }}</h1>
+                  <h5 class="subtitle">{{ "login.subtitle" | translate }}</h5>
+                </div>
+               <app-form-field
+                  fieldType="input"
+                  control="email"
+                  placeholder="{{ 'login.login-placeholder' | translate }}"
+                  label="{{ 'login.login-label' | translate }}"
+                  formStyle="outline"
+                  width="100%"
+                  class="input-field"
+                  required
+                />
+               <br/>
+               <app-form-field
+                  fieldType="password"
+                  control="password"
+                  label="{{ 'login.password-label' | translate }}"
+                  placeholder="{{ 'login.password-placeholder' | translate }}"
+                  formStyle="outline"
+                  width="100%"
+                  lass="input-field"
+                  required
+                />
+
+              <br>
+                <div class="forgot-password">
+                    <a class="forgot-password" (click)="navigateToForgotPassword()">{{ "login.forgot-password" | translate }}</a>
+                </div>
+                <app-button
+                  width="100%"
+                  btnStyle="raised"
+                  variant="success"
+                  type="submit"
+                  [disabled]="isLoading"
+                >
+                {{ "login.login-button" | translate }}
+              </app-button>
+            </div>
+        </form>
+    </div>
+</container-full>

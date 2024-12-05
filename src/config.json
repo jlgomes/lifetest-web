@@ -1,0 +1,6 @@
+{
+  "API_URL": "http://localhost:8001/api/v1",
+  "BASE_URL": "/api",
+  "WEBSOCKET": "http://localhost:8001/api",
+  "WEBSOCKET_CAMERA": "ws://localhost:8765"
+}

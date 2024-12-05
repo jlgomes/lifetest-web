@@ -1,0 +1,38 @@
+<div *ngIf="enabled === true" class="modem-card">
+    <div class="title-modem" [style.background-color]="modelColor">
+        <div class="title-text" >
+            <span>{{ cardNumber }}</span>
+        </div>
+        <div class="status-bar" [ngClass]="
+        { 'danger': statusBar === 'danger',
+          'success': statusBar === 'success',
+          'waiting': statusBar === 'waiting',
+          'initializing': initializing === true
+        }"></div>
+    </div>
+    <div class="body-modem" *ngIf="statusBar !== 'waiting'">
+        <mat-icon class="icon-modem" [ngClass]="{ 'danger': ledStatus === false, 'success': ledStatus === true }" svgIcon="led-lt" />
+        <mat-icon class="icon-modem" [ngClass]="{ 'danger': pingStatus === false, 'success': pingStatus === true }" svgIcon="ping-lt" />
+    </div>
+    <div class="body-modem" *ngIf="statusBar === 'waiting' && !initializing">
+        <mat-icon class="icon-modem waiting" >pause_circle</mat-icon>
+        <mat-icon class="icon-modem waiting" >pause_circle_outline</mat-icon>
+    </div>
+    <div class="body-modem" *ngIf="statusBar === 'waiting' && initializing">
+        <mat-icon class="icon-modem waiting initializing" >refresh</mat-icon>
+        <mat-icon class="icon-modem waiting initializing" >refresh</mat-icon>
+    </div>
+</div>
+
+<div *ngIf="enabled === false" class="modem-card" [ngClass]="{ 'in-maintenance': inMaintenance}">
+    <div class="title-modem">
+        <div class="title-text" >
+            <span>{{ cardNumber }}</span>
+        </div>
+        <div class="status-bar"></div>
+    </div>
+    <div class="body-modem">
+        <mat-icon class="icon-modem" svgIcon="{{ inMaintenance ? 'maintenance-led' : 'led-lt' }}" />
+        <mat-icon class="icon-modem" svgIcon="{{ inMaintenance ? 'maintenance-ping' : 'ping-lt' }}" />
+    </div>
+</div>

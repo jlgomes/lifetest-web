@@ -1,0 +1,37 @@
+@import "_dialogs.scss";
+@import "_colors.scss";
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form {
+  display: flex;
+  gap: 15px;
+}
+
+div>span {
+  display: block;
+  margin: 0 8px;
+  color: $colorsystem1-50 !important;
+  font-weight: bold;
+  user-select: none;
+}
+
+::ng-deep.mdc-label {
+  user-select: none !important;
+}
+
+::ng-deep.mdc-radio__outer-circle {
+  border-color: $colorsystem1-300 !important;
+}
+
+::ng-deep.mdc-radio__inner-circle {
+  border-color: $colorsystem1-150 !important;
+}
+
+::ng-deep .mat-mdc-radio-button .mdc-form-field {
+  color: $colorsystem1-50 !important;
+}

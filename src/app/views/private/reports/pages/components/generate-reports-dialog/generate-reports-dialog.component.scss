@@ -1,0 +1,29 @@
+@import "_dialogs.scss";
+@import "_colors.scss";
+
+.guide-text {
+  display: flex;
+  padding: 16px;
+  margin-top: 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #394F68;
+
+  span {
+    font-family: Assistant;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.32px;
+    align-self: stretch;
+    color: $colorsystem2-50;
+  }
+}
+
+.content {
+  margin-bottom: 5px !important;
+}

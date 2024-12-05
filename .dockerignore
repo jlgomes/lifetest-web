@@ -1,0 +1,11 @@
+/.git
+/.angular
+/.vscode
+/node_modules
+/dist
+/.gitlab-ci.yml
+/Dockerfile
+/tmp
+/result.js
+/teste.js
+/env.conf

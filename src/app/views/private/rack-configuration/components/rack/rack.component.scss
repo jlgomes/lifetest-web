@@ -1,0 +1,50 @@
+@import "_colors.scss";
+
+.component {
+  box-shadow: 0px 4px 4px 0px rgba(128, 128, 128, 0.23), 0px 5px 15px 0px rgba(184, 184, 184, 0.08);
+  border-radius: 6px;
+
+}
+
+.header {
+  background-color: $colorsystem1-800;
+  border-radius: 6px 6px 0px 0px;
+  padding: 12px 24px;
+
+  h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 2rem;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 0px 0px 6px 6px;
+  padding: 24px 32px;
+  margin-bottom: 16px;
+  background-color: $colorsystem1-900;
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    background-color: $colorsystem1-1000;
+    border-radius: 4px;
+    padding: 6px 12px;
+  }
+
+  .details-columns {
+    display: flex;
+    gap: 16px;
+
+    .details {
+      width: 100%;
+    }
+  }
+}
+
+.font-bold {
+  font-weight: bold;
+}

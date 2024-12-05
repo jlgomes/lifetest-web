@@ -1,0 +1,33 @@
+@import "_colors.scss";
+@import "_mixins.scss";
+
+.activate-user-card {
+  border: 1px solid $white;
+  border-radius: 20px;
+  width: 30vw;
+  padding: 3%;
+
+  @media screen and (max-width: 1300px) {
+    width: 40vw;
+  }
+
+  @media screen and (max-width: 1000px) {
+    width: 50vw;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}
+
+.activate-user-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+img {
+  width: 250px;
+  max-width: 100%;
+}

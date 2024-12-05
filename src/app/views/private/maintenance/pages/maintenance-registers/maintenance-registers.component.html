@@ -1,0 +1,120 @@
+<section class="private-main-container">
+  <header>
+    <app-breadcrumb
+      breadcrumbTitle="breadcrumbs.maintenance.registers"
+      route="{{ appRoutes.MAINTENANCE }}"
+    />
+    <app-button
+      width="256px"
+      btnStyle="raised"
+      variant="secondary"
+      [disabled]="!checkAccessCode('create-maintenances')"
+      (onClick)="create()"
+    >
+      {{ "maintenance.btn-register" | translate }}
+    </app-button>
+  </header>
+  <main>
+    <div class="card-table">
+      <table mat-table [dataSource]="dataSources">
+        <ng-container matColumnDef="rack">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "common.rack" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.slot.rack.name }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="slot">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "common.slot" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.slot.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "maintenance.Status" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.status | translate }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "maintenance.type" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.maintenanceType | translate }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "maintenance.date" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.createdAt | datetime }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="maintenance-period">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "maintenance.maintenance-period" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.deadlineDate | datetime : "DD/MM/YYYY" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef width="250px">
+            {{ "common.actions" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              class="btn"
+              [disabled]="!checkAccessCode('delete-maintenances')"
+              (click)="delete(element)"
+              matTooltip="{{ 'common.delete' | translate }}"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+
+            <button
+              class="btn"
+              (click)="exportReport(element)"
+              matTooltip="{{ 'maintenance.download-pdf' | translate }}"
+            >
+              <mat-icon svgIcon="file-download" />
+            </button>
+
+            <button
+              *ngIf="!element.completionDate"
+              class="btn"
+              (click)="markAsDone(element)"
+              matTooltip="{{ 'maintenance.mark-as-done' | translate }}"
+            >
+              <mat-icon svgIcon="circle-check" />
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator
+        *ngIf="page"
+        [pageSizeOptions]="[5, 10]"
+        [pageIndex]="page.pageable.pageNumber"
+        [length]="page.totalElements"
+        [pageSize]="page.pageable.pageSize"
+        [showFirstLastButtons]="true"
+        (page)="pageUpdate($event)"
+        aria-label="Select page"
+      />
+    </div>
+  </main>
+</section>

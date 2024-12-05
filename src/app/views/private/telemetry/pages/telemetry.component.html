@@ -1,0 +1,40 @@
+<section class="private-main-container">
+  <header>
+    <app-breadcrumb
+      breadcrumbTitle="breadcrumbs.registers.telemetries"
+      route="{{ appRoutes.REGISTERS }}"
+    />
+  </header>
+  <main>
+    <div class="card-table">
+      <div class="table-filter">
+        <input type="text" (input)="handleFilterChange($event)" />
+        <mat-icon>search</mat-icon>
+      </div>
+      <nav class="tabs">
+        <div
+          class="tab-button"
+          [ngClass]="{ selected: activeTab === 1 }"
+          (click)="setTab(1)"
+          matRipple
+          [matRippleColor]="rippleColor"
+        >
+          <span>LED</span>
+        </div>
+
+        <div
+          class="tab-button"
+          [ngClass]="{ selected: activeTab === 2 }"
+          (click)="setTab(2)"
+          matRipple
+          [matRippleColor]="rippleColor"
+        >
+          <span>Ping</span>
+        </div>
+      </nav>
+
+      <app-led-telemetries-list [filter]="filter" *ngIf="activeTab === 1" />
+      <app-ping-telemetries-list [filter]="filter" *ngIf="activeTab === 2" />
+    </div>
+  </main>
+</section>

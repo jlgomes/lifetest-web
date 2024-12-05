@@ -1,0 +1,315 @@
+<section class="private-main-container">
+  <header>
+    <app-breadcrumb
+      breadcrumbTitle="breadcrumbs.repairs.title"
+      route={{appRoutes.REPAIR}}
+    />
+  </header>
+
+  <main>
+    <section class="test-summary" *ngIf="!slotData"></section>
+
+    <section class="test-summary" *ngIf="slotData">
+      <header class="title">
+        <span>
+          <b>RACK {{ slotData.rack.name }}</b> | SLOT - {{ slotData.name }}
+        </span>
+        <span
+          *ngIf="
+            slotData.test?.lastLedTelemetry || slotData.test?.lastPingTelemetry
+          "
+        >
+          <b>{{ slotData.rack.temperature }}°C</b>
+        </span>
+        <span
+          *ngIf="
+            !(
+              slotData.test?.lastLedTelemetry ||
+              slotData.test?.lastPingTelemetry
+            )
+          "
+        >
+          <b>{{ "slot-modal.no-telemetry" | translate }}</b>
+        </span>
+      </header>
+
+      <div class="slot-details">
+        <div class="slot-model section-title">
+          <b>{{ "common.model" | translate }}:</b>
+          <span>{{ slotData.test?.product?.model }}</span>
+        </div>
+
+        <div class="slot-details-row">
+          <div class="slot-details-item">
+            <b>{{ "slot-modal.tested" | translate }}:</b>
+            <span>{{ slotData.test?.startDate | testedDate }}</span>
+          </div>
+
+          <div class="slot-details-item">
+            <b>{{ "common.total" | translate }}:</b>
+            <span>
+              {{
+                slotData.test?.startDate | totalDate : slotData.test?.startDate
+              }}
+            </span>
+          </div>
+        </div>
+
+        <div class="slot-details-row">
+          <div class="slot-details-item border-radius-bottom-left">
+            <b>{{ "slot-modal.entry" | translate }}:</b>
+            <span>{{ slotData.test?.startDate | entryDate }}</span>
+          </div>
+
+          <div class="slot-details-item border-radius-bottom-right">
+            <b>{{ "slot-modal.exit" | translate }}:</b>
+            <span>{{ slotData.test?.startDate | exitDate }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="hasError()" class="grid-status">
+        <div class="status-type">
+          <div *ngIf="hasLedError()" class="grid-3 error-grid">
+            <div
+              class="grid-header bg-red border-radius-top-left {{
+                hasLedError() && 'border-radius-bottom-left'
+              }}"
+            >
+              <mat-icon class="icon-white">circle</mat-icon>
+              <b>{{ "slot-modal.error" | translate }}: {{ ledErrorList() }}</b>
+            </div>
+            <div class="grid-header bg-theme">
+              <b>{{ lastLedError?.createdAt | errorDate : "time" }}</b>
+            </div>
+            <div
+              class="grid-header bg-theme border-radius-top-right {{
+                hasLedError() && 'border-radius-bottom-right'
+              }}"
+            >
+              <b>{{ lastLedError?.createdAt | errorDate : "date" }}</b>
+            </div>
+          </div>
+
+          <div *ngIf="hasPingError()" class="grid-3 error-grid">
+            <div
+              class="grid-header bg-red border-radius-bottom-left {{
+                hasPingError() && 'border-radius-top-left'
+              }}"
+            >
+              <mat-icon class="icon-white">language</mat-icon>
+              <b>{{ "slot-modal.error" | translate }}: {{ pingErrorList() }}</b>
+            </div>
+            <div class="grid-header bg-theme">
+              <b>{{ lastPingError?.createdAt | errorDate : "time" }}</b>
+            </div>
+            <div
+              class="grid-header bg-theme border-radius-bottom-right {{
+                hasPingError() && 'border-radius-top-right'
+              }}"
+            >
+              <b>{{ lastPingError?.createdAt | errorDate : "date" }}</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="hasTelemetry()" class="grid-status">
+        <div *ngIf="numberOfPorts > 0" class="status-type">
+          <div class="section-title">
+            <b>PING</b>
+          </div>
+
+          <div class="grid-{{ product?.numberPorts }}">
+            <div
+              *ngFor="let _ of ports; let i = index"
+              class="grid-header bg-theme"
+            >
+              <mat-icon
+                [ngClass]="{
+              'icon-green': statusPing(i) === 'sucess',
+              'icon-red': statusPing(i) === 'error',
+              'icon-gray': statusPing(i) === 'empty',
+            }"
+                >language</mat-icon
+              >
+              <b>P{{ i + 1 }}</b>
+            </div>
+
+            <div
+              *ngFor="let _ of ports; let i = index"
+              class="grid-header"
+              [ngClass]="{
+              'bg-green': statusPing(i) === 'sucess',
+              'bg-red': statusPing(i) === 'error',
+              'bg-gray': statusPing(i) === 'empty',
+            }"
+            >
+              <span>{{ getStatusMessage(ports[i]) | translate }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="numberOfLeds > 0" class="status-type">
+          <div class="section-title">
+            <b>LED</b>
+          </div>
+          <div class="grid-{{ numberOfLeds }}">
+            <div *ngIf="product?.hasLedPower" class="grid-header bg-theme">
+              <mat-icon
+                [ngClass]="{
+                'icon-green': statusLed('Power') === 'sucess',
+                'icon-red': statusLed('Power') === 'error',
+                'icon-gray': statusLed('Power') === 'empty',
+              }"
+                >circle</mat-icon
+              >
+              <b>Power</b>
+            </div>
+            <div *ngIf="product?.hasLed2G" class="grid-header bg-theme">
+              <mat-icon
+                [ngClass]="{
+                  'icon-green': statusLed('2G') === 'sucess',
+                  'icon-red': statusLed('2G') === 'error',
+                  'icon-gray': statusLed('2G') === 'empty',
+                }"
+                >circle</mat-icon
+              >
+              <b>2G</b>
+            </div>
+            <div *ngIf="product?.hasLed5G" class="grid-header bg-theme">
+              <mat-icon
+                [ngClass]="{
+                'icon-green': statusLed('5G') === 'sucess',
+                'icon-red': statusLed('5G') === 'error',
+                'icon-gray': statusLed('5G') === 'empty',
+              }"
+                >circle</mat-icon
+              >
+              <b>5G</b>
+            </div>
+            <!-- Status for 2G and 5G -->
+            <div
+              *ngIf="product?.hasLedPower"
+              class="grid-header"
+              [ngClass]="{
+                'bg-green': statusLed('Power') === 'sucess',
+                'bg-red': statusLed('Power') === 'error',
+                'bg-gray': statusLed('Power') === 'empty',
+              }"
+            >
+              <span>{{
+                getStatusMessage(lastLedTelemetry?.ledPower) | translate
+              }}</span>
+            </div>
+            <div
+              *ngIf="product?.hasLed2G"
+              class="grid-header"
+              [ngClass]="{
+                'bg-green': statusLed('2G') === 'sucess',
+                'bg-red': statusLed('2G') === 'error',
+                'bg-gray': statusLed('2G') === 'empty',
+              }"
+            >
+              <span>{{
+                getStatusMessage(lastLedTelemetry?.led2G) | translate
+              }}</span>
+            </div>
+            <div
+              *ngIf="product?.hasLed5G"
+              class="grid-header"
+              [ngClass]="{
+                'bg-green': statusLed('5G') === 'sucess',
+                'bg-red': statusLed('5G') === 'error',
+                'bg-gray': statusLed('5G') === 'empty',
+              }"
+            >
+              <span>{{
+                getStatusMessage(lastLedTelemetry?.led5G) | translate
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="repair-form">
+      <section>
+        <header>
+          <div class="flex-justify">
+            <h2>{{ "repairs.register.title" | translate }}</h2>
+          </div>
+          <span *ngIf="!disabled">{{
+            "repairs.register.subtitle" | translate
+          }}</span>
+        </header>
+
+        <div class="content">
+          <div class="flex-justify">
+            <span>{{ "dialogs.form" | translate }}</span>
+            <div class="divider"></div>
+          </div>
+
+          <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+            <div class="file-preview">
+              <span class="input-header">{{
+                "repair-dialog.file-header" | translate
+              }}</span>
+              <label
+                for="fileInput"
+                class="input-border"
+                [style.backgroundColor]="selectedFile ? '#143' : 'unset'"
+              >
+                <div class="icon-row">
+                  <img
+                    *ngIf="selectedFile"
+                    src="assets/icons/check.svg"
+                  />
+                  <img
+                    *ngIf="!selectedFile"
+                    src="assets/images/input-file.svg"
+                  />
+                  <span>{{ "repair-dialog.select-file" | translate }}</span>
+                </div>
+                <span class="filename-label">{{ selectedFile?.name }}</span>
+                <app-button width="200px" btnStyle="stroked">{{
+                  "repair-dialog.btn-file" | translate
+                }}</app-button>
+              </label>
+            </div>
+            <input
+              *ngIf="!disabled"
+              (change)="onFileSelected($event)"
+              id="fileInput"
+              name="fileInput"
+              type="file"
+              class="hidden"
+              accept=".pdf"
+            />
+          </form>
+        </div>
+
+        <div class="buttons">
+          <app-button
+            *ngIf="!disabled"
+            [disabled]="isLoading"
+            width="100%"
+            btnStyle="raised"
+            variant="success"
+            (click)="onSubmit()"
+          >
+            {{ "dialogs.btn-register" | translate }}
+          </app-button>
+          <app-button
+            width="100%"
+            btnStyle="stroked"
+            variant="light"
+            (click)="cancelRegister()"
+          >
+            {{ "common.cancel" | translate }}
+          </app-button>
+        </div>
+      </section>
+    </section>
+  </main>
+</section>

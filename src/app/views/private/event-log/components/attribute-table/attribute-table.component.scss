@@ -1,0 +1,33 @@
+@import "_dialogs.scss";
+
+
+app-attribute-table {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+
+  tr {
+    display: flex;
+
+    td {
+      border: 1px solid var(--table-cell-border-color);
+      color: var(--default-font-color);
+      background-color: var(--table-cell-bg-color);
+      width: 100%;
+      padding: 0 5px;
+      overflow: hidden;
+    }
+
+    .table-header {
+      width: 50%;
+      text-decoration: underline;
+    }
+
+    .table-update-header {
+      width: 100%;
+    }
+
+  }
+}

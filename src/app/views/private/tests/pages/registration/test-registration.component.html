@@ -1,0 +1,91 @@
+<section class="private-main-container">
+  <header>
+    <app-breadcrumb
+      breadcrumbTitle="breadcrumbs.registers.tests.registration"
+      subtitle="breadcrumbs.registers.tests.reading"
+      route={{appRoutes.CONTROL_PANEL}}
+    />
+  </header>
+
+  <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+    <main>
+      <h5 id="first-label">{{ 'tests.select-the-options' | translate }}</h5>
+      <h5 id="second-label">{{ 'tests.choose-the-rack' | translate }}</h5>
+      <div class="side-options">
+        <div class="card">
+          <app-form-select-field borderStyle="secondary" width="100%" label="{{ 'common.model' | translate}}"
+            placeholder="{{ 'tests.model-placeholder' | translate}}" control="modelId" [options]="products"
+            valueField="id" textField="model" [disabled]="disabled" />
+
+          <app-form-field fieldType="input" control="time" label="{{ 'tests.days-to-be-tested' | translate}}"
+            placeholder="{{ 'tests.days-to-be-tested-placeholder' | translate}}" formStyle="outline" width="100%"
+            class="input-field days-input" borderStyle="secondary" />
+
+          <div class="datepicks">
+            <app-form-field fieldType="input" control="startdate" label="{{ 'tests.startdate' | translate }}"
+              formStyle="fill" width="100%" class="input-field" [disabled]="true" />
+            <app-form-field fieldType="input" control="enddate" placeholder="DD/MM/YYYY"
+              label="{{ 'tests.enddate' | translate }}" formStyle="fill" width="100%" class="input-field"
+              [disabled]="true" />
+          </div>
+        </div>
+      </div>
+      <div class="rack-options">
+        <div class="top-navbar-title">
+          <div class="toogle-rack">
+            <div class="rack-button" [ngClass]="{'selected': rackActive === 'Rack1'}" (click)="changeRack('Rack1')">
+              <mat-icon *ngIf="rackActive === 'Rack1'">check</mat-icon>&nbsp;Rack&nbsp;1
+            </div>
+            <div class="rack-button" [ngClass]="{'selected': rackActive === 'Rack2'}" (click)="changeRack('Rack2')">
+              <mat-icon *ngIf="rackActive === 'Rack2'">check</mat-icon>&nbsp;Rack&nbsp;2
+            </div>
+          </div>
+          <div class="checkall">
+            <mat-checkbox [checked]="checkAll" (change)="handleCheckAll($event)">{{ 'common.select-all-enabled' |
+              translate}}</mat-checkbox>
+          </div>
+        </div>
+        <div class="rack-boxes" *ngIf="rackActive === 'Rack1'">
+          <div class="card">
+            <mat-checkbox *ngFor="let item of box1;index as i" [checked]="item.checked" [disabled]="item.status || item.inMaintenance"
+              (change)="handleCheckChange(1, i)">{{ item.name }}</mat-checkbox>
+          </div>
+          <div class="card">
+            <mat-checkbox *ngFor="let item of box2;index as i" [checked]="item.checked" [disabled]="item.status || item.inMaintenance"
+              (change)="handleCheckChange(2, i)">{{ item.name }}</mat-checkbox>
+          </div>
+          <div class="card">
+            <mat-checkbox *ngFor="let item of box3;index as i" [checked]="item.checked" [disabled]="item.status || item.inMaintenance"
+              (change)="handleCheckChange(3, i)">{{ item.name }}</mat-checkbox>
+          </div>
+          <div class="card">
+            <mat-checkbox *ngFor="let item of box4;index as i" [checked]="item.checked" [disabled]="item.status || item.inMaintenance"
+              (change)="handleCheckChange(4, i)">{{ item.name }}</mat-checkbox>
+          </div>
+        </div>
+        <div class="rack-boxes" *ngIf="rackActive === 'Rack2'">
+          <div class="card">
+            <mat-checkbox *ngFor="let item of box5;index as i" [checked]="item.checked" [disabled]="item.status || item.inMaintenance"
+              (change)="handleCheckChange(5, i)">{{ item.name }}</mat-checkbox>
+          </div>
+          <div class="card">
+            <mat-checkbox *ngFor="let item of box6;index as i" [checked]="item.checked" [disabled]="item.status || item.inMaintenance"
+              (change)="handleCheckChange(6, i)">{{ item.name }}</mat-checkbox>
+          </div>
+          <div class="card">
+            <mat-checkbox *ngFor="let item of box7;index as i" [checked]="item.checked" [disabled]="item.status || item.inMaintenance"
+              (change)="handleCheckChange(7, i)">{{ item.name }}</mat-checkbox>
+          </div>
+          <div class="card">
+            <mat-checkbox *ngFor="let item of box8;index as i" [checked]="item.checked" [disabled]="item.status || item.inMaintenance"
+              (change)="handleCheckChange(8, i)">{{ item.name }}</mat-checkbox>
+          </div>
+        </div>
+        <div class="bottom-buttons">
+          <app-button variant="success" (click)="onSubmit()">{{ 'common.register' | translate }}</app-button>
+          <app-button variant="muted" (click)="onCancel()">{{ 'common.cancel' |translate }}</app-button>
+        </div>
+      </div>
+    </main>
+  </form>
+</section>

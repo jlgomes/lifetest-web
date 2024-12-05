@@ -1,0 +1,18 @@
+<table>
+  <tr *ngFor="let key of keys">
+    <td
+      *ngIf="!isObject(newData[key])"
+      class="table-update-header"
+      [ngClass]="{ 'bg-green': isItemDifferent(key) }"
+    >
+      {{ newData[key] }}
+    </td>
+    <td
+      *ngIf="!isObject(oldData[key])"
+      class="table-content"
+      [ngClass]="{ 'bg-red': isItemDifferent(key) }"
+    >
+      {{ oldData[key] }}
+    </td>
+  </tr>
+</table>

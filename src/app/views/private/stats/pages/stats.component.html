@@ -1,0 +1,52 @@
+<section class="private-main-container">
+  <header>
+    <app-breadcrumb
+      breadcrumbTitle="breadcrumbs.dashboard"
+      route={{appRoutes.CONTROL_PANEL}}
+      [style.color]="'white'"
+    />
+  </header>
+  <main>
+    <div class="details">
+      <div class="card" *ngIf="data && data.modelWithFewerErrors">
+        <span>{{ "statistics.least-erros-model" | translate }}</span>
+        <h2>{{ data.modelWithFewerErrors.model }}</h2>
+      </div>
+
+      <div class="card" *ngIf="data && data.modelWithTheMostErrors">
+        <span>{{ "statistics.most-errors-model" | translate }}</span>
+        <h2>{{ data.modelWithTheMostErrors.model }}</h2>
+      </div>
+
+      <div class="card" *ngIf="data && data.modelWithMoreTests">
+        <span>{{ "statistics.most-tested-model" | translate }}</span>
+        <h2>{{ data.modelWithMoreTests.model }}</h2>
+      </div>
+
+      <div class="card temperature" *ngIf="data && data.temperature">
+        <div class="card-top">
+          <span>{{ "statistics.thermometer" | translate }}</span>
+          <mat-icon>check_circle</mat-icon>
+        </div>
+        <h2>{{ data.temperature.toFixed(2) }}°C</h2>
+      </div>
+    </div>
+
+    <div class="graphs">
+      <app-bar-graph-chart
+        [data]="mostTestedModelsData"
+        title="{{ 'dashboard.most-tested-models' | translate }}"
+        description="{{
+          'dashboard.most-tested-models-description' | translate
+        }}"
+      />
+
+      <app-bar-graph-chart
+        [data]="ledPingErrorsData"
+        title="{{ 'dashboard.led-ping-errors' | translate }}"
+        description="{{ 'dashboard.led-ping-errors-description' | translate }}"
+      />
+
+    </div>
+  </main>
+</section>

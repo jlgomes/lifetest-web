@@ -1,0 +1,51 @@
+<section>
+  <header>
+    <div class="flex-justify">
+      <h2>{{ title | translate }}</h2>
+      <div class="btn-icon" (click)="closeDialog()">
+        <mat-icon class="material-icons-outlined" svgIcon="cancel-lt" />
+      </div>
+    </div>
+    <span *ngIf="!disabled">{{ subtitle ?? "" | translate }}</span>
+  </header>
+
+  <div class="guide-text">
+    <span>{{ "reports.dialog.select-period" | translate }}</span>
+  </div>
+
+  <div class="content">
+    <form [formGroup]="recoveryForm" (submit)="onSubmit()">
+      <app-form-select-field
+        borderStyle="secondary"
+        width="100%"
+        label="{{ 'common.period' | translate }}"
+        placeholder="{{ 'reports.dialog.placeholder-select-period' | translate }}"
+        control="period"
+        [options]="selectOptionsProfile"
+        valueField="id"
+        textField="name"
+        [disabled]="disabled"
+      />
+    </form>
+  </div>
+
+  <div class="buttons">
+    <app-button
+      *ngIf="!disabled"
+      width="100%"
+      btnStyle="raised"
+      variant="success"
+      (click)="onSubmit()"
+    >
+      {{ "reports.dialog.btn-save" | translate }}
+    </app-button>
+    <app-button
+      width="100%"
+      btnStyle="stroked"
+      variant="light"
+      (click)="closeDialog()"
+    >
+      {{ "common.cancel" | translate }}
+    </app-button>
+  </div>
+</section>
