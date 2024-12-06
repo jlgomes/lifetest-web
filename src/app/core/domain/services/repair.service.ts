@@ -60,6 +60,17 @@ export class RepairService {
     );
   }
 
+  changeFalseReject(id: string) {
+    return this._http
+      .put<void>(`${REPAIRS}/change/false-reject/${id}`, null)
+      .pipe(
+        catchError((err) => {
+          this._handleErrorsService.execute(err.error);
+          throw err.error;
+        })
+      );
+  }
+
   update(id: string, data: RepairForm): Observable<RepairModel> {
     return this._http.put<RepairModel>(`${REPAIRS}/${id}`, data).pipe(
       catchError((err) => {

@@ -45,6 +45,7 @@ export class RepairComponent implements OnInit, OnDestroy {
   protected dataSources: MatTableDataSource<RepairModel> =
     new MatTableDataSource<RepairModel>([]);
   protected displayedColumns: string[] = [
+    'falseReject',
     'status',
     'model',
     'rack',
@@ -187,6 +188,14 @@ export class RepairComponent implements OnInit, OnDestroy {
     this.pageable.page = event.pageIndex;
     this.pageable.size = event.pageSize;
     this.fetchDataPage();
+  }
+
+  public changeFalseReject(id: string) {
+    this._repairService.changeFalseReject(id).subscribe(() => {
+      this.fetchDataPage();
+      const toastMessage = this._translate.instant('event.messages.update');
+      this._toast.show(toastMessage, TypeToastEnum.SUCCESS);
+    });
   }
 
   public delete(element: RepairModel): void {

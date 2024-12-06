@@ -573,6 +573,7 @@
     "camera-connection": "Camera connection error. Please try again"
   },
   "repair": {
+    "falseReject": "False reject",
     "status": "Status",
     "model": "Model",
     "slot": "Slot",
