@@ -68,6 +68,9 @@
 
   --form-span-bg-color: #{$colorsystem1-800};
   --form-input-bg-color: #{$colorsystem1-1000};
+
+  --date-picker-bg-color: #{$colorsystem1-800};
+  --date-picker-text-color: #{$colorsystem1-50};
 }
 
 .light-theme {
@@ -129,4 +132,7 @@
 
   --form-span-bg-color: #{$colorsystem1-100};
   --form-input-bg-color: #{$colorsystem1-50};
+
+  --date-picker-bg-color: #{$colorsystem1-50};
+  --date-picker-text-color: #{$colorsystem1-800};
 }

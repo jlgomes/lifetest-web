@@ -58,7 +58,6 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     CommonModule,
     RouterLink,
     MatInputModule,
-    MatFormFieldModule,
     MatSelectModule,
     MatButtonModule,
     ReactiveFormsModule,

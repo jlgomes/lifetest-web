@@ -1,3 +1,54 @@
+@import "../form-field/form-field.component.scss";
+
 mat-form-field {
   width: 300px;
+
+  .clear-value {
+    color: #496280;
+    height: auto;
+    width: auto;
+    padding: 0;
+  }
+}
+
+::ng-deep {
+  .custom-date-picker label,
+  .custom-date-picker .mat-date-range-input-separator {
+    color: #fff !important;
+  }
+
+  div.mat-date-range-input-container {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: var(--default-font-color) !important;
+  }
+
+  // custom date-picker
+  mat-calendar {
+    background-color: var(--date-picker-bg-color) !important;
+
+    .mat-calendar-controls {
+      button,
+      .mat-calendar-previous-button::after,
+      .mat-calendar-next-button::after {
+        color: var(--date-picker-text-color);
+      }
+
+      .mdc-button__label {
+        span {
+          color: var(--date-picker-text-color);
+        }
+
+        svg {
+          fill: var(--date-picker-text-color);
+        }
+      }
+    }
+
+    .ng-star-inserted span:nth-child(2),
+    .mat-calendar-body-label,
+    .mat-calendar-body-cell .mat-focus-indicator {
+      color: var(--date-picker-text-color);
+    }
+  }
 }

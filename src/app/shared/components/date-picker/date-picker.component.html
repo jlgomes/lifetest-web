@@ -1,22 +1,45 @@
-<mat-form-field>
+<mat-form-field
+  class="custom-date-picker"
+  floatLabel="always"
+  [ngClass]="{
+    'border-secondary': true,
+    'hide-hint': hideHint
+  }"
+  appearance="outline"
+>
   <mat-label>{{ "common.date" | translate }}</mat-label>
   <mat-date-range-input [formGroup]="timeframe" [rangePicker]="timeframePicker">
     <input
-      (dateChange)="onChange($event)"
+      readonly
       matStartDate
+      (dateInput)="onChange()"
       placeholder="Start date"
       formControlName="start"
+      (click)="timeframePicker.open()"
     />
     <input
-      (dateChange)="onChange($event)"
+      readonly
       matEndDate
+      (dateInput)="onChange()"
       placeholder="End date"
       formControlName="end"
+      (click)="timeframePicker.open()"
     />
   </mat-date-range-input>
+  <button
+    mat-icon-button
+    matSuffix
+    *ngIf="timeframePicker"
+    aria-label="Clear"
+    (click)="clearValue()"
+    class="clear-value"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
   <mat-datepicker-toggle
     matIconSuffix
+    style="color: #496280"
     [for]="timeframePicker"
-  ></mat-datepicker-toggle>
+  />
   <mat-date-range-picker #timeframePicker></mat-date-range-picker>
 </mat-form-field>
