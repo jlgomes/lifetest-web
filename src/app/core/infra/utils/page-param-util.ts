@@ -9,7 +9,8 @@ type FormatDateParams = {
 
 export const formatDate = ({ date, time = '', isStart }: FormatDateParams) => {
   const defaultFormat = 'YYYY-MM-DDTHH:mm:ss';
-  const timeParsed = time?.length > 4 ? time : '00:00';
+  const defaultTime = isStart ? '00:00' : '23:59';
+  const timeParsed = time?.length > 4 ? time : defaultTime;
 
   const [hour, minute] = timeParsed.split(':').map(Number);
 
