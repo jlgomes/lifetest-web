@@ -42,6 +42,11 @@
     "page-not-found": "Page not found!"
   },
   "common": {
+    "startDate": "Start date",
+    "endDate": "End date",
+    "startTime": "Start time",
+    "endTime": "End time",
+    "hour": "Hour",
     "actions": "Actions",
     "edit": "Edit",
     "delete": "Delete",

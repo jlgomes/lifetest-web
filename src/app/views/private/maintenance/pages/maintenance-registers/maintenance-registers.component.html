@@ -14,8 +14,38 @@
       {{ "maintenance.btn-register" | translate }}
     </app-button>
   </header>
+
   <main>
     <div class="card-table">
+      <form class="filter-wrapper-default">
+        <app-date-picker
+          [hideHint]="true"
+          (onSelectionChange)="onIntervalChange($event)"
+        />
+
+        <app-form-field
+          fieldType="input"
+          borderStyle="secondary"
+          width="130px"
+          [hideHint]="true"
+          mask="Hh:m0"
+          label="{{ 'common.startTime' | translate }}"
+          placeholder="{{ 'common.hour' | translate }}"
+          (valueChange)="onTimeChange('startTime', $event)"
+        />
+
+        <app-form-field
+          fieldType="input"
+          borderStyle="secondary"
+          width="130px"
+          [hideHint]="true"
+          mask="Hh:m0"
+          label="{{ 'common.endTime' | translate }}"
+          placeholder="{{ 'common.hour' | translate }}"
+          (valueChange)="onTimeChange('endTime', $event)"
+        />
+      </form>
+
       <table mat-table [dataSource]="dataSources">
         <ng-container matColumnDef="rack">
           <th mat-header-cell *matHeaderCellDef>

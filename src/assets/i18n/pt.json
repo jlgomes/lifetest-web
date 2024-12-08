@@ -42,6 +42,11 @@
     "page-not-found": "Página não encontrada!"
   },
   "common": {
+    "startDate": "Data inicial",
+    "endDate": "Data final",
+    "startTime": "Horário inicial",
+    "endTime": "Horário final",
+    "hour": "Hora",
     "actions": "Ações",
     "edit": "Editar",
     "delete": "Excluir",
