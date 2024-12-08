@@ -21,9 +21,8 @@ import {
 } from '@helpers/constants/path-rest-constants';
 import { getFileExtension } from '@core/infra/utils/files-util';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FormErrorUtil } from '@core/infra/utils/form-error-util';
 import { DateInterval } from '@shared/components/date-picker/date-picker.component';
-import dayjs from 'dayjs';
+import { FilterService } from '@core/domain/services/filter.service';
 
 @Component({
   selector: 'app-repair',
@@ -62,7 +61,7 @@ export class RepairComponent implements OnInit, OnDestroy {
     private _toast: ToastService,
     private _mediaService: MediaService,
     private fb: FormBuilder,
-    private _formErrorUtil: FormErrorUtil
+    private filterService: FilterService
   ) {
     const pageTitle = _translate.instant('page-title.repairs');
     this.titleService.setTitle(pageTitle);
@@ -74,26 +73,10 @@ export class RepairComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.setIntervalInitial();
+    this.filterService.setIntervalInitial(this.pageable);
     this.initForm();
     this.dataSources.paginator = this.paginator;
     this.fetchDataPage();
-  }
-
-  setIntervalInitial() {
-    const { start, end } = this.getIntervalInitial();
-    this.pageable.endDate = end.toUTCString();
-    this.pageable.startDate = start.toUTCString();
-  }
-
-  getIntervalInitial() {
-    const today = dayjs();
-    const lastWeek = today.subtract(1, 'week');
-
-    return {
-      end: today.toDate(),
-      start: lastWeek.toDate(),
-    };
   }
 
   initForm(): void {
@@ -103,24 +86,16 @@ export class RepairComponent implements OnInit, OnDestroy {
     });
   }
 
-  onChangeInterval(value: Partial<DateInterval>) {
-    this.pageable.startDate = value.start?.toUTCString();
-    this.pageable.endDate = value.end?.toUTCString();
-    this.fetchDataPage();
+  onIntervalChange(value: Partial<DateInterval>) {
+    this.filterService.onChangeInterval(this.pageable, value, () =>
+      this.fetchDataPage()
+    );
   }
 
-  onChangeTime(key: 'startTime' | 'endTime', value: string) {
-    this.pageable[key] = value;
-    this.refetchChangeTime(value);
-  }
-
-  refetchChangeTime(value: string) {
-    const isFilled = value.length > 4;
-    const isEmpty = value.length === 0;
-
-    if (isEmpty || isFilled) {
-      this.fetchDataPage();
-    }
+  onTimeChange(key: 'startTime' | 'endTime', value: string) {
+    this.filterService.onChangeTime(this.pageable, key, value, () =>
+      this.fetchDataPage()
+    );
   }
 
   handleFilterChange(event: Event) {

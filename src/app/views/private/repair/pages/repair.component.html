@@ -12,7 +12,7 @@
           <div class="flex-row">
             <app-date-picker
               [hideHint]="true"
-              (onSelectionChange)="onChangeInterval($event)"
+              (onSelectionChange)="onIntervalChange($event)"
             />
 
             <app-form-field
@@ -23,7 +23,7 @@
               mask="Hh:m0"
               label="{{ 'common.startTime' | translate }}"
               placeholder="{{ 'common.hour' | translate }}"
-              (valueChange)="onChangeTime('startTime', $event)"
+              (valueChange)="onTimeChange('startTime', $event)"
             />
 
             <app-form-field
@@ -34,7 +34,7 @@
               mask="Hh:m0"
               label="{{ 'common.endTime' | translate }}"
               placeholder="{{ 'common.hour' | translate }}"
-              (valueChange)="onChangeTime('endTime', $event)"
+              (valueChange)="onTimeChange('endTime', $event)"
             />
 
             <div class="search-wrapper">
