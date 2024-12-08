@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogModel } from '@core/domain/models/dialog-model';
 import { FormErrorUtil } from '@core/infra/utils/form-error-util';
-import { ErrorModel } from '@core/domain/models/error-model';
 import { MaintenanceService } from '@core/domain/services/maintenance.service';
 import { MaintenanceForm } from '@core/domain/forms/maintenance-form';
 import dayjs from 'dayjs';
@@ -18,6 +17,7 @@ import { SlotModel } from '@core/domain/models/slot-model';
 import { MatSelectChange } from '@angular/material/select';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxMaskPipe } from 'ngx-mask';
+import { ErrorModel } from '@core/domain/models/error-model';
 
 @Component({
   selector: 'app-maintenance-modal-form',
@@ -72,7 +72,7 @@ export class MaintenanceModalFormComponent implements OnInit {
   }
 
   initForm(): FormGroup {
-    return (this.recoveryForm = this.fb.group({
+    return this.fb.group({
       rack: ['', [Validators.required]],
       slot: ['', [Validators.required]],
       type: ['', [Validators.required]],
@@ -82,28 +82,25 @@ export class MaintenanceModalFormComponent implements OnInit {
         [Validators.required],
       ],
       observation: [''],
-    }));
+    });
   }
 
   onSubmit(): void {
-    const deadline = this.inputMask.transform(
-      this.recoveryForm.value.deadlineDate,
-      this.dateMask
-    );
+    const values = this.recoveryForm.value;
+    const deadline = dayjs(values.deadlineDate, 'DD/MM/YYYY');
 
     if (this._formErrorUtil.isInvalidForm(this.recoveryForm)) return;
-    if (this.isLoading) return;
+    if (this.isLoading || !deadline.isValid()) return;
+
     const formValue: MaintenanceForm = {
       slotId: this.recoveryForm.value.slot,
       maintenanceType: this.recoveryForm.value.type,
-      deadlineDate: dayjs(deadline, 'DD/MM/YYYY').format(
-        'YYYY-DD-MMTHH:mm:ss[Z]' // Don't know why but the lib isn't formatting correctly so I swapped the DD and MM order
-      ),
+      deadlineDate: deadline.format('YYYY-MM-DDTHH:MM:ss'),
       observation: this.recoveryForm.value.observation,
     };
 
     this.isLoading = true;
-    let result = this._maintenanceService.save(formValue).subscribe({
+    this._maintenanceService.save(formValue).subscribe({
       next: () => {
         this.dialogRef.close();
         this.recoveryForm.reset();
@@ -111,6 +108,7 @@ export class MaintenanceModalFormComponent implements OnInit {
       },
       error: (err: ErrorModel) => {
         console.log(err);
+        this.isLoading = false;
       },
     });
   }
