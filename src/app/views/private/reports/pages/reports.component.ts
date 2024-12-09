@@ -45,7 +45,7 @@ interface ReportData {
   styleUrls: ['./reports.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class ReportsComponent implements OnChanges {
+export class ReportsComponent implements OnInit, OnChanges {
   protected appRoutes = appRoutes;
   protected recoveryForm!: FormGroup;
   protected products: ProductModel[] = [];
@@ -177,6 +177,10 @@ export class ReportsComponent implements OnChanges {
     //   .subscribe((value: BarChartData[]) => {
     //     this.reportData.maintenancesPerSlot = value;
     //   });
+  }
+
+  ngOnInit(): void {
+    this.fetchLedPingErros();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
