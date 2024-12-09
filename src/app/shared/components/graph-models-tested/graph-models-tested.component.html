@@ -1,0 +1,17 @@
+<div class="chart-container">
+  <div class="header">
+    <h2>{{ title ?? "" | translate }}</h2>
+    <div
+      *ngIf="description"
+      class="btn-icon"
+      matTooltip="{{ description | translate }}"
+    >
+      <mat-icon
+        style="height: 20px; width: 20px"
+        class="material-icons-outlined"
+        svgIcon="info"
+      />
+    </div>
+  </div>
+  <canvas #ref width="100%">{{ chart }}</canvas>
+</div>

@@ -1,6 +1,7 @@
 import {
   Component,
   OnChanges,
+  OnInit,
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
@@ -17,6 +18,9 @@ import { StatsService } from '@core/domain/services/stats.service';
 import { ReportDetails, generateReportPDF } from '../generate-report';
 import { TodoItemNode } from '@shared/components/checkbox-tree/checkbox-tree.component';
 import { DateInterval } from '@shared/components/date-picker/date-picker.component';
+import { FiltersReportParams } from '@core/domain/models/reports/filters-report';
+import { formatDate } from '@core/infra/utils/page-param-util';
+import { FilterService } from '@core/domain/services/filter.service';
 
 enum ReportTypes {
   TESTS = 'reports.types.tests',
@@ -56,10 +60,15 @@ export class ReportsComponent implements OnChanges {
     };
   });
 
-  protected startDate = '2024-08-31 00:00:00';
-  protected endDate = '2024-09-03 17:30:00';
-  protected startTime = '00:00';
-  protected endTime = '00:00';
+  protected mostTestedModelsData: BarChartData[] = [];
+  protected ledPingErrorsData: BarChartData[] = [];
+  protected filters: Partial<FiltersReportParams> = {};
+  protected showReport = false;
+
+  protected startDate?: string = '';
+  protected endDate?: string = '';
+  protected startTime = '';
+  protected endTime = '';
 
   protected reportData: Partial<ReportData> = {};
 
@@ -102,11 +111,16 @@ export class ReportsComponent implements OnChanges {
     private fb: FormBuilder,
     private _formErrorUtil: FormErrorUtil,
     private _productService: ProductService,
-    private _statsService: StatsService
+    private _statsService: StatsService,
+    private filterService: FilterService
   ) {
     const pageTitle = _translate.instant('page-title.reports');
     this.titleService.setTitle(pageTitle);
-    this.recoveryForm = this.initForm();
+    this.initForm();
+
+    const { start, end } = this.filterService.getIntervalInitial();
+    this.endDate = end?.toUTCString();
+    this.startDate = start?.toUTCString();
 
     const products: { [key: string]: null } = {};
     _productService.findAll().subscribe((data) => {
@@ -121,70 +135,114 @@ export class ReportsComponent implements OnChanges {
     });
 
     // Test reports
-    _statsService
-      .getTotalProductsTested(this.startDate, this.endDate)
-      .subscribe((value: BarChartData[]) => {
-        this.reportData.totalProductsTested = value;
-      });
+    // _statsService
+    //   .getTotalProductsTested(this.startDate, this.endDate)
+    //   .subscribe((value: BarChartData[]) => {
+    //     this.reportData.totalProductsTested = value;
+    //   });
 
-    _statsService
-      .getTotalFailuresPerProduct(this.startDate, this.endDate)
-      .subscribe((value: BarChartData[]) => {
-        this.reportData.totalFailuresPerProduct = value;
-      });
+    // _statsService
+    //   .getTotalFailuresPerProduct(this.startDate, this.endDate)
+    //   .subscribe((value: BarChartData[]) => {
+    //     this.reportData.totalFailuresPerProduct = value;
+    //   });
 
-    _statsService
-      .getTotalFailuresPerType(this.startDate, this.endDate)
-      .subscribe((value: BarChartData[]) => {
-        this.reportData.totalFailuresPerType = value;
-      });
+    // _statsService
+    //   .getTotalFailuresPerType(this.startDate, this.endDate)
+    //   .subscribe((value: BarChartData[]) => {
+    //     this.reportData.totalFailuresPerType = value;
+    //   });
 
-    _statsService
-      .getTotalFailuresDetailed(this.startDate, this.endDate)
-      .subscribe((value: BarChartData[]) => {
-        this.reportData.totalFailuresDetailed = value;
-      });
+    // _statsService
+    //   .getTotalFailuresDetailed(this.startDate, this.endDate)
+    //   .subscribe((value: BarChartData[]) => {
+    //     this.reportData.totalFailuresDetailed = value;
+    //   });
 
-    _statsService
-      .getHoursExecutedPerProduct(this.startDate, this.endDate)
-      .subscribe((value: BarChartData[]) => {
-        this.reportData.hoursExecutedPerProduct = value;
-      });
+    // _statsService
+    //   .getHoursExecutedPerProduct(this.startDate, this.endDate)
+    //   .subscribe((value: BarChartData[]) => {
+    //     this.reportData.hoursExecutedPerProduct = value;
+    //   });
 
-    // Maintenance reports
-    _statsService
-      .getMaintenancesPerType(this.startDate, this.endDate)
-      .subscribe((value: BarChartData[]) => {
-        this.reportData.maintenancesPerType = value;
-      });
+    // // Maintenance reports
+    // _statsService
+    //   .getMaintenancesPerType(this.startDate, this.endDate)
+    //   .subscribe((value: BarChartData[]) => {
+    //     this.reportData.maintenancesPerType = value;
+    //   });
 
-    _statsService
-      .getMaintenancesPerSlot(this.startDate, this.endDate)
-      .subscribe((value: BarChartData[]) => {
-        this.reportData.maintenancesPerSlot = value;
-      });
+    // _statsService
+    //   .getMaintenancesPerSlot(this.startDate, this.endDate)
+    //   .subscribe((value: BarChartData[]) => {
+    //     this.reportData.maintenancesPerSlot = value;
+    //   });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
   }
 
-  initForm(): FormGroup {
-    return (this.recoveryForm = this.fb.group({
+  initForm(): void {
+    this.recoveryForm = this.fb.group({
       type: ['TESTS', [Validators.required]],
       product: [''],
       initialDate: [''],
       endDate: [''],
-    }));
+    });
   }
 
   onReportTypeChange(event: MatSelectChange) {
     this.typeSelection = event.value;
   }
 
-  formatInterval(startDate: string, endDate: string) {}
+  generateReport() {
+    this.showReport = true;
+    this.fetchLedPingErros();
+    this.fetchMostTestedModels();
+  }
 
-  async generateReport() {
+  fetchLedPingErros() {
+    const params = this.getParams();
+    this._statsService
+      .getLedPingErros(params)
+      .subscribe((value: BarChartData[]) => {
+        this.ledPingErrorsData = value;
+      });
+  }
+
+  fetchMostTestedModels() {
+    const params = this.getParams();
+    this._statsService
+      .getMostTestedModels(params)
+      .subscribe((value: BarChartData[]) => {
+        this.mostTestedModelsData = value;
+      });
+  }
+
+  getParams(): Partial<FiltersReportParams> {
+    const params: Partial<FiltersReportParams> = {};
+
+    if (this.startDate) {
+      params['startDate'] = formatDate({
+        date: this.startDate,
+        isStart: true,
+        time: this.startTime,
+      });
+    }
+
+    if (this.endDate) {
+      params['endDate'] = formatDate({
+        date: this.endDate,
+        isStart: false,
+        time: this.endTime,
+      });
+    }
+
+    return params;
+  }
+
+  async generateReportOld() {
     const canvas1: HTMLCanvasElement | null = document.getElementById(
       'total-products-tested'
     ) as HTMLCanvasElement | null;
