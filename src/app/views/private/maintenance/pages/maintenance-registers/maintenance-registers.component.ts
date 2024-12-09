@@ -15,6 +15,8 @@ import { appRoutes } from '@helpers/constants/path-rest-constants';
 import { generateMaintenanceReport } from './maintenance-pdf-export';
 import { ConfirmationDialogComponent } from '@shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MaintenanceModalDoneComponent } from '../../components/maintenance-modal-done/maintenance-modal-done.component';
+import { DateInterval } from '@shared/components/date-picker/date-picker.component';
+import { FilterService } from '@core/domain/services/filter.service';
 
 @Component({
   selector: 'app-maintenance-registers',
@@ -48,7 +50,8 @@ export class MaintenanceRegistersComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private _maintenanceService: MaintenanceService,
     private _translate: TranslateService,
-    private titleService: Title
+    private titleService: Title,
+    private filterService: FilterService
   ) {
     const pageTitle = _translate.instant('page-title.maintenance');
     this.titleService.setTitle(pageTitle);
@@ -60,11 +63,18 @@ export class MaintenanceRegistersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.filterService.setIntervalInitial(this.pageable);
     this.dataSources.paginator = this.paginator;
-    this.initDataPage();
+    this.fetchDataPage();
   }
 
-  private initDataPage() {
+  onIntervalChange(value: Partial<DateInterval>) {
+    this.filterService.onChangeInterval(this.pageable, value, () =>
+      this.fetchDataPage()
+    );
+  }
+
+  private fetchDataPage() {
     this._maintenanceService
       .pageable(this.pageable)
       .pipe(takeUntil(this._destroy$))
@@ -79,14 +89,20 @@ export class MaintenanceRegistersComponent implements OnInit, OnDestroy {
   public pageUpdate(event: { pageIndex: number; pageSize: number }): void {
     this.pageable.page = event.pageIndex;
     this.pageable.size = event.pageSize;
-    this.initDataPage();
+    this.fetchDataPage();
+  }
+
+  onTimeChange(key: 'startTime' | 'endTime', value: string) {
+    this.filterService.onChangeTime(this.pageable, key, value, () =>
+      this.fetchDataPage()
+    );
   }
 
   public delete(element: MaintenanceModel): void {
     const deleteItem = () =>
       this._maintenanceService
         .delete(element.id)
-        .subscribe(() => this.initDataPage());
+        .subscribe(() => this.fetchDataPage());
 
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
@@ -104,7 +120,7 @@ export class MaintenanceRegistersComponent implements OnInit, OnDestroy {
       ConfirmationDialogComponent,
       dialogConfig
     );
-    dialogRefEdit.afterClosed().subscribe(() => this.initDataPage());
+    dialogRefEdit.afterClosed().subscribe(() => this.fetchDataPage());
   }
 
   public create(): void {
@@ -119,7 +135,7 @@ export class MaintenanceRegistersComponent implements OnInit, OnDestroy {
       MaintenanceModalFormComponent,
       dialogConfig
     );
-    dialogRefEdit.afterClosed().subscribe(() => this.initDataPage());
+    dialogRefEdit.afterClosed().subscribe(() => this.fetchDataPage());
   }
 
   public exportReport(element: MaintenanceModel) {
@@ -142,6 +158,6 @@ export class MaintenanceRegistersComponent implements OnInit, OnDestroy {
       MaintenanceModalDoneComponent,
       dialogConfig
     );
-    dialogRefEdit.afterClosed().subscribe(() => this.initDataPage());
+    dialogRefEdit.afterClosed().subscribe(() => this.fetchDataPage());
   }
 }

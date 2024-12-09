@@ -13,7 +13,7 @@
       readonly
       matStartDate
       (dateInput)="onChange()"
-      placeholder="Start date"
+      placeholder="{{ 'common.startDate' | translate }}"
       formControlName="start"
       (click)="timeframePicker.open()"
     />
@@ -21,8 +21,8 @@
       readonly
       matEndDate
       (dateInput)="onChange()"
-      placeholder="End date"
       formControlName="end"
+      placeholder="{{ 'common.endDate' | translate }}"
       (click)="timeframePicker.open()"
     />
   </mat-date-range-input>

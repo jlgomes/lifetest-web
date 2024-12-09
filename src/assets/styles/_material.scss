@@ -9,6 +9,15 @@
   padding: 10px;
 }
 
+.filter-wrapper-default {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  justify-content: flex-start;
+}
+
 .search-wrapper {
   display: flex;
   position: relative;
