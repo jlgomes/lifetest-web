@@ -18,6 +18,7 @@ import {
 import { HandleErrorsService } from '@core/domain/services/handle-errors.service';
 import { StatsModel } from '@core/domain/models/stats-model';
 import { BarChartData } from '../models/reports/bar-chart-data';
+import { FiltersReportParams } from '../models/reports/filters-report';
 
 @Injectable({
   providedIn: 'root',
@@ -38,8 +39,10 @@ export class StatsService {
     );
   }
 
-  getMostTestedModels(): Observable<BarChartData[]> {
-    return this._http.get<BarChartData[]>(MOST_TESTED_MODELS).pipe(
+  getMostTestedModels(
+    filters: Partial<FiltersReportParams> = {}
+  ): Observable<BarChartData[]> {
+    return this._http.get<BarChartData[]>(MOST_TESTED_MODELS, filters).pipe(
       catchError((err) => {
         this._handleErrorsService.execute(err.error);
         throw err.error;
@@ -47,8 +50,10 @@ export class StatsService {
     );
   }
 
-  getLedPingErros(): Observable<BarChartData[]> {
-    return this._http.get<BarChartData[]>(LED_PING_ERRORS).pipe(
+  getLedPingErros(
+    filters: Partial<FiltersReportParams> = {}
+  ): Observable<BarChartData[]> {
+    return this._http.get<BarChartData[]>(LED_PING_ERRORS, filters).pipe(
       catchError((err) => {
         this._handleErrorsService.execute(err.error);
         throw err.error;

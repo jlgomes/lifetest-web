@@ -37,6 +37,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BarGraphChartComponent } from './components/bar-graph-chart/bar-graph-chart.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { GraphicSpecificErrorsComponent } from './components/graphic-specific-errors/graphic-specific-errors.component';
+import { GraphModelsTestedComponent } from './components/graph-models-tested/graph-models-tested.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     DatetimeCalendarComponent,
     CheckboxTreeComponent,
     BarGraphChartComponent,
+    GraphModelsTestedComponent,
+    GraphicSpecificErrorsComponent,
   ],
   providers: [RegisterIconService, provideNgxMask()],
   imports: [
@@ -92,6 +96,8 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     DatetimePickerComponent,
     CheckboxTreeComponent,
     BarGraphChartComponent,
+    GraphModelsTestedComponent,
+    GraphicSpecificErrorsComponent,
   ],
 })
 export class SharedModule {}
