@@ -20,8 +20,10 @@ import {
   repairRoutes,
 } from '@helpers/constants/path-rest-constants';
 import { getFileExtension } from '@core/infra/utils/files-util';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { FormErrorUtil } from '@core/infra/utils/form-error-util';
+import { DateInterval } from '@shared/components/date-picker/date-picker.component';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-repair',
@@ -39,11 +41,11 @@ export class RepairComponent implements OnInit, OnDestroy {
   private pageable: PageRequestForm = {
     size: 10,
   };
-  protected customTime: boolean = false;
   protected page!: PageModel<RepairModel>;
   protected dataSources: MatTableDataSource<RepairModel> =
     new MatTableDataSource<RepairModel>([]);
   protected displayedColumns: string[] = [
+    'falseReject',
     'status',
     'model',
     'rack',
@@ -72,18 +74,53 @@ export class RepairComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.recoveryForm = this.initForm();
+    this.setIntervalInitial();
+    this.initForm();
     this.dataSources.paginator = this.paginator;
-    this.initDataPage();
+    this.fetchDataPage();
   }
 
-  onSubmit() {}
+  setIntervalInitial() {
+    const { start, end } = this.getIntervalInitial();
+    this.pageable.endDate = end.toUTCString();
+    this.pageable.startDate = start.toUTCString();
+  }
 
-  initForm() {
-    return (this.recoveryForm = this.fb.group({
+  getIntervalInitial() {
+    const today = dayjs();
+    const lastWeek = today.subtract(1, 'week');
+
+    return {
+      end: today.toDate(),
+      start: lastWeek.toDate(),
+    };
+  }
+
+  initForm(): void {
+    this.recoveryForm = this.fb.group({
       date: [''],
       test: [''],
-    }));
+    });
+  }
+
+  onChangeInterval(value: Partial<DateInterval>) {
+    this.pageable.startDate = value.start?.toUTCString();
+    this.pageable.endDate = value.end?.toUTCString();
+    this.fetchDataPage();
+  }
+
+  onChangeTime(key: 'startTime' | 'endTime', value: string) {
+    this.pageable[key] = value;
+    this.refetchChangeTime(value);
+  }
+
+  refetchChangeTime(value: string) {
+    const isFilled = value.length > 4;
+    const isEmpty = value.length === 0;
+
+    if (isEmpty || isFilled) {
+      this.fetchDataPage();
+    }
   }
 
   handleFilterChange(event: Event) {
@@ -91,11 +128,7 @@ export class RepairComponent implements OnInit, OnDestroy {
     this.dataSources.filter = data.value;
   }
 
-  onChangeCheckbox() {
-    this.customTime = !this.customTime;
-  }
-
-  private initDataPage() {
+  private fetchDataPage() {
     this._repairService
       .pageable(this.pageable)
       .pipe(takeUntil(this._destroy$))
@@ -154,13 +187,20 @@ export class RepairComponent implements OnInit, OnDestroy {
   public pageUpdate(event: { pageIndex: number; pageSize: number }): void {
     this.pageable.page = event.pageIndex;
     this.pageable.size = event.pageSize;
-    this.initDataPage();
+    this.fetchDataPage();
+  }
+
+  public changeFalseReject(id: string) {
+    this._repairService.changeFalseReject(id).subscribe(() => {
+      this.fetchDataPage();
+      const toastMessage = this._translate.instant('event.messages.update');
+      this._toast.show(toastMessage, TypeToastEnum.SUCCESS);
+    });
   }
 
   public delete(element: RepairModel): void {
-    console.log(element);
     const deleteItem = (id: string, name: string) => {
-      this._repairService.delete(id).subscribe(() => this.initDataPage());
+      this._repairService.delete(id).subscribe(() => this.fetchDataPage());
       const toastMessage = this._translate.instant('toasts.delete-repair');
       this._toast.show(toastMessage, TypeToastEnum.SUCCESS);
     };
@@ -179,7 +219,7 @@ export class RepairComponent implements OnInit, OnDestroy {
       ConfirmationDialogComponent,
       dialogConfig
     );
-    dialogRefEdit.afterClosed().subscribe(() => this.initDataPage());
+    dialogRefEdit.afterClosed().subscribe(() => this.fetchDataPage());
   }
 
   public edit(element: RepairModel): void {

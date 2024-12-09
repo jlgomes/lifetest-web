@@ -37,6 +37,7 @@ export class FormFieldComponent implements OnInit, AfterViewInit {
   @Output() protected valueChange: EventEmitter<string> =
     new EventEmitter<string>();
 
+  @Input() hideHint?: boolean = false;
   @Input() floatLabel: FloatLabelType = 'always';
   @Input() label: string = '';
   @Input() control: string = '';
@@ -65,17 +66,14 @@ export class FormFieldComponent implements OnInit, AfterViewInit {
     this.form = this.controlContainer.control as FormGroup;
   }
 
-  onChange(event: string) {
-    if (this.mask === '00:00') {
-      const value = this.inputMask.transform(event, '00:00');
-      this.valueChange.emit(value);
-    }
+  onChange(event: Event) {
+    const value = (event.target as HTMLInputElement)?.value;
+    this.valueChange.emit(value);
   }
 
   ngAfterViewInit() {
     if (this.autoFocus) {
       this.campo.nativeElement.focus();
     }
-    console.log(this.mask);
   }
 }

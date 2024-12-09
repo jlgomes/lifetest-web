@@ -1,12 +1,11 @@
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import dayjs from 'dayjs';
 
 export interface DateInterval {
-  start: string;
-  end: string;
+  start: Date | null;
+  end: Date | null;
 }
 
 @Component({
@@ -17,6 +16,8 @@ export interface DateInterval {
 })
 export class DatePickerComponent {
   protected timeframe: FormGroup;
+
+  @Input() hideHint?: boolean = false;
   @Output() onSelectionChange = new EventEmitter<DateInterval>();
 
   constructor(
@@ -37,7 +38,12 @@ export class DatePickerComponent {
     });
   }
 
-  onChange(event: MatDatepickerInputEvent<any>) {
+  clearValue() {
+    this.timeframe.reset();
+    this.onChange();
+  }
+
+  onChange() {
     this.onSelectionChange.emit(this.timeframe.value);
   }
 }

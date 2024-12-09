@@ -574,6 +574,7 @@
     "camera-connection": "Erro de conexão com a câmera. Por favor, tente novamente"
   },
   "repair": {
+    "falseReject": "Falso reparo",
     "status": "Status",
     "model": "Modelo",
     "slot": "Slot",

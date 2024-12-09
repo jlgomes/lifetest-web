@@ -8,3 +8,13 @@
   overflow: auto;
   padding: 10px;
 }
+
+.search-wrapper {
+  display: flex;
+  position: relative;
+
+  mat-icon {
+    top: calc(50% - 12px) !important;
+    right: 0;
+  }
+}

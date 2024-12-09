@@ -276,9 +276,8 @@ export class ReportsComponent implements OnChanges {
   }
 
   onDateChange(value: DateInterval) {
-    console.log(value);
-    this.startDate = value.start;
-    this.endDate = value.end;
+    this.startDate = value.start?.toString() ?? '';
+    this.endDate = value.end?.toString() ?? '';
   }
 
   setStartTime(value: string) {
