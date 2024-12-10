@@ -45,7 +45,7 @@ interface ReportData {
   styleUrls: ['./reports.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class ReportsComponent implements OnInit, OnChanges {
+export class ReportsComponent implements OnChanges {
   protected appRoutes = appRoutes;
   protected recoveryForm!: FormGroup;
   protected products: ProductModel[] = [];
@@ -133,54 +133,6 @@ export class ReportsComponent implements OnInit, OnChanges {
         'reports.all-products': products,
       };
     });
-
-    // Test reports
-    // _statsService
-    //   .getTotalProductsTested(this.startDate, this.endDate)
-    //   .subscribe((value: BarChartData[]) => {
-    //     this.reportData.totalProductsTested = value;
-    //   });
-
-    // _statsService
-    //   .getTotalFailuresPerProduct(this.startDate, this.endDate)
-    //   .subscribe((value: BarChartData[]) => {
-    //     this.reportData.totalFailuresPerProduct = value;
-    //   });
-
-    // _statsService
-    //   .getTotalFailuresPerType(this.startDate, this.endDate)
-    //   .subscribe((value: BarChartData[]) => {
-    //     this.reportData.totalFailuresPerType = value;
-    //   });
-
-    // _statsService
-    //   .getTotalFailuresDetailed(this.startDate, this.endDate)
-    //   .subscribe((value: BarChartData[]) => {
-    //     this.reportData.totalFailuresDetailed = value;
-    //   });
-
-    // _statsService
-    //   .getHoursExecutedPerProduct(this.startDate, this.endDate)
-    //   .subscribe((value: BarChartData[]) => {
-    //     this.reportData.hoursExecutedPerProduct = value;
-    //   });
-
-    // // Maintenance reports
-    // _statsService
-    //   .getMaintenancesPerType(this.startDate, this.endDate)
-    //   .subscribe((value: BarChartData[]) => {
-    //     this.reportData.maintenancesPerType = value;
-    //   });
-
-    // _statsService
-    //   .getMaintenancesPerSlot(this.startDate, this.endDate)
-    //   .subscribe((value: BarChartData[]) => {
-    //     this.reportData.maintenancesPerSlot = value;
-    //   });
-  }
-
-  ngOnInit(): void {
-    this.fetchLedPingErros();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -202,25 +154,66 @@ export class ReportsComponent implements OnInit, OnChanges {
 
   generateReport() {
     this.showReport = true;
-    this.fetchLedPingErros();
-    this.fetchMostTestedModels();
+    this.fetchAll();
   }
 
-  fetchLedPingErros() {
+  private fetchAll() {
     const params = this.getParams();
+
+    // Test reports
+    this._statsService
+      .getMostTestedModels(params)
+      .subscribe((value: BarChartData[]) => {
+        this.mostTestedModelsData = value;
+      });
+
     this._statsService
       .getLedPingErros(params)
       .subscribe((value: BarChartData[]) => {
         this.ledPingErrorsData = value;
       });
-  }
 
-  fetchMostTestedModels() {
-    const params = this.getParams();
     this._statsService
-      .getMostTestedModels(params)
+      .getTotalProductsTested(params)
       .subscribe((value: BarChartData[]) => {
-        this.mostTestedModelsData = value;
+        this.reportData.totalProductsTested = value;
+      });
+
+    this._statsService
+      .getTotalFailuresPerProduct(params)
+      .subscribe((value: BarChartData[]) => {
+        this.reportData.totalFailuresPerProduct = value;
+      });
+
+    this._statsService
+      .getTotalFailuresPerType(params)
+      .subscribe((value: BarChartData[]) => {
+        this.reportData.totalFailuresPerType = value;
+      });
+
+    this._statsService
+      .getTotalFailuresDetailed(params)
+      .subscribe((value: BarChartData[]) => {
+        this.reportData.totalFailuresDetailed = value;
+      });
+
+    this._statsService
+      .getHoursExecutedPerProduct(params)
+      .subscribe((value: BarChartData[]) => {
+        this.reportData.hoursExecutedPerProduct = value;
+      });
+
+    // Maintenance reports
+    this._statsService
+      .getMaintenancesPerType(params)
+      .subscribe((value: BarChartData[]) => {
+        this.reportData.maintenancesPerType = value;
+      });
+
+    this._statsService
+      .getMaintenancesPerSlot(params)
+      .subscribe((value: BarChartData[]) => {
+        this.reportData.maintenancesPerSlot = value;
       });
   }
 
@@ -246,7 +239,7 @@ export class ReportsComponent implements OnInit, OnChanges {
     return params;
   }
 
-  async generateReportOld() {
+  async generateReportPDF() {
     const canvas1: HTMLCanvasElement | null = document.getElementById(
       'total-products-tested'
     ) as HTMLCanvasElement | null;

@@ -1,7 +1,11 @@
 <div class="chart-container">
   <div class="header">
-    <span>{{ title ?? '' | translate }}</span>
-    <div *ngIf="description" class="btn-icon" matTooltip="{{ description | translate }}">
+    <span>{{ title ?? "" | translate }}</span>
+    <div
+      *ngIf="description"
+      class="btn-icon"
+      matTooltip="{{ description | translate }}"
+    >
       <mat-icon class="material-icons-outlined" svgIcon="info" />
     </div>
   </div>

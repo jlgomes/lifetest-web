@@ -104,7 +104,7 @@ export class GraphicSpecificErrorsComponent
       if (this.chart?.options?.scales?.['y']) {
         this.chart.options.scales['y'] = this.getGraphYAxisLimits();
       }
-      if (this.chart.options.plugins?.datalabels?.display) {
+      if (this.chart.options.plugins?.datalabels) {
         const isEmptyData = this.chartValues.data.every((row) => row <= 0);
         this.chart.options.plugins.datalabels.display = !isEmptyData;
       }
