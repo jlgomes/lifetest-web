@@ -5,6 +5,12 @@
 @include private-header;
 @include table_style;
 
+.report {
+  display: grid;
+  gap: 1rem 0.5rem;
+  grid-template-columns: 1fr 1fr;
+}
+
 .report-filter {
   display: flex;
   gap: 1rem;
@@ -14,7 +20,7 @@
   align-items: center;
   $input-width: 250px;
   $icon-width: 25px;
-  margin-bottom: 1.5rem;
+  // margin-bottom: 9rem;
 }
 
 .card-table {

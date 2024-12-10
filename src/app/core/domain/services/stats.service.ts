@@ -63,25 +63,21 @@ export class StatsService {
 
   // Test Reports
   getTotalProductsTested(
-    startDate: string,
-    endDate: string
+    filters: Partial<FiltersReportParams> = {}
   ): Observable<BarChartData[]> {
-    return this._http
-      .get<BarChartData[]>(TOTAL_PRODUCTS_TESTED, { startDate, endDate })
-      .pipe(
-        catchError((err) => {
-          this._handleErrorsService.execute(err.error);
-          throw err.error;
-        })
-      );
+    return this._http.get<BarChartData[]>(TOTAL_PRODUCTS_TESTED, filters).pipe(
+      catchError((err) => {
+        this._handleErrorsService.execute(err.error);
+        throw err.error;
+      })
+    );
   }
 
   getTotalFailuresPerProduct(
-    startDate: string,
-    endDate: string
+    filters: Partial<FiltersReportParams> = {}
   ): Observable<BarChartData[]> {
     return this._http
-      .get<BarChartData[]>(TOTAL_FAILURES_PER_PRODUCT, { startDate, endDate })
+      .get<BarChartData[]>(TOTAL_FAILURES_PER_PRODUCT, filters)
       .pipe(
         catchError((err) => {
           this._handleErrorsService.execute(err.error);
@@ -91,11 +87,10 @@ export class StatsService {
   }
 
   getTotalFailuresPerType(
-    startDate: string,
-    endDate: string
+    filters: Partial<FiltersReportParams> = {}
   ): Observable<BarChartData[]> {
     return this._http
-      .get<BarChartData[]>(TOTAL_FAILURES_PER_TYPE, { startDate, endDate })
+      .get<BarChartData[]>(TOTAL_FAILURES_PER_TYPE, filters)
       .pipe(
         catchError((err) => {
           this._handleErrorsService.execute(err.error);
@@ -105,11 +100,10 @@ export class StatsService {
   }
 
   getTotalFailuresDetailed(
-    startDate: string,
-    endDate: string
+    filters: Partial<FiltersReportParams> = {}
   ): Observable<BarChartData[]> {
     return this._http
-      .get<BarChartData[]>(TOTAL_FAILURES_DETAILED, { startDate, endDate })
+      .get<BarChartData[]>(TOTAL_FAILURES_DETAILED, filters)
       .pipe(
         catchError((err) => {
           this._handleErrorsService.execute(err.error);
@@ -119,11 +113,10 @@ export class StatsService {
   }
 
   getHoursExecutedPerProduct(
-    startDate: string,
-    endDate: string
+    filters: Partial<FiltersReportParams> = {}
   ): Observable<BarChartData[]> {
     return this._http
-      .get<BarChartData[]>(HOURS_EXECUTED_PER_PRODUCT, { startDate, endDate })
+      .get<BarChartData[]>(HOURS_EXECUTED_PER_PRODUCT, filters)
       .pipe(
         catchError((err) => {
           this._handleErrorsService.execute(err.error);
@@ -134,30 +127,24 @@ export class StatsService {
 
   // Maintenance Reports
   getMaintenancesPerType(
-    startDate: string,
-    endDate: string
+    filters: Partial<FiltersReportParams> = {}
   ): Observable<BarChartData[]> {
-    return this._http
-      .get<BarChartData[]>(MAINTENANCES_PER_TYPE, { startDate, endDate })
-      .pipe(
-        catchError((err) => {
-          this._handleErrorsService.execute(err.error);
-          throw err.error;
-        })
-      );
+    return this._http.get<BarChartData[]>(MAINTENANCES_PER_TYPE, filters).pipe(
+      catchError((err) => {
+        this._handleErrorsService.execute(err.error);
+        throw err.error;
+      })
+    );
   }
 
   getMaintenancesPerSlot(
-    startDate: string,
-    endDate: string
+    filters: Partial<FiltersReportParams> = {}
   ): Observable<BarChartData[]> {
-    return this._http
-      .get<BarChartData[]>(MAINTENANCES_PER_SLOT, { startDate, endDate })
-      .pipe(
-        catchError((err) => {
-          this._handleErrorsService.execute(err.error);
-          throw err.error;
-        })
-      );
+    return this._http.get<BarChartData[]>(MAINTENANCES_PER_SLOT, filters).pipe(
+      catchError((err) => {
+        this._handleErrorsService.execute(err.error);
+        throw err.error;
+      })
+    );
   }
 }
